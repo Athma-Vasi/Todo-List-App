@@ -33,3 +33,18 @@ body {
 	justify-content: center;
 	align-items: center;
 }
+
+.todo-container {
+	visibility: hidden;
+	position: absolute;
+	background-color: mediumorchid;
+	width: 400px;
+	height: 400px;
+}
+
+.addTodoIcons-container {
+	outline: 1px solid green;
+}
+.icon {
+	outline: 1px solid teal;
+}

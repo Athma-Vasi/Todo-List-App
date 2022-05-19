@@ -20,16 +20,21 @@ const addProjectToSidebar = function (formName_: string) {
 	appendElemToParent(projectsContainer)(projectContainer)
 
 	const projectNameColour = JSON.parse(localStorage.getItem(formName_) ?? '')
-	log(projectNameColour)
 
 	pipe(
-		addAttributeToElem([['data-name', `${projectNameColour[0]}`]]),
+		addAttributeToElem([
+			['data-name', `${projectNameColour[0]}`],
+			['data-colour', `${projectNameColour[1]}`],
+		]),
 		addTextToElem(`${projectNameColour[0]}`),
 		appendElemToParent(projectContainer)
 	)(elemCreator('h4')(['project-text', `text-${projectNameColour[0]}`]))
 
 	pipe(
-		addAttributeToElem([['data-name', `${projectNameColour[0]}`]]),
+		addAttributeToElem([
+			['data-name', `${projectNameColour[0]}`],
+			['data-colour', `${projectNameColour[1]}`],
+		]),
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(projectContainer)
 	)(

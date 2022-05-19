@@ -8,13 +8,17 @@ const elemCreator = (elem_: string) => (class_: string[]) => {
 }
 
 const addAttributeToElem =
-	(attrVals_: Array<string[]>) => (elem_: HTMLElement | null) => {
-		return attrVals_.reduce((acc: HTMLElement | null | undefined, curr: string[]) => {
-			if (curr.length > 2) return undefined
+	(attrVals_: Array<Array<string>>) => (elem_: HTMLElement | null) => {
+		return attrVals_.reduce(
+			(acc: HTMLElement | null | undefined, curr: Array<string>) => {
+				if (curr.length > 2) return undefined
 
-			acc?.setAttribute(curr[0], curr[1])
-			return acc
-		}, elem_)
+				acc?.setAttribute(curr[0], curr[1])
+
+				return acc
+			},
+			elem_
+		)
 	}
 const addTextToElem = (text_: string) => (elem_: HTMLElement | null) => {
 	const textNode = document.createTextNode(text_)
@@ -46,7 +50,12 @@ const addEvtListener =
 		handleEvt_: (
 			this: any,
 			ev: any,
-			options?: { capture: boolean; once: boolean; passive: boolean; signal: AbortSignal }
+			options?: {
+				capture: boolean
+				once: boolean
+				passive: boolean
+				signal: AbortSignal
+			}
 		) => unknown
 	) =>
 	(elem_: HTMLElement | null) => {
@@ -54,17 +63,17 @@ const addEvtListener =
 		return elem_
 	}
 
-// const pipe =
-// 	(...funcs: Array<(_: unknown | null) => unknown>) =>
-// 	(v: unknown | null) => {
-// 		return funcs.reduce((result, func) => {
-// 			if (result) return func(result)
-// 		}, v)
+// function pipe<V>(...funcs: Array<(_: V) => V>): (_: V) => V | null | void {
+// 	return function (value: V) {
+// 		return funcs.reduce((val, func) => {
+// 			return func(val)
+// 		}, value)
 // 	}
+// }
 
 const pipe =
-	(...funcs: any[]) =>
-	(value: any) =>
+	<V>(...funcs: Array<(_: V) => any>) =>
+	(value: V) =>
 		funcs.reduce((res, func) => func(res), value)
 
 export {
