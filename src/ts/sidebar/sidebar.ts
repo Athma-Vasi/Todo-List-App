@@ -7,7 +7,10 @@ import {
 	addEvtListener,
 	pipe,
 } from '../element-creators'
-import { storeProjects } from '../projects/storeProjects'
+import { handleAddNewProjectIconClick } from '../eventCBs/handleAddNewProjectIconClick'
+import { handleAddNewTodoIconClick } from '../eventCBs/handleAddNewTodoIconClick'
+import { handleCloseIconClick } from '../eventCBs/handleCloseIconClick'
+import { handleFormSubmit } from '../eventCBs/handleFormSubmit'
 import { Div } from '../types'
 
 const sidebar = function () {
@@ -45,27 +48,39 @@ const sidebar = function () {
 		appendElemToParent(upcomingContainer)
 	)(elemCreator('h4')(['tab-text', 'tab-upcoming']))
 
-	const expiredContainer = elemCreator('div')(['sidebar-tab', 'container-expired'])
-	appendElemToParent(sidebar)(expiredContainer)
+	const archivedContainer = elemCreator('div')(['sidebar-tab', 'container-archived'])
+	appendElemToParent(sidebar)(archivedContainer)
 
-	pipe(appendElemToParent(expiredContainer))(
-		createImage('../../src/assets/icons/archive.svg')(['icon', 'expired-icon'])(
-			'icon representing expired events'
-		)('Expired')
+	pipe(appendElemToParent(archivedContainer))(
+		createImage('../../src/assets/icons/archive.svg')(['icon', 'archived-icon'])(
+			'icon representing archived events'
+		)('Archived')
 	)
 
 	pipe(
-		addTextToElem('Expired'),
-		appendElemToParent(expiredContainer)
-	)(elemCreator('h4')(['tab-text', 'tab-expired']))
+		addTextToElem('Archived'),
+		appendElemToParent(archivedContainer)
+	)(elemCreator('h4')(['tab-text', 'tab-archived']))
 
 	const projectsContainer = elemCreator('div')(['sidebar-heading', 'container-projects'])
 	appendElemToParent(sidebar)(projectsContainer)
 
+	const projectsHeading = elemCreator('div')(['projectsHeading-container'])
+	appendElemToParent(projectsContainer)(projectsHeading)
+
 	pipe(
 		addTextToElem('Projects'),
-		appendElemToParent(projectsContainer)
+		appendElemToParent(projectsHeading)
 	)(elemCreator('h3')(['heading-text', 'text-projects']))
+
+	pipe(
+		addEvtListener('click')(handleAddNewProjectIconClick),
+		appendElemToParent(projectsHeading)
+	)(
+		createImage('../../../src/assets/icons/plus.svg')(['icon', 'icon-plus'])(
+			'icon of plus symbol'
+		)('Add New Project')
+	)
 
 	const sampleProjectContainer = elemCreator('div')(['sidebar-project', 'project'])
 	appendElemToParent(projectsContainer)(sampleProjectContainer)
@@ -76,13 +91,15 @@ const sidebar = function () {
 	)(elemCreator('h4')(['project-text', 'text-sampleProject']))
 
 	pipe(
-		addEvtListener('click')(handleAddNewProjectIconClick),
+		addAttributeToElem([['data-name', `sample-project`]]),
+		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(sampleProjectContainer)
 	)(
 		createImage('../../../src/assets/icons/plus.svg')(['icon', 'icon-plus'])(
 			'icon of plus symbol'
-		)('Add New Project')
+		)('Add New Todo')
 	)
+
 	//addProject modal
 	const addProjectContainer = elemCreator('div')(['addProject-container'])
 	appendElemToParent(sidebar)(addProjectContainer)
@@ -184,29 +201,6 @@ const sidebar = function () {
 	//
 	//
 	//
-	function handleAddNewProjectIconClick(this: HTMLImageElement, ev: MouseEvent) {
-		const addProjectModal: Div = document.querySelector('.addProject-container')
-		if (addProjectModal)
-			addProjectModal.style.visibility =
-				addProjectModal?.style.visibility === 'visible' ? 'hidden' : 'visible'
-	}
-
-	function handleCloseIconClick(this: HTMLImageElement, ev: MouseEvent) {
-		const addProjectModal: Div = document.querySelector('.addProject-container')
-		if (addProjectModal)
-			addProjectModal.style.visibility =
-				addProjectModal?.style.visibility === 'visible' ? 'hidden' : 'visible'
-	}
-
-	function handleFormSubmit(this: HTMLFormElement, ev: SubmitEvent) {
-		ev.preventDefault()
-		const formData = new FormData(this)
-
-		const formName = formData.get('addProject-name')?.toString() ?? ''
-		const formColour = formData.get('addProject-colour')?.toString() ?? ''
-
-		storeProjects(formName, formColour)
-	}
 }
 
 export { sidebar }

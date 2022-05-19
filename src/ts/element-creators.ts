@@ -7,12 +7,6 @@ const elemCreator = (elem_: string) => (class_: string[]) => {
 	}, element)
 }
 
-// const addAttributeToElem =
-// 	(attribute_: string) => (value_: string) => (elem_: HTMLElement | null) => {
-// 		elem_?.setAttribute(attribute_, value_)
-// 		return elem_
-// 	}
-
 const addAttributeToElem =
 	(attrVals_: Array<string[]>) => (elem_: HTMLElement | null) => {
 		return attrVals_.reduce((acc: HTMLElement | null | undefined, curr: string[]) => {
@@ -70,8 +64,8 @@ const addEvtListener =
 
 const pipe =
 	(...funcs: any[]) =>
-	(v: any) =>
-		funcs.reduce((res, func) => func(res), v)
+	(value: any) =>
+		funcs.reduce((res, func) => func(res), value)
 
 export {
 	elemCreator,
