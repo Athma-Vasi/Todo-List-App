@@ -1,3 +1,35 @@
+html {
+	box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	font-size: 62.5%;
+}
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+}
+
 body {
+	font-size: 1.6rem;
+}
+
+#root {
+	width: 828px;
+	height: 100vh;
+}
+.addProject-container {
+	visibility: hidden;
+	position: absolute;
 	background-color: mediumturquoise;
+	width: 400px;
+	height: 400px;
+}
+
+.form-addProject {
+	outline: 1px solid maroon;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 }
