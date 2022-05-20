@@ -4,3 +4,15 @@ export type Button = HTMLButtonElement | null
 
 export type ButtonNodes = NodeListOf<HTMLButtonElement>
 export type DivNodes = NodeListOf<HTMLDivElement>
+
+export type ProjectAndTodosObj = {
+	project: { projectName: string; projectColour: string }
+	todos: [
+		{
+			todoName: string
+			todoDescription: string
+			todoDueDate: string
+			todoPriority: string
+		}
+	]
+}

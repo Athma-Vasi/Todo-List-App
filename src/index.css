@@ -21,7 +21,7 @@ body {
 .addProject-container {
 	visibility: hidden;
 	position: absolute;
-	background-color: mediumturquoise;
+	background-color: #48d1cc;
 	width: 400px;
 	height: 400px;
 }
