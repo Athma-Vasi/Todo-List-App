@@ -5,7 +5,6 @@ import { Div, ProjectAndTodosObj } from '../types'
 const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	ev.preventDefault()
 	const log = (...i: unknown[]) => console.log('\n', i)
-	const now = new Date()
 
 	const todoContainer: Div = document.querySelector('.todo-container')
 
@@ -19,14 +18,16 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	const todoFormProjectColour =
 		todoFormData.get('addTodo-projectColour')?.toString() ?? ''
 
+	const now = new Date()
+	//returns date one year from current
 	const sampleLowDueDate = (now: Date) => {
 		let day = now.getDate()
 		let month = now.getMonth() + 1
-		let year = now.getFullYear() + 1
+		const year = now.getFullYear() + 1
 
 		return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`
 	}
-
+	//returns date one month from current
 	const sampleMedDueDate = (now: Date) => {
 		let month = now.getMonth()
 		month = month <= 10 ? month + 1 : month
@@ -35,10 +36,10 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 			now.getDate() < 10 ? '0' + now.getDate() : now.getDate()
 		}`
 	}
-
+	//returns date one day from current
 	const sampleUrgentDueDate = (now: Date) => {
 		let day = now.getDate()
-		day = day < 28 ? day + 1 : day
+		day = day < 26 ? day + 2 : day
 
 		let month = now.getMonth() + 1
 		return `${now.getFullYear()}-${month < 10 ? '0' + month : month}-${
@@ -49,12 +50,12 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	const state = {
 		projects: [
 			{
-				//sample project to display
+				//sample project to display initially
 				project: { projectName: 'Sample Project', projectColour: '#48d1cc' },
 				todos: [
 					{
 						todoName: `Finish 'The Faded Sun: Kesrith'`,
-						todoDescription: 'Finish reading the book tonight - due tomorrow',
+						todoDescription: 'Finish reading the book -return soon!',
 						todoDueDate: `${sampleUrgentDueDate(now)}`,
 						todoPriority: 'urgent',
 					},
@@ -99,21 +100,30 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	)
 
 	const updateState = (function (
-		projectAndTodos_: ProjectAndTodosObj,
+		projectAndTodos_: typeof projectAndTodos,
 		state_: typeof state
 	) {
-		state_.projects.forEach((val) => {
-			//if project already in state
-			if (projectAndTodos_.project.projectName === val.project.projectName) {
-				projectAndTodos_.todos.reduce((acc, curr) => {
-					acc.todos.push(curr)
-					return acc
-				}, val)
-			}
-		})
+		//map state project names into arr
+		const projNameArr = state_.projects.map((val) =>
+			val.project.projectName.toLowerCase()
+		)
 
-		//if project is not in state
-		state_.projects.push(projectAndTodos_)
+		//if project already present
+		if (projNameArr.includes(projectAndTodos_.project.projectName.toLowerCase())) {
+			//loop through each project and if name matches, push todos
+			state_.projects.forEach((val) => {
+				if (val.project.projectName === projectAndTodos_.project.projectName) {
+					projectAndTodos_.todos.reduce((acc, curr) => {
+						acc.todos.push(curr)
+
+						return acc
+					}, val)
+				}
+			})
+		} else {
+			//if project not present
+			state_.projects.push(projectAndTodos_)
+		}
 	})(projectAndTodos, state)
 	log(state)
 
