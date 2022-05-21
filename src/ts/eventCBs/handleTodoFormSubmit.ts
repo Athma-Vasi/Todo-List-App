@@ -1,6 +1,6 @@
 import { storeProjectAndTodos } from '../todos/storeProjectAndTodos'
 
-import { Div, ProjectAndTodosObj } from '../types'
+import { Div, ProjectAndTodosObj, State } from '../types'
 
 const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	ev.preventDefault()
@@ -9,14 +9,14 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	const todoContainer: Div = document.querySelector('.todo-container')
 
 	const todoFormData = new FormData(this)
+	const todoFormProjectName = todoFormData.get('addTodo-projectName')?.toString() ?? ''
+	const todoFormProjectColour =
+		todoFormData.get('addTodo-projectColour')?.toString() ?? ''
 	const todoFormName = todoFormData.get('addTodo-name')?.toString() ?? ''
 	const todoFormDescription = todoFormData.get('addTodo-description')?.toString() ?? ''
 	const todoFormDueDate = todoFormData.get('addTodo-dueDate')?.toString() ?? ''
 	const todoFormSelectPriority =
 		todoFormData.get('addTodo-selectPriority')?.toString() ?? ''
-	const todoFormProjectName = todoFormData.get('addTodo-projectName')?.toString() ?? ''
-	const todoFormProjectColour =
-		todoFormData.get('addTodo-projectColour')?.toString() ?? ''
 
 	const now = new Date()
 	//returns date one year from current
@@ -47,7 +47,7 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 		}`
 	}
 
-	const state = {
+	const state: State = {
 		projects: [
 			{
 				//sample project to display initially
@@ -103,29 +103,16 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 		projectAndTodos_: typeof projectAndTodos,
 		state_: typeof state
 	) {
-		//map state project names into arr
-		const projNameArr = state_.projects.map((val) =>
-			val.project.projectName.toLowerCase()
-		)
-
-		//if project already present
-		if (projNameArr.includes(projectAndTodos_.project.projectName.toLowerCase())) {
-			//loop through each project and if name matches, push todos
-			state_.projects.forEach((val) => {
-				if (val.project.projectName === projectAndTodos_.project.projectName) {
-					projectAndTodos_.todos.reduce((acc, curr) => {
-						acc.todos.push(curr)
-
-						return acc
-					}, val)
-				}
-			})
-		} else {
-			//if project not present
-			state_.projects.push(projectAndTodos_)
-		}
+		state_.projects.push(projectAndTodos_)
 	})(projectAndTodos, state)
+
+	const storeSampleProject = (function (state_: State) {
+		//if not present, create a new key: 'projectAndTodos'
+		if (!localStorage.getItem('projectsAndTodos'))
+			localStorage.setItem('projectAndTodos', JSON.stringify(state))
+	})(state)
 	log(state)
+	storeProjectAndTodos(state)
 
 	todoContainer?.remove()
 }

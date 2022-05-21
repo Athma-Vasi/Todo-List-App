@@ -1,5 +1,5 @@
 import { addProjectToSidebar } from '../projects/addProjectToSidebar'
-import { storeProjects } from '../projects/storeProjects'
+
 import { Div } from '../types'
 
 const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
@@ -11,8 +11,33 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 	const projectFormName = projectFormData.get('addProject-name')?.toString() ?? ''
 	const projectFormColour = projectFormData.get('addProject-colour')?.toString() ?? ''
 
-	storeProjects(projectFormName, projectFormColour)
-	addProjectToSidebar(projectFormName)
+	//if 'projectNames' doesn't exist, create it, otherwise do nothing
+
+	if (!localStorage.getItem('projectNames')) {
+		localStorage.setItem('projectNames', JSON.stringify([]))
+	}
+
+	const storeProject = (function (projectFormName_: string) {
+		//if key in localstorage is projectNames, then get the values as
+		//an array
+		Object.keys(localStorage).forEach((key) => {
+			if (key === 'projectNames') {
+				const keysArr = JSON.parse(localStorage.getItem(key) ?? '')
+				//if name already present
+				if (keysArr.includes(projectFormName_)) {
+					alert(
+						`${projectFormName_} already exists as a project (｡•́︿•̀｡)  Please choose another name.`
+					)
+					return
+				} else {
+					//if new name, push to arr and then store array in localStorage
+					keysArr.push(projectFormName_)
+					localStorage.setItem(key, JSON.stringify(keysArr))
+					addProjectToSidebar(projectFormName, projectFormColour)
+				}
+			}
+		})
+	})(projectFormName)
 
 	//
 	//

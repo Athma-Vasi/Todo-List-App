@@ -14,12 +14,25 @@ const addAttributeToElem =
 				if (curr.length > 2) return undefined
 
 				acc?.setAttribute(curr[0], curr[1])
-
 				return acc
 			},
 			elem_
 		)
 	}
+
+const addStyleToElem =
+	(stylePropVals_: Array<Array<string>>) => (elem_: HTMLElement | null) => {
+		return stylePropVals_.reduce(
+			(acc: HTMLElement | null | undefined, curr: string[]) => {
+				if (curr.length > 2) return undefined
+
+				acc?.style.setProperty(curr[0], curr[1])
+				return acc
+			},
+			elem_
+		)
+	}
+
 const addTextToElem = (text_: string) => (elem_: HTMLElement | null) => {
 	const textNode = document.createTextNode(text_)
 	elem_?.appendChild(textNode)
@@ -83,5 +96,6 @@ export {
 	addAttributeToElem,
 	createImage,
 	addEvtListener,
+	addStyleToElem,
 	pipe,
 }

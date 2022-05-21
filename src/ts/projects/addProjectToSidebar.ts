@@ -1,6 +1,7 @@
 import {
 	addAttributeToElem,
 	addTextToElem,
+	addStyleToElem,
 	appendElemToParent,
 	createImage,
 	elemCreator,
@@ -9,9 +10,9 @@ import {
 } from '../element-creators'
 import { handleAddNewProjectIconClick } from '../eventCBs/handleAddNewProjectIconClick'
 import { handleAddNewTodoIconClick } from '../eventCBs/handleAddNewTodoIconClick'
-import { Div } from '../types'
+import { Div, ProjectAndTodosObj } from '../types'
 
-const addProjectToSidebar = function (formName_: string) {
+const addProjectToSidebar = function (formName_: string, formColour_: string) {
 	const log = (i: unknown) => console.log('\n', i)
 
 	const projectsContainer: Div = document.querySelector('.container-projects')
@@ -19,22 +20,18 @@ const addProjectToSidebar = function (formName_: string) {
 	const projectContainer = elemCreator('div')(['sidebar-project', 'project'])
 	appendElemToParent(projectsContainer)(projectContainer)
 
-	const projectNameColour = JSON.parse(localStorage.getItem(formName_) ?? '')
+	const projectNamesArr: string[] = JSON.parse(localStorage.getItem('projectNames') ?? '')
 
 	pipe(
-		addAttributeToElem([
-			['data-name', `${projectNameColour[0]}`],
-			['data-colour', `${projectNameColour[1]}`],
-		]),
-		addTextToElem(`${projectNameColour[0]}`),
+		addAttributeToElem([['data-name', `${projectNamesArr.at(-1)}`]]),
+		addStyleToElem([['color', `${formColour_}`]]),
+		addTextToElem(`${projectNamesArr.at(-1)}`),
 		appendElemToParent(projectContainer)
-	)(elemCreator('h4')(['project-text', `text-${projectNameColour[0]}`]))
+	)(elemCreator('h4')(['project-text', `text-${projectNamesArr.at(-1)}`]))
 
 	pipe(
-		addAttributeToElem([
-			['data-name', `${projectNameColour[0]}`],
-			['data-colour', `${projectNameColour[1]}`],
-		]),
+		addAttributeToElem([['data-name', `${projectNamesArr.at(-1)}`]]),
+		// addStyleToElem('background-color')(`${formColour_}`),
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(projectContainer)
 	)(
