@@ -1,6 +1,6 @@
 import { storeProjectAndTodos } from '../todos/storeProjectAndTodos'
 
-import { Div, ProjAndTodoNames, ProjectAndTodosObj, State, TodosArr } from '../types'
+import { Div, ProjAndTodoNames, ProjectAndTodosObj, Todos, TodosArr } from '../types'
 
 const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	ev.preventDefault()
@@ -47,31 +47,28 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 		}`
 	}
 
-	let state: State = {
-		projects: [
+	const sampleProject: ProjectAndTodosObj = {
+		project:
+			//sample project to display initially
+			{ projectName: 'Sample Project', projectColour: '#48d1cc' },
+		todos: [
 			{
-				//sample project to display initially
-				project: { projectName: 'Sample Project', projectColour: '#48d1cc' },
-				todos: [
-					{
-						todoName: `Finish 'The Faded Sun: Kesrith'`,
-						todoDescription: 'Finish reading the book - return soon!',
-						todoDueDate: `${sampleUrgentDueDate(now)}`,
-						todoPriority: 'urgent',
-					},
-					{
-						todoName: 'Vet Appointment',
-						todoDescription: 'Take Nighteyes to the vet for routine checkup',
-						todoDueDate: `${sampleMedDueDate(now)}`,
-						todoPriority: 'medium',
-					},
-					{
-						todoName: 'Backpacking trip to Nepal',
-						todoDescription: 'Plan route, supplies and apply for visa',
-						todoDueDate: `${sampleLowDueDate(now)}`,
-						todoPriority: 'low',
-					},
-				],
+				todoName: `Finish 'The Faded Sun: Kesrith'`,
+				todoDescription: 'Finish reading the book - return soon!',
+				todoDueDate: `${sampleUrgentDueDate(now)}`,
+				todoPriority: 'urgent',
+			},
+			{
+				todoName: 'Vet Appointment',
+				todoDescription: 'Take Nighteyes to the vet for routine checkup',
+				todoDueDate: `${sampleMedDueDate(now)}`,
+				todoPriority: 'medium',
+			},
+			{
+				todoName: 'Backpacking trip to Nepal',
+				todoDescription: 'Plan route, supplies and apply for visa',
+				todoDueDate: `${sampleLowDueDate(now)}`,
+				todoPriority: 'low',
 			},
 		],
 	}
@@ -90,6 +87,13 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 		}
 	}
 
+	const storeSampleProject = (function (sampleProject_: ProjectAndTodosObj) {
+		localStorage.setItem(
+			sampleProject_.project.projectName,
+			JSON.stringify(sampleProject_)
+		)
+	})(sampleProject)
+
 	const projectAndTodos = projectsAndTodosFactory(
 		todoFormProjectName,
 		todoFormProjectColour,
@@ -101,80 +105,79 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 
 	log(projectAndTodos)
 
-	const createStorageKeys = (function () {
-		//if not present, create a new keys
-		if (!localStorage.getItem('projectsAndTodos')) {
-			localStorage.setItem('projectAndTodos', JSON.stringify(state))
-		}
-		if (!localStorage.getItem('projAndTodosNames')) {
-			localStorage.setItem('projAndTodosNames', JSON.stringify([]))
-		}
-	})()
+	// const createStorageKeys = (function () {
+	// 	//if not present, create a new keys
+	// 	if (!localStorage.getItem('projectsAndTodos')) {
+	// 		localStorage.setItem('projectAndTodos', JSON.stringify([]))
+	// 	}
+	// 	// if (!localStorage.getItem('projAndTodosNames')) {
+	// 	// 	localStorage.setItem('projAndTodosNames', JSON.stringify([]))
+	// 	// }
+	// })()
 
-	const storeProjectAndTodoNames = (function (
-		currentProjName_: string,
-		currentTodoName_: string
-	) {
-		const currentProjAndTodosNames = {
-			projName: currentProjName_,
-			todoNames: [currentTodoName_],
-		}
-		const projAndTodosNamesStorage: ProjAndTodoNames = JSON.parse(
-			localStorage.getItem('projAndTodosNames') ?? ''
-		)
+	// const storeProjAndTodoNames = (function (
+	// 	currentProjName_: string,
+	// 	currentTodoName_: string
+	// ) {
+	// 	const currentProjAndTodosNames = {
+	// 		projName: currentProjName_,
+	// 		todoNames: [currentTodoName_],
+	// 	}
+	// 	const projAndTodosNamesStorage: ProjAndTodoNames = JSON.parse(
+	// 		localStorage.getItem('projAndTodosNames') ?? ''
+	// 	)
 
-		//to avoid duplicate project names
-		const projNamesSet: Set<string> = new Set()
-		projAndTodosNamesStorage.forEach((project) => {
-			projNamesSet.add(project.projName)
-		})
+	// 	//to avoid duplicate project names
+	// 	const projNamesSet: Set<string> = new Set()
+	// 	projAndTodosNamesStorage.forEach((project) => projNamesSet.add(project.projName))
 
-		if (projNamesSet.has(currentProjName_)) {
-			projAndTodosNamesStorage.forEach((project) => {
-				if (project.projName === currentProjName_) {
-					project.todoNames.push(currentTodoName_)
-				}
-			})
-		} else {
-			projAndTodosNamesStorage.push(currentProjAndTodosNames)
-		}
+	// 	if (projNamesSet.has(currentProjName_)) {
+	// 		projAndTodosNamesStorage.forEach((project) => {
+	// 			if (project.projName === currentProjName_) {
+	// 				project.todoNames.push(currentTodoName_)
+	// 			}
+	// 		})
+	// 	} else {
+	// 		projAndTodosNamesStorage.push(currentProjAndTodosNames)
+	// 	}
 
-		localStorage.setItem('projAndTodosNames', JSON.stringify(projAndTodosNamesStorage))
-	})(projectAndTodos.project.projectName, projectAndTodos.todos[0].todoName)
+	// 	localStorage.setItem('projAndTodosNames', JSON.stringify(projAndTodosNamesStorage))
+	// })(projectAndTodos.project.projectName, projectAndTodos.todos[0].todoName)
 
 	const storeProjectAndTodosFull = (function (projectAndTodos_: ProjectAndTodosObj) {
 		const currentProjName = projectAndTodos_.project.projectName
 		const currentTodoName = projectAndTodos_.todos[0].todoName
 		const currentTodos = projectAndTodos_.todos[0]
 
-		let newTodoFlag = false
-		let newProjectFlag = false
+		const storageKeys: Set<string> = new Set()
 
-		log({ currentProjName })
-
-		const storageKeys = ['projectNames', 'projectAndTodos', 'projAndTodosNames']
-
-		const projNamesArr: string[] = JSON.parse(localStorage.getItem(storageKeys[0]) ?? '')
-		log({ projNamesArr })
-
-		const storageArr: State = JSON.parse(localStorage.getItem(storageKeys[1]) ?? '')
-		log({ storageArr })
-
-		const projAndTodosNamesArr: ProjAndTodoNames = JSON.parse(
-			localStorage.getItem(storageKeys[2]) ?? ''
-		)
-		log({ projAndTodosNamesArr })
-
-		const todoNamesSet: Set<string> = new Set()
-		projAndTodosNamesArr.forEach((proj) => {
-			if (proj.projName === currentProjName) {
-				proj.todoNames.forEach((todoName) => {
-					todoNamesSet.add(todoName)
-				})
-			}
+		Object.keys(localStorage).forEach((key) => {
+			storageKeys.add(key)
 		})
 
-		log({ todoNamesSet })
+		//new project
+		if (!storageKeys.has(currentProjName)) {
+			localStorage.setItem(currentProjName, JSON.stringify(projectAndTodos_))
+		} else {
+			//project already exists
+			const currentProjStorage: ProjectAndTodosObj = JSON.parse(
+				localStorage.getItem(currentProjName) ?? ''
+			)
+
+			const todoNamesSet: Set<string> = new Set()
+			currentProjStorage.todos.forEach((todo) => todoNamesSet.add(todo.todoName))
+
+			//new todoName
+			if (!todoNamesSet.has(currentTodoName)) {
+				currentProjStorage.todos.push(currentTodos)
+			} else {
+				//todoName taken
+				alert(
+					`${currentTodoName} already exists as a project (｡•́︿•̀｡)  Please choose another name or consider editing an existing todo.`
+				)
+				return
+			}
+		}
 
 		//
 		//
@@ -185,23 +188,15 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 
 export { handleTodoFormSubmit }
 
-// //if currentProj is already present and todo is new
-// if (projNamesArr.includes(currentProjName)) {
-// 	projAndTodosNamesArr.forEach((proj) => {
-// 		if (proj.projName === currentProjName) {
-// 			if (!proj.todoNames.includes(currentTodoName)) {
-// 				storageArr.projects.forEach((projectArr) => {
-// 					if (projectArr.project.projectName === currentProjName) {
-// 						projectArr.todos.push(currentTodos)
-// 					}
-// 				})
-// 				localStorage.setItem(storageKeys[1], JSON.stringify(storageArr))
-// 			} else {
-// 				alert(
-// 					`${currentTodoName} already exists as a project (｡•́︿•̀｡)  Please choose another name.`
-// 				)
-// 				return
-// 			}
-// 		}
-// 	})
+// //new project
+// if (!storageKeys.has(currentProjName)) {
+// 	localStorage.setItem(currentProjName, JSON.stringify(projectAndTodos_))
+// } else {
+// 	//project already exists
+// 	const currentProjStorage: ProjectAndTodosObj = JSON.parse(
+// 		localStorage.getItem(currentProjName) ?? ''
+// 	)
+// 	currentProjStorage.todos.push(currentTodos)
+
+// 	localStorage.setItem(currentProjName, JSON.stringify(currentProjStorage))
 // }

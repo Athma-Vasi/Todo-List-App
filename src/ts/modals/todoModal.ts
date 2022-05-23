@@ -168,7 +168,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['type', 'text'],
 		]),
 		appendElemToParent(todoForm)
-	)(elemCreator('input')(['projectName-hidden']))
+	)(elemCreator('input')(['addTodo-projectName__hidden']))
 
 	//hidden element to funnel project colour to todoform
 	pipe(
@@ -179,7 +179,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['type', 'text'],
 		]),
 		appendElemToParent(todoForm)
-	)(elemCreator('input')(['projectColour-hidden']))
+	)(elemCreator('input')(['addTodo-projectColour__hidden']))
 
 	//
 	//
