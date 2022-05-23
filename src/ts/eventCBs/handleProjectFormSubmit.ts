@@ -12,7 +12,6 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 	const projectFormColour = projectFormData.get('addProject-colour')?.toString() ?? ''
 
 	//if 'projectNames' doesn't exist, create it, otherwise do nothing
-
 	if (!localStorage.getItem('projectNames')) {
 		localStorage.setItem('projectNames', JSON.stringify([]))
 	}
@@ -33,6 +32,7 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 					//if new name, push to arr and then store array in localStorage
 					keysSet.add(projectFormName_)
 					localStorage.setItem(key, JSON.stringify(Array.from(keysSet)))
+
 					addProjectToSidebar(projectFormName, projectFormColour)
 				}
 			}

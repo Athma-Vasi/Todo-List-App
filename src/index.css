@@ -1,3 +1,16 @@
+:root {
+	--clr-immediate: hsl(0, 100%, 35%);
+	--clr-urgent: hsl(0, 100%, 65%);
+	--clr-high: hsl(90, 100%, 50%);
+	--clr-med: hsl(200, 100%, 50%);
+	--clr-low: hsl(250, 100%, 70%);
+	--clr-text: hsl(0, 0%, 11.8%);
+	--clr-grey: hsl(0, 0%, 30.9%);
+	--clr-bkgd-light: hsl(0, 0%, 98%);
+	--clr-bkgd-dark: hsl(0, 50%, 96%);
+	--clr-width: 828px;
+}
+
 html {
 	box-sizing: border-box;
 	margin: 0;
@@ -12,27 +25,198 @@ html {
 
 body {
 	font-size: 1.6rem;
+	display: grid;
+	place-content: center;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color: var(--clr-text);
+}
+
+h1 {
+	font-size: 4rem;
+}
+h2 {
+	font-size: 3rem;
+}
+h3 {
+	font-size: 3rem;
+}
+h4 {
+	font-size: 2rem;
+}
+.icon:hover {
+	cursor: pointer;
 }
 
 #root {
-	width: 828px;
+	outline: 1px solid hotpink;
+	width: var(--clr-width);
 	height: 100vh;
-}
-.addProject-container {
-	visibility: hidden;
-	position: absolute;
-	background-color: #48d1cc;
-	width: 400px;
-	height: 400px;
+	display: grid;
+	grid-template-columns: 38.2% 61.8%;
+	grid-template-rows: 14.6% 85.4%;
+	grid-template-areas:
+		'header content'
+		'sidebar content';
 }
 
-.form-addProject {
-	outline: 1px solid maroon;
+/* header */
+.header {
+	grid-area: header;
+	outline: 1px solid lawngreen;
+	place-content: center;
+	display: grid;
+	background-color: var(--clr-bkgd-light);
+}
+.header-title {
+	outline: 1px solid darkcyan;
+}
+
+/* sidebar */
+.sidebar {
+	grid-area: sidebar;
+	background-color: var(--clr-bkgd-light);
+	outline: 1px solid saddlebrown;
 	display: flex;
 	flex-direction: column;
+	justify-content: flex-start;
+	align-items: center;
+}
+.sidebar-tab {
+	outline: 1px solid violet;
+	width: calc(var(--clr-width) * 0.382);
+	display: grid;
+	grid-template-columns: 38.2% 61.8%;
+}
+.sidebar-tab .icon {
+	outline: 1px solid cadetblue;
+	align-self: center;
+	justify-self: flex-end;
+	margin-right: 1rem;
+}
+.sidebar-tab .tab-text {
+	outline: 1px solid salmon;
+}
+
+.container-projects {
+	outline: 1px solid forestgreen;
+	display: flex;
+	flex-direction: column;
+	width: calc(var(--clr-width) * 0.382);
+}
+.projectsHeading-container {
+	display: flex;
+	justify-content: space-evenly;
+	align-items: center;
+}
+.sidebar-project {
+	outline: 1px solid darkcyan;
+	display: flex;
 	justify-content: center;
 	align-items: center;
 }
+.project-text {
+	outline: 1px solid red;
+	text-align: center;
+	margin-left: 1rem;
+}
+.sidebar-project .icon-plus {
+	outline: 1px solid green;
+	margin-left: auto;
+	margin-right: 1rem;
+}
+/* content */
+.content {
+	grid-area: content;
+	outline: 1px solid blueviolet;
+}
+
+.addProject-container {
+	display: grid;
+	grid-template-rows: 38.2% 61.8%;
+	outline: 1px solid green;
+	color: var(--clr-text);
+	visibility: hidden;
+	position: absolute;
+	width: 511px;
+	height: 316px;
+	top: calc(38% - (316px / 2));
+	left: calc(62% - (511px / 2));
+	border-radius: 1rem;
+}
+.addProjectHeading-container {
+	width: 100%;
+	height: 100%;
+	justify-self: center;
+	align-self: center;
+	display: grid;
+	outline: 1px solid goldenrod;
+	background-color: var(--clr-bkgd-dark);
+}
+.text-addProject {
+	align-self: center;
+	margin-left: 1rem;
+}
+.form-addProject {
+	outline: 1px solid hotpink;
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: space-evenly;
+	margin-left: 1rem;
+}
+.form-addProject label {
+	font-size: 2rem;
+}
+.addProject-name-container,
+.addProject-colour-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	outline: 1px solid red;
+}
+
+.addProject-name {
+	margin-left: 2rem;
+	width: 41rem;
+	height: 5rem;
+	outline: none;
+	border: none;
+	background-color: var(--clr-bkgd-dark);
+	border-radius: 1rem;
+	padding-left: 1rem;
+}
+.addProject-name:hover,
+.addProject-name:active {
+	border: 1px solid var(--clr-grey);
+}
+.form-addProject input[type='color'] {
+	margin-left: 1.3rem;
+	width: 10rem;
+	height: 4rem;
+}
+.addProjectIcons-container {
+	align-self: flex-end;
+	margin-right: 1rem;
+	display: flex;
+	outline: 1px solid red;
+	width: 12rem;
+	height: 4rem;
+	justify-content: space-between;
+}
+.bttn-addProject,
+.bttn-cancelProject {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 4rem;
+	border-radius: 1rem;
+}
+.bttn-addProject:hover,
+.bttn-cancelProject:hover {
+	cursor: pointer;
+}
+
+/*  */
 
 .todo-container {
 	visibility: hidden;
@@ -44,7 +228,4 @@ body {
 
 .addTodoIcons-container {
 	outline: 1px solid green;
-}
-.icon {
-	outline: 1px solid teal;
 }

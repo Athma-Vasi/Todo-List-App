@@ -1,5 +1,5 @@
-import { storeProjectAndTodos } from '../todos/storeProjectAndTodos'
-
+import { storeProjectAndTodosFull } from '../todos/storeProjectAndTodosFull'
+import { addTodosToContent } from '../todos/addTodosToContent'
 import { Div, ProjAndTodoNames, ProjectAndTodosObj, Todos, TodosArr } from '../types'
 
 const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
@@ -103,49 +103,8 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 		todoFormSelectPriority
 	)
 
-	log(projectAndTodos)
-
-	const storeProjectAndTodosFull = (function (projectAndTodos_: ProjectAndTodosObj) {
-		const currentProjName = projectAndTodos_.project.projectName
-		const currentTodoName = projectAndTodos_.todos[0].todoName
-		const currentTodos = projectAndTodos_.todos[0]
-
-		const storageKeys: Set<string> = new Set()
-
-		Object.keys(localStorage).forEach((key) => {
-			storageKeys.add(key)
-		})
-
-		//new project
-		if (!storageKeys.has(currentProjName)) {
-			localStorage.setItem(currentProjName, JSON.stringify(projectAndTodos_))
-		} else {
-			//project already exists
-			const currentProjStorage: ProjectAndTodosObj = JSON.parse(
-				localStorage.getItem(currentProjName) ?? ''
-			)
-			log({ currentProjStorage })
-
-			const todoNamesSet: Set<string> = new Set()
-			currentProjStorage.todos.forEach((todo) => todoNamesSet.add(todo.todoName))
-			log({ todoNamesSet })
-
-			//new todoName
-			if (!todoNamesSet.has(currentTodoName)) {
-				currentProjStorage.todos.push(currentTodos)
-				localStorage.setItem(currentProjName, JSON.stringify(currentProjStorage))
-			} else {
-				//todoName taken
-				alert(
-					`${currentTodoName} already exists as a project (｡•́︿•̀｡)  Please choose another name or consider editing an existing todo.`
-				)
-				return
-			}
-		}
-
-		//
-		//
-	})(projectAndTodos)
+	storeProjectAndTodosFull(projectAndTodos)
+	addTodosToContent(projectAndTodos)
 
 	todoContainer?.remove()
 }

@@ -30,7 +30,10 @@ const addProjectToSidebar = function (formName_: string, formColour_: string) {
 	)(elemCreator('h4')(['project-text', `text-${projectNamesArr.at(-1)}`]))
 
 	pipe(
-		addAttributeToElem([['data-name', `${projectNamesArr.at(-1)}`]]),
+		addAttributeToElem([
+			['data-name', `${projectNamesArr.at(-1)}`],
+			['data-colour', `${formColour_}`],
+		]),
 		// addStyleToElem('background-color')(`${formColour_}`),
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(projectContainer)

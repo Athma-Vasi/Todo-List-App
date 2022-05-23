@@ -23,7 +23,7 @@ const projectModal = function () {
 
 	pipe(
 		addTextToElem('Add project'),
-		appendElemToParent(addProjectContainer)
+		appendElemToParent(addProjectHeadingContainer)
 	)(elemCreator('h3')(['heading-text', 'text-addProject']))
 
 	const addProjectForm = elemCreator('form')(['form-addProject'])
@@ -38,10 +38,13 @@ const projectModal = function () {
 		appendElemToParent(addProjectContainer)
 	)(addProjectForm)
 
+	const addProjectNameContainer = elemCreator('div')(['addProject-name-container'])
+	appendElemToParent(addProjectForm)(addProjectNameContainer)
+
 	pipe(
 		addAttributeToElem([['for', 'addProject-name']]),
 		addTextToElem('Name'),
-		appendElemToParent(addProjectForm)
+		appendElemToParent(addProjectNameContainer)
 	)(elemCreator('label')(['label-name']))
 
 	//input name
@@ -56,13 +59,16 @@ const projectModal = function () {
 			['name', 'addProject-name'],
 			['required', ''],
 		]),
-		appendElemToParent(addProjectForm)
+		appendElemToParent(addProjectNameContainer)
 	)(elemCreator('input')(['addProject-name']))
+
+	const addProjectColourContainer = elemCreator('div')(['addProject-colour-container'])
+	appendElemToParent(addProjectForm)(addProjectColourContainer)
 
 	pipe(
 		addAttributeToElem([['for', 'addProject-colour']]),
 		addTextToElem('Colour'),
-		appendElemToParent(addProjectForm)
+		appendElemToParent(addProjectColourContainer)
 	)(elemCreator('label')(['label-colour']))
 
 	//input colour
@@ -72,25 +78,23 @@ const projectModal = function () {
 			['id', 'addProject-colour'],
 			['name', 'addProject-colour'],
 		]),
-		appendElemToParent(addProjectForm)
+		appendElemToParent(addProjectColourContainer)
 	)(elemCreator('input')(['addProject-colour']))
 
 	const addProjectIconsContainer = elemCreator('div')(['addProjectIcons-container'])
 	appendElemToParent(addProjectForm)(addProjectIconsContainer)
 
-	// const bttnCancel = elemCreator('button')(['bttn', 'bttn-cancel'])
-	// pipe(
-	// 	addAttributeToElem([
-	// 		['type', 'button'],
-	// 		['name', 'bttn-cancel'],
-	// 	]),
-	// 	appendElemToParent(addProjectIconsContainer)
-	// )(bttnCancel)
-
+	const bttnCancelProject = elemCreator('button')(['bttn', 'bttn-cancelProject'])
 	pipe(
 		addEvtListener('click')(handleProjectCloseIconClick),
+		addAttributeToElem([
+			['type', 'button'],
+			['name', 'bttn-cancel'],
+		]),
 		appendElemToParent(addProjectIconsContainer)
-	)(
+	)(bttnCancelProject)
+
+	pipe(appendElemToParent(bttnCancelProject))(
 		createImage('../../src/assets/icons/x.svg')(['icon', 'icon-cancelProject'])(
 			`icon of symbol 'x' representing cancel or close`
 		)('Cancel')

@@ -124,7 +124,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 	)(selectPriority)
 
 	pipe(
-		addTextToElem('--Please choose a priority--'),
+		addTextToElem('--Please assign a priority--'),
 		addAttributeToElem([['value', '']]),
 		appendElemToParent(selectPriority)
 	)(elemCreator('option')(['option-selectPriority']))

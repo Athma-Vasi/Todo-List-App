@@ -7,14 +7,18 @@ import {
 	elemCreator,
 	pipe,
 } from '../element-creators'
+import { handleThemeIconToggle } from '../eventCBs/handleThemeIconToggle'
 import { Div } from '../types'
 
 const content = function () {
 	const log = (i: unknown) => console.log('\n', i)
 	const root: Div = document.querySelector('#root')
 
+	const content = elemCreator('div')(['content'])
+	appendElemToParent(root)(content)
+
 	const top = elemCreator('div')(['content-top'])
-	appendElemToParent(root)(top)
+	appendElemToParent(content)(top)
 
 	const form = elemCreator('form')(['form'])
 	pipe(
@@ -43,18 +47,13 @@ const content = function () {
 	)(elemCreator('input')(['search']))
 
 	pipe(
-		addEvtListener('click')(handleThemeIconClick),
+		addEvtListener('click')(handleThemeIconToggle),
 		appendElemToParent(top)
 	)(
 		createImage('../../src/assets/icons/moon.svg')(['icon', 'icon-moon'])(
 			'icon of moon representing dark mode'
 		)('Dark Mode')
 	)
-
-	function handleThemeIconClick(this: HTMLImageElement, ev: MouseEvent) {
-		log(this)
-		log(ev)
-	}
 }
 
 export { content }
