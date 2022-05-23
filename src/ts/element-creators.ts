@@ -10,11 +10,11 @@ const elemCreator = (elem_: string) => (class_: string[]) => {
 const addAttributeToElem =
 	(attrVals_: Array<Array<string>>) => (elem_: HTMLElement | null) => {
 		return attrVals_.reduce(
-			(acc: HTMLElement | null | undefined, curr: Array<string>) => {
+			(element: HTMLElement | null | undefined, curr: Array<string>) => {
 				if (curr.length > 2) return undefined
 
-				acc?.setAttribute(curr[0], curr[1])
-				return acc
+				element?.setAttribute(curr[0], curr[1])
+				return element
 			},
 			elem_
 		)
@@ -23,11 +23,11 @@ const addAttributeToElem =
 const addStyleToElem =
 	(stylePropVals_: Array<Array<string>>) => (elem_: HTMLElement | null) => {
 		return stylePropVals_.reduce(
-			(acc: HTMLElement | null | undefined, curr: string[]) => {
+			(element: HTMLElement | null | undefined, curr: string[]) => {
 				if (curr.length > 2) return undefined
 
-				acc?.style.setProperty(curr[0], curr[1])
-				return acc
+				element?.style.setProperty(curr[0], curr[1])
+				return element
 			},
 			elem_
 		)

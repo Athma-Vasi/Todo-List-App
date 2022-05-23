@@ -102,7 +102,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['name', 'addTodo-dueDate'],
 			['placeholder', 'yyyy-mm-dd'],
 			['pattern', '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}'],
-			['required', ''],
+			// ['required', ''],
 		]),
 		appendElemToParent(todoForm)
 	)(elemCreator('input')(['addTodo-dueDate']))
@@ -118,7 +118,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['name', 'addTodo-selectPriority'],
 			['id', 'addTodo-selectPriority'],
 			['form', 'form-addTodo'],
-			['required', ''],
+			// ['required', ''],
 		]),
 		appendElemToParent(todoForm)
 	)(selectPriority)

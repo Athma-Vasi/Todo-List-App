@@ -3,48 +3,56 @@ import { ProjectAndTodosObj, State, TodosArr } from '../types'
 const storeProjectAndTodos = function ({ projects }: State) {
 	const log = (i: unknown) => console.log('\n', i)
 	//the first project is the sample project, so we check the last one, which will always be the current project since only sample + current project comes in at a time(2 projects total)
-	const currentProjName = projects.at(-1)?.project.projectName
-	const currentTodoName = projects.at(-1)?.todos[0].todoName
-	//only one todo if a new project, 3(usually) or 4(max) from sample project
-	const currentTodos = projects.at(-1)?.todos[0]
 
-	log({ currentProjName })
-	log({ currentTodoName })
-	log({ currentTodos })
+	const currentProjName = projects[1].project.projectName
+	const currentTodoName = projects[1].todos[0].todoName
+	const currentTodos = projects[1].todos
 
 	Object.keys(localStorage).forEach((key) => {
 		if (key === 'projectAndTodos') {
-			//confirmed its of type State
 			const storageArr: State = JSON.parse(localStorage.getItem(key) ?? '')
+
+			const projectNamesSet: Set<string> = new Set()
+			const todoNamesSet: Set<string> = new Set()
+
+			storageArr.projects.forEach((projectArr) => {
+				projectNamesSet.add(projectArr.project.projectName)
+				projectArr.todos.forEach((todo) => todoNamesSet.add(todo.todoName))
+			})
+
 			log({ storageArr })
-			const todoNamesArr: string[] = []
+			log({ projectNamesSet })
+			log({ todoNamesSet })
+
+			//
+			//
+			//
 		}
 	})
 }
 export { storeProjectAndTodos }
-// const projectsFromStorageArr: Array<ProjectAndTodosObj> = JSON.parse(
-//   localStorage.getItem(key) ?? ''
-// )
-// log({ projectsFromStorageArr })
-// //loop through projects from storage to match name of incoming project
-// projectsFromStorageArr.forEach((projectObj) => {
-//   if (projectObj.project.projectName === currentProjName) {
-//     //grab names of todos that match similar project name
-//     projectObj.todos.forEach((todo) => todosNamesArr.push(todo.todoName))
-//     log({ todosNamesArr })
+// //if incoming project is already present in storage arr
+// 			if (projectNamesArr.includes(currentProjName ?? '')) {
+// 				storageArr.projects.forEach((projectArr) => {
+// 					//if project in storage matches incoming project
+// 					if (projectArr.project.projectName === currentProjName) {
+// 						//check if incoming todo is already present
+// 						if (todoNamesArr.includes(currentTodoName ?? '')) {
+// 							alert(
+// 								`${currentTodoName} already exists as a project (｡•́︿•̀｡)  Please choose another name.`
+// 							)
+// 						} else {
+// 							//incoming todo is new and not a duplicate
+// 							if (currentTodos) {
+// 								projectArr.todos.push(currentTodos)
+// 							}
+// 						}
+// 					}
+// 				})
 
-//     //check if incoming todoName is already present
-//     if (currentTodoName) {
-//       if (todosNamesArr.includes(currentTodoName)) {
-//         alert(
-//           `${currentTodoName} already exists as a todo (｡•́︿•̀｡)  Please choose another name.`
-//         )
-//       } else {
-//         if (currentTodos) {
-//           projectObj.todos.push(currentTodos)
-//         }
-//         localStorage.setItem(key, JSON.stringify(projectsFromStorageArr))
-//       }
-//     }
-//   }
-// })
+// 				localStorage.setItem(key, JSON.stringify(storageArr))
+// 			} else {
+// 				//if incoming project is new
+// 				storageArr.projects.push(projects[1])
+// 				localStorage.setItem(key, JSON.stringify(storageArr))
+// 			}

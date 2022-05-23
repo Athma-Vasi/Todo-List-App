@@ -7,12 +7,12 @@ export type DivNodes = NodeListOf<HTMLDivElement>
 
 export type ProjectAndTodosObj = {
 	project: { projectName: string; projectColour: string }
-	todos: {
+	todos: Array<{
 		todoName: string
 		todoDescription: string
 		todoDueDate: string
 		todoPriority: string
-	}[]
+	}>
 }
 
 export type State = {
@@ -24,4 +24,9 @@ export type TodosArr = {
 	todoDescription: string
 	todoDueDate: string
 	todoPriority: string
+}[]
+
+export type ProjAndTodoNames = {
+	projName: string
+	todoNames: string[]
 }[]

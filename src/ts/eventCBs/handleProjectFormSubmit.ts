@@ -42,9 +42,11 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 	//
 	//
 	//
-	if (addProjectModal)
-		addProjectModal.style.visibility =
-			addProjectModal.style.visibility === 'hidden' ? 'visible' : 'hidden'
+	// if (addProjectModal)
+	// 	addProjectModal.style.visibility =
+	// 		addProjectModal.style.visibility === 'hidden' ? 'visible' : 'hidden'
+
+	addProjectModal?.remove()
 }
 
 export { handleProjectFormSubmit }
