@@ -22,17 +22,17 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 		//an array
 		Object.keys(localStorage).forEach((key) => {
 			if (key === 'projectNames') {
-				const keysArr = JSON.parse(localStorage.getItem(key) ?? '')
+				const keysSet = new Set(JSON.parse(localStorage.getItem(key) ?? ''))
 				//if name already present
-				if (keysArr.includes(projectFormName_)) {
+				if (keysSet.has(projectFormName_)) {
 					alert(
 						`${projectFormName_} already exists as a project (｡•́︿•̀｡)  Please choose another name.`
 					)
 					return
 				} else {
 					//if new name, push to arr and then store array in localStorage
-					keysArr.push(projectFormName_)
-					localStorage.setItem(key, JSON.stringify(keysArr))
+					keysSet.add(projectFormName_)
+					localStorage.setItem(key, JSON.stringify(Array.from(keysSet)))
 					addProjectToSidebar(projectFormName, projectFormColour)
 				}
 			}

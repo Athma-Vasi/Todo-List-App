@@ -1,35 +1,6 @@
-import { ProjectAndTodosObj, State, TodosArr } from '../types'
+import { ProjectAndTodosObj, TodosArr } from '../types'
 
-const storeProjectAndTodos = function ({ projects }: State) {
-	const log = (i: unknown) => console.log('\n', i)
-	//the first project is the sample project, so we check the last one, which will always be the current project since only sample + current project comes in at a time(2 projects total)
-
-	const currentProjName = projects[1].project.projectName
-	const currentTodoName = projects[1].todos[0].todoName
-	const currentTodos = projects[1].todos
-
-	Object.keys(localStorage).forEach((key) => {
-		if (key === 'projectAndTodos') {
-			const storageArr: State = JSON.parse(localStorage.getItem(key) ?? '')
-
-			const projectNamesSet: Set<string> = new Set()
-			const todoNamesSet: Set<string> = new Set()
-
-			storageArr.projects.forEach((projectArr) => {
-				projectNamesSet.add(projectArr.project.projectName)
-				projectArr.todos.forEach((todo) => todoNamesSet.add(todo.todoName))
-			})
-
-			log({ storageArr })
-			log({ projectNamesSet })
-			log({ todoNamesSet })
-
-			//
-			//
-			//
-		}
-	})
-}
+const storeProjectAndTodos = function () {}
 export { storeProjectAndTodos }
 // //if incoming project is already present in storage arr
 // 			if (projectNamesArr.includes(currentProjName ?? '')) {
