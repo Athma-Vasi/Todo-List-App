@@ -12,7 +12,7 @@ import { handleAddNewTodoIconClick } from '../eventCBs/handleAddNewTodoIconClick
 import { handleProjectCloseIconClick } from '../eventCBs/handleProjectCloseIconClick'
 import { handleProjectFormSubmit } from '../eventCBs/handleProjectFormSubmit'
 import { Div } from '../types'
-import { sidebarProjectsOnload } from './sidebarProjectsOnload'
+import { projectsAndTodosOnload } from '../projectsAndTodos/projectsAndTodosOnload'
 
 const sidebar = function () {
 	const log = (i: unknown) => console.log('\n', i)

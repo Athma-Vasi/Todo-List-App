@@ -1,4 +1,4 @@
-import { addProjectToSidebar } from '../projects/addProjectToSidebar'
+import { addProjectToSidebar } from './addProjectToSidebar'
 import { ProjectAndTodosObj, TodosArr } from '../types'
 import { addTodosToContent } from './addTodosToContent'
 

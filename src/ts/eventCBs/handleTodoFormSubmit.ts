@@ -1,5 +1,5 @@
-import { storeProjectAndTodosFull } from '../todos/storeProjectAndTodosFull'
-import { addTodosToContent } from '../todos/addTodosToContent'
+import { storeProjectAndTodosFull } from '../projectsAndTodos/storeProjectAndTodosFull'
+import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
 import { Div, ProjAndTodoNames, ProjectAndTodosObj, Todos, TodosArr } from '../types'
 
 const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {

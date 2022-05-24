@@ -1,7 +1,8 @@
-import { addProjectToSidebar } from '../projects/addProjectToSidebar'
+import { addProjectToSidebar } from './addProjectToSidebar'
 import { ProjectAndTodosObj } from '../types'
+import { addTodosToContent } from './addTodosToContent'
 
-const sidebarProjectsOnload = function () {
+const projectsAndTodosOnload = function () {
 	const log = (i: unknown) => console.log('\n', i)
 
 	const projects: ProjectAndTodosObj[] = []
@@ -16,6 +17,7 @@ const sidebarProjectsOnload = function () {
 
 	projects.forEach((project) => {
 		addProjectToSidebar(project.project.projectName, project.project.projectColour)
+		addTodosToContent(project)
 	})
 }
-export { sidebarProjectsOnload }
+export { projectsAndTodosOnload }
