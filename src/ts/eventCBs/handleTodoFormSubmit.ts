@@ -103,8 +103,11 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 		todoFormSelectPriority
 	)
 
-	storeProjectAndTodosFull(projectAndTodos)
-	addTodosToContent(projectAndTodos)
+	const todoExists = storeProjectAndTodosFull(projectAndTodos)
+
+	if (!todoExists) {
+		addTodosToContent(projectAndTodos)
+	}
 
 	todoContainer?.remove()
 }

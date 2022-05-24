@@ -20,31 +20,36 @@ const content = function () {
 	const top = elemCreator('div')(['content-top'])
 	appendElemToParent(content)(top)
 
-	const form = elemCreator('form')(['form'])
+	const form = elemCreator('form')(['form-searchTodo'])
 	pipe(
 		addAttributeToElem([
 			['action', '#'],
 			['method', 'post'],
-			['id', 'form-search'],
+			['id', 'form-searchTodo'],
 			['name', 'search-todo'],
 		]),
 		appendElemToParent(top)
 	)(form)
 
 	pipe(
-		addAttributeToElem([['for', 'search']]),
+		addAttributeToElem([['for', 'searchTodo']]),
 		appendElemToParent(form)
 	)(elemCreator('label')(['label-search']))
 
-	pipe(
-		addAttributeToElem([
-			['type', 'search'],
-			['placeholder', 'search for a todo in selected project'],
-			['id', 'search'],
-			['name', 'search-todo'],
-		]),
-		appendElemToParent(form)
-	)(elemCreator('input')(['search']))
+	const searchTodo = elemCreator('input')(['searchTodo'])
+	addAttributeToElem([
+		['type', 'search'],
+		['placeholder', 'search for a todo in selected project'],
+		['id', 'searchTodo'],
+		['name', 'search-todo'],
+	])(searchTodo)
+	appendElemToParent(form)(searchTodo)
+
+	pipe(appendElemToParent(form))(
+		createImage('../../src/assets/icons/search.svg')(['icon', 'icon-search'])(
+			'icon of magnifying glass representing search'
+		)('Search')
+	)
 
 	pipe(
 		addEvtListener('click')(handleThemeIconToggle),

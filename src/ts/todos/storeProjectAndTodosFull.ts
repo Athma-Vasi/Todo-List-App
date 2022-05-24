@@ -3,6 +3,8 @@ import { ProjectAndTodosObj, TodosArr } from '../types'
 import { addTodosToContent } from './addTodosToContent'
 
 const storeProjectAndTodosFull = function (projectAndTodos_: ProjectAndTodosObj) {
+	let todoExistsFlag = false
+
 	const currentProjName = projectAndTodos_.project.projectName
 	const currentTodoName = projectAndTodos_.todos[0].todoName
 	const currentTodos = projectAndTodos_.todos[0]
@@ -29,12 +31,15 @@ const storeProjectAndTodosFull = function (projectAndTodos_: ProjectAndTodosObj)
 		if (!todoNamesSet.has(currentTodoName)) {
 			currentProjStorage.todos.push(currentTodos)
 			localStorage.setItem(currentProjName, JSON.stringify(currentProjStorage))
+			todoExistsFlag = false
+			return todoExistsFlag
 		} else {
 			//todoName taken
 			alert(
-				`${currentTodoName} already exists as a project (｡•́︿•̀｡)  Please choose another name or consider editing an existing todo.`
+				`${currentTodoName} already exists as a todo (｡•́︿•̀｡)  Please choose another name or consider editing an existing todo.`
 			)
-			return
+			todoExistsFlag = true
+			return todoExistsFlag
 		}
 	}
 

@@ -1,11 +1,13 @@
 import {
 	addAttributeToElem,
+	addEvtListener,
 	addStyleToElem,
 	addTextToElem,
 	appendElemToParent,
 	elemCreator,
 	pipe,
 } from '../element-creators'
+import { handleTodoCheckboxComplete } from '../eventCBs/handleTodoCheckboxComplete'
 import { Div, ProjectAndTodosObj, Todos } from '../types'
 
 const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
@@ -17,14 +19,13 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 	const todoContentContainer = elemCreator('div')(['todoContent-container'])
 	appendElemToParent(content)(todoContentContainer)
 
-	pipe(appendElemToParent(todoContentContainer))(
-		elemCreator('div')(['projectName-container'])
-	)
+	const headingContainer = elemCreator('div')(['todoContent-heading-container'])
+	appendElemToParent(todoContentContainer)(headingContainer)
 
 	pipe(
 		addTextToElem(`${projectName}`),
 		addStyleToElem([['color', `${projectColour}`]]),
-		appendElemToParent(todoContentContainer)
+		appendElemToParent(headingContainer)
 	)(elemCreator('h3')(['heading-text', 'todoContent-projectName']))
 
 	pipe(addAttributeToElem([['for', 'complete']]))(
@@ -32,12 +33,14 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 	)
 
 	pipe(
+		addEvtListener('click')(handleTodoCheckboxComplete),
 		addAttributeToElem([
 			['type', 'checkbox'],
 			['id', 'complete'],
 			['name', 'complete'],
 			['value', 'todoContent'],
-		])
+		]),
+		appendElemToParent(headingContainer)
 	)(elemCreator('input')(['todoContent-checkbox']))
 
 	pipe(
@@ -55,25 +58,28 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 		appendElemToParent(todoContentContainer)
 	)(elemCreator('p')(['todoContent-dueDate']))
 
+	const priorityContainer = elemCreator('div')(['priority-container'])
+	appendElemToParent(todoContentContainer)(priorityContainer)
+	addStyleToElem([
+		[
+			'background-color',
+			`${
+				todoPriority === 'immediate'
+					? 'hsl(0, 100%, 35%)'
+					: todoPriority === 'urgent'
+					? 'hsl(40, 100%, 65%)'
+					: todoPriority === 'high'
+					? 'hsl(90, 100%, 50%)'
+					: todoPriority === 'medium'
+					? 'hsl(200, 100%, 50%)'
+					: 'hsl(250, 100%, 70%)'
+			}`,
+		],
+	])(priorityContainer)
+
 	pipe(
 		addTextToElem(`${todoPriority}`),
-		addStyleToElem([
-			[
-				'color',
-				`${
-					todoPriority === 'immediate'
-						? 'hsl(0, 100%, 35%)'
-						: todoPriority === 'urgent'
-						? 'hsl(40, 100%, 65%)'
-						: todoPriority === 'high'
-						? 'hsl(90, 100%, 50%)'
-						: todoPriority === 'medium'
-						? 'hsl(200, 100%, 50%)'
-						: 'hsl(250, 100%, 70%)'
-				}`,
-			],
-		]),
-		appendElemToParent(todoContentContainer)
+		appendElemToParent(priorityContainer)
 	)(elemCreator('p')(['todoContent-priority']))
 }
 export { addTodosToContent }

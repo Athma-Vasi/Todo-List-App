@@ -1,5 +1,6 @@
 import './index.css'
 import { content } from './ts/content/content'
+import { contentsTodosOnload } from './ts/content/contentsTodosOnload'
 import {
 	addAttributeToElem,
 	addTextToElem,
@@ -9,6 +10,7 @@ import {
 } from './ts/element-creators'
 import { header } from './ts/header/header'
 import { sidebar } from './ts/sidebar/sidebar'
+import { sidebarProjectsOnload } from './ts/sidebar/sidebarProjectsOnload'
 import { Div } from './ts/types'
 
 const mainApp = function () {
@@ -18,6 +20,9 @@ const mainApp = function () {
 	header()
 	sidebar()
 	content()
+	//runs on every refresh
+	self.onload = sidebarProjectsOnload
+	// self.onload = contentsTodosOnload
 }
 
 document.addEventListener('DOMContentLoaded', mainApp)

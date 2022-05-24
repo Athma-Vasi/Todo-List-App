@@ -12,6 +12,7 @@ import { handleAddNewTodoIconClick } from '../eventCBs/handleAddNewTodoIconClick
 import { handleProjectCloseIconClick } from '../eventCBs/handleProjectCloseIconClick'
 import { handleProjectFormSubmit } from '../eventCBs/handleProjectFormSubmit'
 import { Div } from '../types'
+import { sidebarProjectsOnload } from './sidebarProjectsOnload'
 
 const sidebar = function () {
 	const log = (i: unknown) => console.log('\n', i)
@@ -65,7 +66,7 @@ const sidebar = function () {
 	const projectsContainer = elemCreator('div')(['sidebar-heading', 'container-projects'])
 	appendElemToParent(sidebar)(projectsContainer)
 
-	const projectsHeading = elemCreator('div')(['.addProject-name'])
+	const projectsHeading = elemCreator('div')(['projectHeading-wrapper'])
 	appendElemToParent(projectsContainer)(projectsHeading)
 
 	pipe(
@@ -91,7 +92,7 @@ const sidebar = function () {
 	)(elemCreator('h4')(['project-text', 'text-sampleProject']))
 
 	pipe(
-		addAttributeToElem([['data-name', `sample-project`]]),
+		addAttributeToElem([['data-name', `Sample Project`]]),
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(sampleProjectContainer)
 	)(

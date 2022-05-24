@@ -53,7 +53,7 @@ const projectModal = function () {
 			['id', 'addProject-name'],
 			['type', 'text'],
 			['minlength', '2'],
-			['maxlength', '20'],
+			['maxlength', '17'],
 			['pattern', '^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'],
 			['placeholder', 'Enter name of project'],
 			['name', 'addProject-name'],

@@ -33,3 +33,8 @@ export type Todos = {
 	todoDueDate: string
 	todoPriority: string
 }
+
+export type NamesColours = {
+	projectName: string
+	projectColour: string
+}
