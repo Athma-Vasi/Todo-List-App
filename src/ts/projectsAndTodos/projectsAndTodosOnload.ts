@@ -8,12 +8,16 @@ const projectsAndTodosOnload = function () {
 	const projects: ProjectAndTodosObj[] = []
 
 	Object.keys(localStorage).forEach((key) => {
-		if (key !== 'Sample Project' && key !== 'projectNames' && key !== 'archived') {
+		if (
+			key !== 'Sample Project' &&
+			key !== 'projectNames' &&
+			key !== 'archived' &&
+			key !== 'upcoming' &&
+			key !== 'today'
+		) {
 			projects.push(JSON.parse(localStorage.getItem(key) ?? ''))
 		}
 	})
-
-	log(projects)
 
 	projects.forEach((project) => {
 		addProjectToSidebar(project.project.projectName, project.project.projectColour)

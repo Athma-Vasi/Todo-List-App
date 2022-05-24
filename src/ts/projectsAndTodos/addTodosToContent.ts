@@ -24,6 +24,7 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 		appendElemToParent(todoContentContainer)(headingContainer)
 
 		pipe(
+			addAttributeToElem([['data-colour', `${projectColour}`]]),
 			addTextToElem(`${projectName}`),
 			addStyleToElem([['color', `${projectColour}`]]),
 			appendElemToParent(headingContainer)
@@ -39,7 +40,7 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 				['type', 'checkbox'],
 				['id', 'complete'],
 				['name', 'complete'],
-				['value', 'todoContent'],
+				['value', `${projectColour}`],
 			]),
 			appendElemToParent(headingContainer)
 		)(elemCreator('input')(['todoContent-checkbox']))

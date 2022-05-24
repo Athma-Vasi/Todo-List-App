@@ -82,6 +82,12 @@ h4 {
 	justify-content: flex-start;
 	align-items: center;
 }
+.container-today:hover,
+.container-upcoming:hover,
+.container-archived:hover {
+	background-color: var(--clr-bkgd-med);
+	cursor: pointer;
+}
 .sidebar-tab {
 	width: calc(var(--clr-width-app) * 0.382);
 	display: grid;
@@ -96,7 +102,10 @@ h4 {
 	display: flex;
 	justify-content: space-between;
 	padding: 0px 1rem;
+}
+.projectHeading-wrapper:hover {
 	background-color: var(--clr-bkgd-med);
+	cursor: pointer;
 }
 .container-projects {
 	display: flex;
@@ -112,6 +121,10 @@ h4 {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+.sidebar-project:hover {
+	background-color: var(--clr-bkgd-med);
+	cursor: pointer;
 }
 .project-text {
 	text-align: center;

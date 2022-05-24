@@ -13,6 +13,11 @@ import { handleProjectCloseIconClick } from '../eventCBs/handleProjectCloseIconC
 import { handleProjectFormSubmit } from '../eventCBs/handleProjectFormSubmit'
 import { Div } from '../types'
 import { projectsAndTodosOnload } from '../projectsAndTodos/projectsAndTodosOnload'
+import { handleArchivedTabClick } from '../eventCBs/handleArchivedTabClick'
+import { handleUpcomingTabClick } from '../eventCBs/handleUpcomingTabClick'
+import { handleTodayTabClick } from '../eventCBs/handleTodayTabClick'
+import { handleProjectsTabClick } from '../eventCBs/handleProjectsTabClick'
+import { handleCreatedTabsClick } from '../eventCBs/handleCreatedTabsClick'
 
 const sidebar = function () {
 	const log = (i: unknown) => console.log('\n', i)
@@ -22,6 +27,7 @@ const sidebar = function () {
 	appendElemToParent(root)(sidebar)
 
 	const todayContainer = elemCreator('div')(['sidebar-tab', 'container-today'])
+	addEvtListener('click')(handleTodayTabClick)(todayContainer)
 	appendElemToParent(sidebar)(todayContainer)
 
 	pipe(appendElemToParent(todayContainer))(
@@ -36,6 +42,7 @@ const sidebar = function () {
 	)(elemCreator('h4')(['tab-text', 'today-tab']))
 
 	const upcomingContainer = elemCreator('div')(['sidebar-tab', 'container-upcoming'])
+	addEvtListener('click')(handleUpcomingTabClick)(upcomingContainer)
 	appendElemToParent(sidebar)(upcomingContainer)
 
 	pipe(appendElemToParent(upcomingContainer))(
@@ -50,6 +57,7 @@ const sidebar = function () {
 	)(elemCreator('h4')(['tab-text', 'tab-upcoming']))
 
 	const archivedContainer = elemCreator('div')(['sidebar-tab', 'container-archived'])
+	addEvtListener('click')(handleArchivedTabClick)(archivedContainer)
 	appendElemToParent(sidebar)(archivedContainer)
 
 	pipe(appendElemToParent(archivedContainer))(
@@ -70,6 +78,7 @@ const sidebar = function () {
 	appendElemToParent(projectsContainer)(projectsHeading)
 
 	pipe(
+		addEvtListener('click')(handleProjectsTabClick),
 		addTextToElem('Projects'),
 		appendElemToParent(projectsHeading)
 	)(elemCreator('h3')(['heading-text', 'text-projects']))
@@ -87,6 +96,7 @@ const sidebar = function () {
 	appendElemToParent(projectsContainer)(sampleProjectContainer)
 
 	pipe(
+		addEvtListener('click')(handleCreatedTabsClick),
 		addTextToElem('Sample Project'),
 		appendElemToParent(sampleProjectContainer)
 	)(elemCreator('h4')(['project-text', 'text-sampleProject']))

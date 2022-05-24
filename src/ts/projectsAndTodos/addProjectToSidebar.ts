@@ -10,6 +10,7 @@ import {
 } from '../element-creators'
 import { handleAddNewProjectIconClick } from '../eventCBs/handleAddNewProjectIconClick'
 import { handleAddNewTodoIconClick } from '../eventCBs/handleAddNewTodoIconClick'
+import { handleCreatedTabsClick } from '../eventCBs/handleCreatedTabsClick'
 import { Div, ProjectAndTodosObj } from '../types'
 
 const addProjectToSidebar = function (formName_: string, formColour_: string) {
@@ -20,18 +21,17 @@ const addProjectToSidebar = function (formName_: string, formColour_: string) {
 	const projectContainer = elemCreator('div')(['sidebar-project', 'project'])
 	appendElemToParent(projectsContainer)(projectContainer)
 
-	const projectNamesArr: string[] = JSON.parse(localStorage.getItem('projectNames') ?? '')
-
 	pipe(
-		addAttributeToElem([['data-name', `${projectNamesArr.at(-1)}`]]),
+		addEvtListener('click')(handleCreatedTabsClick),
+		addAttributeToElem([['data-name', `${formName_}`]]),
 		addStyleToElem([['color', `${formColour_}`]]),
-		addTextToElem(`${projectNamesArr.at(-1)}`),
+		addTextToElem(`${formName_}`),
 		appendElemToParent(projectContainer)
-	)(elemCreator('h4')(['project-text', `text-${projectNamesArr.at(-1)}`]))
+	)(elemCreator('h4')(['project-text', `text-${formName_}`]))
 
 	pipe(
 		addAttributeToElem([
-			['data-name', `${projectNamesArr.at(-1)}`],
+			['data-name', `${formName_}`],
 			['data-colour', `${formColour_}`],
 		]),
 		// addStyleToElem('background-color')(`${formColour_}`),
