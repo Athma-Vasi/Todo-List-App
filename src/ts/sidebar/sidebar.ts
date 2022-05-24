@@ -65,7 +65,7 @@ const sidebar = function () {
 	const projectsContainer = elemCreator('div')(['sidebar-heading', 'container-projects'])
 	appendElemToParent(sidebar)(projectsContainer)
 
-	const projectsHeading = elemCreator('div')(['projectsHeading-container'])
+	const projectsHeading = elemCreator('div')(['.addProject-name'])
 	appendElemToParent(projectsContainer)(projectsHeading)
 
 	pipe(
