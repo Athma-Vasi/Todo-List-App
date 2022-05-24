@@ -21,7 +21,6 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 	appendElemToParent(root)(todoContainer)
 
 	const todoForm = elemCreator('form')(['form', 'form-addTodo'])
-
 	pipe(
 		addEvtListener('submit')(handleTodoFormSubmit),
 		addAttributeToElem([
@@ -38,10 +37,13 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 		appendElemToParent(todoForm)
 	)(elemCreator('h3')(['heading-text', 'text-addTodo']))
 
+	const addTodoNameContainer = elemCreator('div')(['addTodo-name-container'])
+	appendElemToParent(todoForm)(addTodoNameContainer)
+
 	pipe(
 		addAttributeToElem([['for', 'addTodo-name']]),
 		addTextToElem('Name'),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoNameContainer)
 	)(elemCreator('label')(['label-name']))
 
 	pipe(
@@ -53,16 +55,19 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['minlength', '2'],
 			['maxlength', '20'],
 			['pattern', '^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'],
-			['placeholder', 'enter name for task todo'],
+			['placeholder', 'Enter name for task todo'],
 			['required', ''],
 		]),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoNameContainer)
 	)(elemCreator('input')(['addTodo-name']))
+
+	const addTodoDescContainer = elemCreator('div')(['addTodo-desc-container'])
+	appendElemToParent(todoForm)(addTodoDescContainer)
 
 	pipe(
 		addAttributeToElem([['for', 'addTodo-description']]),
 		addTextToElem('Description'),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoDescContainer)
 	)(elemCreator('label')(['label-description']))
 
 	pipe(
@@ -70,17 +75,21 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['id', 'addTodo-description'],
 			['autocomplete', 'on'],
 			['form', 'form-addTodo'],
-			['max-length', '500'],
+			['maxlength', '250'],
 			['name', 'addTodo-description'],
 			['spellcheck', 'true'],
 			['wrap', 'hard'],
 		]),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoDescContainer)
 	)(elemCreator('textarea')(['addTodo-description']))
 
+	const addTodoDateContainer = elemCreator('div')(['addTodo-date-container'])
+	appendElemToParent(todoForm)(addTodoDateContainer)
+
 	pipe(
+		addTextToElem('Due date'),
 		addAttributeToElem([['for', 'addTodo-dueDate']]),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoDateContainer)
 	)(elemCreator('label')(['label-dueDate']))
 
 	pipe(
@@ -104,12 +113,16 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['pattern', '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}'],
 			// ['required', ''],
 		]),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoDateContainer)
 	)(elemCreator('input')(['addTodo-dueDate']))
 
+	const addTodoPriorityContainer = elemCreator('div')(['addTodo-priority-container'])
+	appendElemToParent(todoForm)(addTodoPriorityContainer)
+
 	pipe(
+		addTextToElem('Priority level'),
 		addAttributeToElem([['for', 'addTodo-selectPriority']]),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoPriorityContainer)
 	)(elemCreator('label')(['label-selectPriority']))
 
 	const selectPriority = elemCreator('select')(['addTodo-selectPriority'])
@@ -120,7 +133,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['form', 'form-addTodo'],
 			// ['required', ''],
 		]),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoPriorityContainer)
 	)(selectPriority)
 
 	pipe(
@@ -183,14 +196,24 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 
 	//
 	//
-	const todoIconsContainer = elemCreator('div')(['addTodoIcons-container'])
-	appendElemToParent(todoForm)(todoIconsContainer)
+	const addTodoIconsContainer = elemCreator('div')(['addTodo-icons-container'])
+	appendElemToParent(todoForm)(addTodoIconsContainer)
+
+	const bttnCancelTodo = elemCreator('button')(['bttn', 'bttn-cancelTodo'])
+	pipe(
+		addAttributeToElem([
+			['type', 'click'],
+			['name', 'bttn-cancelTodo'],
+			['form', 'form-addTodo'],
+		]),
+		appendElemToParent(addTodoIconsContainer)
+	)(bttnCancelTodo)
 
 	pipe(
 		addEvtListener('click')(handleTodoCloseIconClick),
-		appendElemToParent(todoIconsContainer)
+		appendElemToParent(bttnCancelTodo)
 	)(
-		createImage('../../src/assets/icons/x.svg')(['icon', 'icon-cancelTodo'])(
+		createImage('../../src/assets/icons/x(1).svg')(['icon', 'icon-cancelTodo'])(
 			`icon of symbol 'x' representing close or cancel`
 		)('Cancel')
 	)
@@ -202,11 +225,11 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['name', 'bttn-addTodo'],
 			['form', 'form-addTodo'],
 		]),
-		appendElemToParent(todoForm)
+		appendElemToParent(addTodoIconsContainer)
 	)(bttnAddTodo)
 
 	pipe(appendElemToParent(bttnAddTodo))(
-		createImage('../../src/assets/icons/check.svg')(['icon', 'icon-addTodo'])(
+		createImage('../../src/assets/icons/check(1).svg')(['icon', 'icon-addTodo'])(
 			`icon of a checkmark representing add`
 		)('Add Todo')
 	)
