@@ -8,7 +8,7 @@ const projectsAndTodosOnload = function () {
 	const projects: ProjectAndTodosObj[] = []
 
 	Object.keys(localStorage).forEach((key) => {
-		if (key !== 'Sample Project' && key !== 'projectNames') {
+		if (key !== 'Sample Project' && key !== 'projectNames' && key !== 'archived') {
 			projects.push(JSON.parse(localStorage.getItem(key) ?? ''))
 		}
 	})

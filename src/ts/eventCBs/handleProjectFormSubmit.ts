@@ -22,6 +22,12 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 		Object.keys(localStorage).forEach((key) => {
 			if (key === 'projectNames') {
 				const keysSet = new Set(JSON.parse(localStorage.getItem(key) ?? ''))
+
+				//to prevent sidebar tab names used as project names
+				;['today', 'upcoming', 'archived', 'projects'].forEach((name) =>
+					keysSet.add(name)
+				)
+
 				//if name already present
 				if (keysSet.has(projectFormName_)) {
 					alert(
