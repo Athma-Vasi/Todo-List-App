@@ -63,13 +63,16 @@ const addTodosToContent = function (
 			appendElemToParent(todoContentContainer)
 		)(elemCreator('p')(['todoContent-description']))
 
+		const dateAndPriorityContainer = elemCreator('div')(['dateAndPriority-container'])
+		appendElemToParent(todoContentContainer)(dateAndPriorityContainer)
+
 		pipe(
 			addTextToElem(`${todoDueDate}`),
-			appendElemToParent(todoContentContainer)
+			appendElemToParent(dateAndPriorityContainer)
 		)(elemCreator('p')(['todoContent-dueDate']))
 
 		const priorityContainer = elemCreator('div')(['priority-container'])
-		appendElemToParent(todoContentContainer)(priorityContainer)
+		appendElemToParent(dateAndPriorityContainer)(priorityContainer)
 		addStyleToElem([
 			[
 				'background-color',
