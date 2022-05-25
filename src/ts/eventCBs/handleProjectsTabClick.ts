@@ -34,7 +34,6 @@ const handleProjectsTabClick = function () {
 			projectsAndTodosArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
 		}
 	})
-	log(projectsAndTodosArr)
 
 	projectsAndTodosArr.forEach((project) => {
 		addTodosToContent(project)

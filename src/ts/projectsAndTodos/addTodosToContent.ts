@@ -10,7 +10,10 @@ import {
 import { handleTodoCheckboxComplete } from '../eventCBs/handleTodoCheckboxComplete'
 import { Div, ProjectAndTodosObj, Todos } from '../types'
 
-const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
+const addTodosToContent = function (
+	{ project, todos }: ProjectAndTodosObj,
+	disabled_ = false
+) {
 	const { projectName, projectColour } = project
 
 	todos.forEach((todo, i) => {
@@ -34,6 +37,7 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 			elemCreator('label')(['label', 'todoContent-label'])
 		)
 
+		const checkbox = elemCreator('input')(['todoContent-checkbox'])
 		pipe(
 			addEvtListener('click')(handleTodoCheckboxComplete),
 			addAttributeToElem([
@@ -43,7 +47,11 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 				['value', `${projectColour}`],
 			]),
 			appendElemToParent(headingContainer)
-		)(elemCreator('input')(['todoContent-checkbox']))
+		)(checkbox)
+		//to prevent clicking checkbox after it has been archived
+		if (disabled_ === true) {
+			addAttributeToElem([['disabled', 'true']])(checkbox)
+		}
 
 		pipe(
 			addTextToElem(`${todoName}`),

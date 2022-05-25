@@ -24,13 +24,6 @@ const mainApp = function () {
 
 	//runs on every refresh
 	self.onload = projectsAndTodosOnload
-	// self.onload = contentsTodosOnload
 }
 
 document.addEventListener('DOMContentLoaded', mainApp)
-
-// pipe(
-// 	addTextToElem('Hi Athma!!'),
-// 	addAttributeToElem('data-key')('something'),
-// 	appendElemToParent(mainContent)
-// )(elemCreator('p')(['para']))

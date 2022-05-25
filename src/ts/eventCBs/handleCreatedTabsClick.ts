@@ -22,7 +22,6 @@ const handleCreatedTabsClick = function (this: HTMLHeadingElement) {
 	appendElemToParent(content)(contentBottom)
 
 	const thisProjectName = this.textContent
-	log(thisProjectName)
 
 	const projectAndTodosObjArr: ProjectAndTodosObj[] = []
 

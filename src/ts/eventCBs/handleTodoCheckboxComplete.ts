@@ -56,6 +56,7 @@ const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
 	archivedTodos.push(projectAndTodoToBeArchived)
 	localStorage.setItem('archived', JSON.stringify(archivedTodos))
 
+	//remove the current todo whose checkbox is clicked
 	this.parentElement?.parentElement?.remove()
 }
 export { handleTodoCheckboxComplete }
