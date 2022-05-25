@@ -26,7 +26,6 @@ const handleProjectsTabClick = function () {
 
 	Object.keys(localStorage).forEach((key) => {
 		if (
-			key !== 'Sample Project' &&
 			key !== 'projectNames' &&
 			key !== 'archived' &&
 			key !== 'upcoming' &&

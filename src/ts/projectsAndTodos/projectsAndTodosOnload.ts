@@ -1,6 +1,7 @@
 import { addProjectToSidebar } from './addProjectToSidebar'
 import { ProjectAndTodosObj } from '../types'
 import { addTodosToContent } from './addTodosToContent'
+import { storeSampleProject } from './storeSampleProject'
 
 const projectsAndTodosOnload = function () {
 	const log = (i: unknown) => console.log('\n', i)
@@ -19,9 +20,14 @@ const projectsAndTodosOnload = function () {
 		}
 	})
 
-	//display sample todos
-	const sampleProject = JSON.parse(localStorage.getItem('Sample Project') ?? '')
-	addTodosToContent(sampleProject)
+	const displaySampleProjectOnload = (function () {
+		storeSampleProject()
+		//display sample todos
+		const sampleProject: ProjectAndTodosObj = JSON.parse(
+			localStorage.getItem('Sample Project') ?? ''
+		)
+		addTodosToContent(sampleProject)
+	})()
 
 	//display rest of projects in storage
 	projects.forEach((project) => {

@@ -6,6 +6,7 @@ import {
 	elemCreator,
 	addEvtListener,
 	pipe,
+	addStyleToElem,
 } from '../element-creators'
 import { handleAddNewProjectIconClick } from '../eventCBs/handleAddNewProjectIconClick'
 import { handleAddNewTodoIconClick } from '../eventCBs/handleAddNewTodoIconClick'
@@ -96,13 +97,17 @@ const sidebar = function () {
 	appendElemToParent(projectsContainer)(sampleProjectContainer)
 
 	pipe(
+		addStyleToElem([['color', '#48d1cc']]),
 		addEvtListener('click')(handleCreatedTabsClick),
 		addTextToElem('Sample Project'),
 		appendElemToParent(sampleProjectContainer)
 	)(elemCreator('h4')(['project-text', 'text-sampleProject']))
 
 	pipe(
-		addAttributeToElem([['data-name', `Sample Project`]]),
+		addAttributeToElem([
+			['data-name', `Sample Project`],
+			['data-colour', '#48d1cc'],
+		]),
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(sampleProjectContainer)
 	)(
