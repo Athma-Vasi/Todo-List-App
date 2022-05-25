@@ -101,7 +101,9 @@ h4 {
 .projectHeading-wrapper {
 	display: flex;
 	justify-content: space-between;
+	align-items: center;
 	padding: 0px 1rem;
+	height: 10rem;
 }
 .projectHeading-wrapper:hover {
 	background-color: var(--clr-bkgd-med);
@@ -115,7 +117,8 @@ h4 {
 .text-projects {
 	width: 19.5rem;
 	height: 7rem;
-	padding-top: 1rem;
+	padding-top: 1.3rem;
+	align-self: center;
 }
 .projectsHeading-container {
 	display: flex;

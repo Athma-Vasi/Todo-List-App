@@ -7,6 +7,7 @@ import {
 	elemCreator,
 	pipe,
 } from '../element-creators'
+import { handleSearchFormSubmit } from '../eventCBs/handleSearchFormSubmit'
 import { handleThemeIconToggle } from '../eventCBs/handleThemeIconToggle'
 import { Div } from '../types'
 
@@ -22,6 +23,7 @@ const content = function () {
 
 	const form = elemCreator('form')(['form-searchTodo'])
 	pipe(
+		addEvtListener('submit')(handleSearchFormSubmit),
 		addAttributeToElem([
 			['action', '#'],
 			['method', 'post'],

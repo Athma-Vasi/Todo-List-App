@@ -67,7 +67,7 @@ const addTodosToContent = function (
 		appendElemToParent(todoContentContainer)(dateAndPriorityContainer)
 
 		pipe(
-			addTextToElem(`${todoDueDate}`),
+			addTextToElem(`Due: ${todoDueDate}`),
 			appendElemToParent(dateAndPriorityContainer)
 		)(elemCreator('p')(['todoContent-dueDate']))
 
