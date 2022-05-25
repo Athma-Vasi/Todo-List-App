@@ -2,9 +2,12 @@ import { addProjectToSidebar } from './addProjectToSidebar'
 import { ProjectAndTodosObj } from '../types'
 import { addTodosToContent } from './addTodosToContent'
 import { storeSampleProject } from './storeSampleProject'
+import { archiveExpiredTodos } from './archiveExpiredTodos'
 
 const projectsAndTodosOnload = function () {
 	const log = (i: unknown) => console.log('\n', i)
+
+	archiveExpiredTodos()
 
 	const projects: ProjectAndTodosObj[] = []
 

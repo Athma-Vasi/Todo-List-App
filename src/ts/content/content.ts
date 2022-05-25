@@ -39,7 +39,7 @@ const content = function () {
 	const searchTodo = elemCreator('input')(['searchTodo'])
 	addAttributeToElem([
 		['type', 'search'],
-		['placeholder', 'search for a todo in selected project'],
+		['placeholder', 'search for a todo'],
 		['id', 'searchTodo'],
 		['name', 'search-todo'],
 	])(searchTodo)
