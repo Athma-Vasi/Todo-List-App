@@ -27,8 +27,6 @@ const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
 		}
 	})
 
-	log(projectArr)
-
 	const archivedTodos = JSON.parse(localStorage.getItem('archived') ?? '')
 
 	const todoToBeArchived: Todos[] = []
@@ -43,6 +41,7 @@ const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
 		}
 	})
 
+	//replace the todos of project from storage with filtered todos which do not have the currently checked off todo
 	projectArr[0].todos = todosArrFiltered
 
 	//put the remaining todos back into project and into storage

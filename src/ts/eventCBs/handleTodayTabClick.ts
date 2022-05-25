@@ -26,7 +26,7 @@ const handleTodayTabClick = function () {
 	}
 
 	const projectArr: ProjectAndTodosObj[] = []
-
+	//grab all the projects except ones specified
 	Object.keys(localStorage).forEach((key) => {
 		if (
 			key !== 'projectNames' &&
@@ -38,8 +38,6 @@ const handleTodayTabClick = function () {
 		}
 	})
 
-	log(projectArr)
-
 	const now = new Date()
 	const date = now.getDate()
 	const month = now.getMonth() + 1
@@ -47,10 +45,10 @@ const handleTodayTabClick = function () {
 	const today = `${year}-${month < 10 ? '0' + month : month}-${
 		date < 10 ? '0' + date : date
 	}`
-	log(today)
 
 	const projAndTodosFiltered: ProjectAndTodosObj[] = []
 
+	//grab each todo due today and put into created temp project and push project into filtered array
 	projectArr.forEach((project) => {
 		project.todos.forEach((todo) => {
 			if (todo.todoDueDate === today) {
@@ -73,8 +71,7 @@ const handleTodayTabClick = function () {
 		})
 	})
 
-	log(projAndTodosFiltered)
-
+	//render the todos
 	projAndTodosFiltered.forEach((project) => {
 		addTodosToContent(project)
 	})

@@ -12,7 +12,7 @@ import { Div, ProjectAndTodosObj, Todos } from '../types'
 
 const addTodosToContent = function (
 	{ project, todos }: ProjectAndTodosObj,
-	disabled_ = false
+	disableCheckbox = false
 ) {
 	const { projectName, projectColour } = project
 
@@ -49,7 +49,7 @@ const addTodosToContent = function (
 			appendElemToParent(headingContainer)
 		)(checkbox)
 		//to prevent clicking checkbox after it has been archived
-		if (disabled_ === true) {
+		if (disableCheckbox) {
 			addAttributeToElem([['disabled', 'true']])(checkbox)
 		}
 
