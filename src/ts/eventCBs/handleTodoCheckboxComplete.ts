@@ -17,7 +17,6 @@ const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
 	//grab the entire project belonging to currently checked todo
 	Object.keys(localStorage).forEach((key) => {
 		if (
-			key !== 'Sample Project' &&
 			key !== 'projectNames' &&
 			key !== 'archived' &&
 			key !== 'upcoming' &&
