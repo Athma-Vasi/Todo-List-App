@@ -59,7 +59,7 @@ const archiveExpiredTodos = function () {
 		})
 	})
 
-	//render the todos
+	//render the todos while disabling the checkbox
 	expiredProjectsArr.forEach((project) => {
 		addTodosToContent(project, true)
 	})
