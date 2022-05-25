@@ -11,6 +11,7 @@ import { header } from './ts/header/header'
 import { sidebar } from './ts/sidebar/sidebar'
 import { projectsAndTodosOnload } from './ts/projectsAndTodos/projectsAndTodosOnload'
 import { Div } from './ts/types'
+import { storeSampleProject } from './ts/projectsAndTodos/storeSampleProject'
 
 const mainApp = function () {
 	const log = (i: unknown) => console.log('\n', i)
@@ -19,6 +20,8 @@ const mainApp = function () {
 	header()
 	sidebar()
 	content()
+	storeSampleProject()
+
 	//runs on every refresh
 	self.onload = projectsAndTodosOnload
 	// self.onload = contentsTodosOnload

@@ -21,7 +21,6 @@ const projectsAndTodosOnload = function () {
 	})
 
 	const displaySampleProjectOnload = (function () {
-		storeSampleProject()
 		//display sample todos
 		const sampleProject: ProjectAndTodosObj = JSON.parse(
 			localStorage.getItem('Sample Project') ?? ''

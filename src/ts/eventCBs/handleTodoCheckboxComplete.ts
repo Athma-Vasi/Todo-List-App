@@ -9,7 +9,6 @@ const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
 
 	const thisProjectName = this.previousSibling?.textContent ?? ''
 	const thisProjectColour = this.value
-
 	const thisTodoName =
 		this.parentElement?.parentElement?.firstChild?.nextSibling?.textContent ?? ''
 
@@ -27,6 +26,8 @@ const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
 			}
 		}
 	})
+
+	log(projectArr)
 
 	const archivedTodos = JSON.parse(localStorage.getItem('archived') ?? '')
 

@@ -55,7 +55,9 @@ const storeSampleProject = function () {
 			},
 		],
 	}
-
-	localStorage.setItem(sampleProject.project.projectName, JSON.stringify(sampleProject))
+	//on first load only
+	if (!localStorage.getItem(sampleProject.project.projectName)) {
+		localStorage.setItem(sampleProject.project.projectName, JSON.stringify(sampleProject))
+	}
 }
 export { storeSampleProject }
