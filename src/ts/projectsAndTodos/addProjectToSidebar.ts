@@ -27,7 +27,7 @@ const addProjectToSidebar = function (formName_: string, formColour_: string) {
 		addStyleToElem([['color', `${formColour_}`]]),
 		addTextToElem(`${formName_}`),
 		appendElemToParent(projectContainer)
-	)(elemCreator('h4')(['project-text', `text-${formName_}`]))
+	)(elemCreator('h4')(['project-text']))
 
 	pipe(
 		addAttributeToElem([

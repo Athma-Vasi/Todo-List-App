@@ -59,6 +59,9 @@ const content = function () {
 			'icon of moon representing dark mode'
 		)('Dark Mode')
 	)
+
+	const contentBottom = elemCreator('div')(['content-bottom'])
+	appendElemToParent(content)(contentBottom)
 }
 
 export { content }

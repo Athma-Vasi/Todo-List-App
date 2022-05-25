@@ -15,10 +15,10 @@ const addTodosToContent = function ({ project, todos }: ProjectAndTodosObj) {
 
 	todos.forEach((todo, i) => {
 		const { todoName, todoDescription, todoDueDate, todoPriority } = todos[i]
-		const content: Div = document.querySelector('.content')
+		const contentBottom: Div = document.querySelector('.content-bottom')
 
 		const todoContentContainer = elemCreator('div')(['todoContent-container'])
-		appendElemToParent(content)(todoContentContainer)
+		appendElemToParent(contentBottom)(todoContentContainer)
 
 		const headingContainer = elemCreator('div')(['todoContent-heading-container'])
 		appendElemToParent(todoContentContainer)(headingContainer)

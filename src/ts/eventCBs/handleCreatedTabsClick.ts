@@ -1,20 +1,28 @@
+import { content } from '../content/content'
 import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
 import { Div, ProjectAndTodosObj } from '../types'
+import {
+	addAttributeToElem,
+	addEvtListener,
+	addTextToElem,
+	appendElemToParent,
+	createImage,
+	elemCreator,
+	pipe,
+} from '../element-creators'
 
 const handleCreatedTabsClick = function (this: HTMLHeadingElement) {
 	const log = (i: unknown) => console.log('\n', i)
 	//remove content section's previous contents
 	const content: Div = document.querySelector('.content')
-	const contentTop: Div = document.querySelector('.content-top')
+	const contentBottomPrev = document.querySelector('.content-bottom')
+	contentBottomPrev?.remove()
 
-	content?.childNodes.forEach((child) => {
-		if (!child.contains(contentTop)) {
-			child.remove()
-		}
-	})
-	//NEED TO ADD ANOTHER CONTAINER HOLDING CREATED PROJECTS TO EASILY REMOVE
+	const contentBottom = elemCreator('div')(['content-bottom'])
+	appendElemToParent(content)(contentBottom)
 
 	const thisProjectName = this.textContent
+	log(thisProjectName)
 
 	const projectAndTodosObjArr: ProjectAndTodosObj[] = []
 
