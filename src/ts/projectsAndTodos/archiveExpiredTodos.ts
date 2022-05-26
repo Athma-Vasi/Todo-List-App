@@ -79,12 +79,12 @@ const archiveExpiredTodos = function () {
 	//store expired projects and todos that have new expired todos added
 	localStorage.setItem('archived', JSON.stringify(expiredProjectsArr))
 
-	log(expiredProjectsArr)
-	log(todosNotExpiredArr)
-	log(projectArr)
+	//log(expiredProjectsArr)
+	//log(todosNotExpiredArr)
+	//log(projectArr)
 
 	//the todos that share a project name are consolidated under one project
-	const unExpiredProjectsMap: Map<string, ProjectAndTodosObj | undefined> =
+	const unexpiredProjectsMap: Map<string, ProjectAndTodosObj | undefined> =
 		todosNotExpiredArr.reduce(
 			(acc: Map<string, ProjectAndTodosObj | undefined>, curr: ProjectAndTodosObj) => {
 				if (!acc.has(curr.project.projectName)) {
@@ -99,10 +99,10 @@ const archiveExpiredTodos = function () {
 			new Map()
 		)
 
-	log(unExpiredProjectsMap)
+	//log(unexpiredProjectsMap)
 
 	//store modified projects without the expired todos back into localstorage
-	unExpiredProjectsMap.forEach((val, key) => {
+	unexpiredProjectsMap.forEach((val, key) => {
 		localStorage.setItem(key, JSON.stringify(val))
 	})
 

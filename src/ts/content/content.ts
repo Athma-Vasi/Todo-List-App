@@ -7,6 +7,7 @@ import {
 	elemCreator,
 	pipe,
 } from '../element-creators'
+import { handleFilterByPriorityClick } from '../eventCBs/handleFilterByPriorityClick'
 import { handleSearchFormSubmit } from '../eventCBs/handleSearchFormSubmit'
 import { handleThemeIconToggle } from '../eventCBs/handleThemeIconToggle'
 import { Div } from '../types'
@@ -62,8 +63,71 @@ const content = function () {
 		)('Dark Mode')
 	)
 
-	const formFilterByPriority = elemCreator('form')(['form-filterByPriority'])
-	const filterByPriority = elemCreator('select')(['filterBy-priority'])
+	// const formFilterByPriority = elemCreator('form')(['form-filterByPriority'])
+	// pipe(
+	// 	addAttributeToElem([
+	// 		['action', '#'],
+	// 		['method', 'post'],
+	// 		['id', 'form-filterByPriority'],
+	// 		['name', 'form-filterByPriority'],
+	// 	]),
+	// 	appendElemToParent(top)
+	// )(formFilterByPriority)
+
+	pipe(
+		addAttributeToElem([
+			['for', 'select-filterByPriority'],
+			['name', 'select-filterByPriority'],
+		]),
+		appendElemToParent(top)
+	)(elemCreator('label')(['label', 'label-filterByPriority']))
+
+	const selectFilterByPriority = elemCreator('select')(['select-filterByPriority'])
+	pipe(
+		addEvtListener('click')(handleFilterByPriorityClick),
+		addAttributeToElem([
+			['name', 'select-filterByPriority'],
+			// ['form', 'form-filterByPriority'],
+			['id', 'select-filterByPriority'],
+		]),
+		appendElemToParent(top)
+	)(selectFilterByPriority)
+
+	pipe(
+		addTextToElem('--Filter by priority--'),
+		addAttributeToElem([['value', '']]),
+		appendElemToParent(selectFilterByPriority)
+	)(elemCreator('option')(['option-filterByPriority']))
+
+	pipe(
+		addTextToElem('immediate'),
+		addAttributeToElem([['value', 'immediate']]),
+		appendElemToParent(selectFilterByPriority)
+	)(elemCreator('option')(['option-filterByPriority']))
+
+	pipe(
+		addTextToElem('urgent'),
+		addAttributeToElem([['value', 'urgent']]),
+		appendElemToParent(selectFilterByPriority)
+	)(elemCreator('option')(['option-filterByPriority']))
+
+	pipe(
+		addTextToElem('high'),
+		addAttributeToElem([['value', 'high']]),
+		appendElemToParent(selectFilterByPriority)
+	)(elemCreator('option')(['option-filterByPriority']))
+
+	pipe(
+		addTextToElem('medium'),
+		addAttributeToElem([['value', 'medium']]),
+		appendElemToParent(selectFilterByPriority)
+	)(elemCreator('option')(['option-filterByPriority']))
+
+	pipe(
+		addTextToElem('low'),
+		addAttributeToElem([['value', 'low']]),
+		appendElemToParent(selectFilterByPriority)
+	)(elemCreator('option')(['option-filterByPriority']))
 
 	const contentBottom = elemCreator('div')(['content-bottom'])
 	appendElemToParent(content)(contentBottom)
