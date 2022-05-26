@@ -15,6 +15,7 @@ const projectsAndTodosOnload = function () {
 		}
 	})
 
+	log(projects)
 	const displaySampleProjectOnload = (function () {
 		//display sample todos
 		const sampleProject: ProjectAndTodosObj = JSON.parse(

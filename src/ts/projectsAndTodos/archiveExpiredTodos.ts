@@ -106,9 +106,9 @@ const archiveExpiredTodos = function () {
 		localStorage.setItem(key, JSON.stringify(val))
 	})
 
-	//render the todos while disabling the checkbox
-	expiredProjectsArr.forEach((project) => {
-		addTodosToContent(project, true)
-	})
+	// //render the todos while disabling the checkbox
+	// expiredProjectsArr.forEach((project) => {
+	// 	addTodosToContent(project, true)
+	// })
 }
 export { archiveExpiredTodos }

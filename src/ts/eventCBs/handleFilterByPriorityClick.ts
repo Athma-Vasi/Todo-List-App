@@ -30,7 +30,6 @@ const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: Mouse
 			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
 		}
 	})
-	log(projectArr)
 
 	const filteredPriorityArr: ProjectAndTodosObj[] = []
 
@@ -55,7 +54,6 @@ const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: Mouse
 			}
 		})
 	})
-	log(filteredPriorityArr)
 
 	filteredPriorityArr.forEach((project) => {
 		addTodosToContent(project)

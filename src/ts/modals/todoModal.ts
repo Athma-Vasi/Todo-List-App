@@ -131,6 +131,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['name', 'addTodo-selectPriority'],
 			['id', 'addTodo-selectPriority'],
 			['form', 'form-addTodo'],
+			['title', 'addTodo-selectPriority'],
 			// ['required', ''],
 		]),
 		appendElemToParent(addTodoPriorityContainer)

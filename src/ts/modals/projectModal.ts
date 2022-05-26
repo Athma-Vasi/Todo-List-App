@@ -77,6 +77,7 @@ const projectModal = function () {
 			['type', 'color'],
 			['id', 'addProject-colour'],
 			['name', 'addProject-colour'],
+			['value', '#1e1e1e'],
 		]),
 		appendElemToParent(addProjectColourContainer)
 	)(elemCreator('input')(['addProject-colour']))

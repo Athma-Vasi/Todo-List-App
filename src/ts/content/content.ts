@@ -9,6 +9,7 @@ import {
 } from '../element-creators'
 import { handleFilterByPriorityClick } from '../eventCBs/handleFilterByPriorityClick'
 import { handleSearchFormSubmit } from '../eventCBs/handleSearchFormSubmit'
+import { handleSortByPriorityClick } from '../eventCBs/handleSortByPriorityClick'
 import { handleThemeIconToggle } from '../eventCBs/handleThemeIconToggle'
 import { Div } from '../types'
 
@@ -63,17 +64,6 @@ const content = function () {
 		)('Dark Mode')
 	)
 
-	// const formFilterByPriority = elemCreator('form')(['form-filterByPriority'])
-	// pipe(
-	// 	addAttributeToElem([
-	// 		['action', '#'],
-	// 		['method', 'post'],
-	// 		['id', 'form-filterByPriority'],
-	// 		['name', 'form-filterByPriority'],
-	// 	]),
-	// 	appendElemToParent(top)
-	// )(formFilterByPriority)
-
 	pipe(
 		addAttributeToElem([
 			['for', 'select-filterByPriority'],
@@ -87,8 +77,8 @@ const content = function () {
 		addEvtListener('click')(handleFilterByPriorityClick),
 		addAttributeToElem([
 			['name', 'select-filterByPriority'],
-			// ['form', 'form-filterByPriority'],
 			['id', 'select-filterByPriority'],
+			['title', 'select-filterByPriority'],
 		]),
 		appendElemToParent(top)
 	)(selectFilterByPriority)
@@ -128,6 +118,35 @@ const content = function () {
 		addAttributeToElem([['value', 'low']]),
 		appendElemToParent(selectFilterByPriority)
 	)(elemCreator('option')(['option-filterByPriority']))
+
+	const selectSortByPriority = elemCreator('select')(['select-sortByPriority'])
+	pipe(
+		addEvtListener('click')(handleSortByPriorityClick),
+		addAttributeToElem([
+			['id', 'select-sortByPriority'],
+			['name', 'select-sortByPriority'],
+			['title', 'select-sortByPriority'],
+		]),
+		appendElemToParent(top)
+	)(selectSortByPriority)
+
+	pipe(
+		addTextToElem('--Sort by priority--'),
+		addAttributeToElem([['value', '']]),
+		appendElemToParent(selectSortByPriority)
+	)(elemCreator('option')(['option-sortByPriority']))
+
+	pipe(
+		addTextToElem('low to immediate'),
+		addAttributeToElem([['value', 'lowToImmediate']]),
+		appendElemToParent(selectSortByPriority)
+	)(elemCreator('option')(['option-sortByPriority']))
+
+	pipe(
+		addTextToElem('immediate to low'),
+		addAttributeToElem([['value', 'immediateToLow']]),
+		appendElemToParent(selectSortByPriority)
+	)(elemCreator('option')(['option-sortByPriority']))
 
 	const contentBottom = elemCreator('div')(['content-bottom'])
 	appendElemToParent(content)(contentBottom)
