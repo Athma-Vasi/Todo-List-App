@@ -14,8 +14,10 @@ const handleArchivedTabClick = function (this: HTMLDivElement) {
 	const log = (i: unknown) => console.log('\n', i)
 	//remove content section's previous contents
 	const content: Div = document.querySelector('.content')
-	const contentBottomPrev = document.querySelector('.content-bottom')
+	const contentBottomPrev: Div = document.querySelector('.content-bottom')
 	contentBottomPrev?.remove()
+
+	const contentTop: Div = document.querySelector('.content-top')
 
 	//render new content
 	const contentBottom = elemCreator('div')(['content-bottom'])

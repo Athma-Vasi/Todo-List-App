@@ -160,6 +160,17 @@ h4 {
 	align-items: center;
 	outline: 1px solid blue;
 	overflow: auto;
+	padding-top: 2rem;
+}
+
+.content-top {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	height: 20rem;
+	margin-bottom: 2rem;
+	padding: 1rem 0px;
 }
 .form-searchTodo {
 	position: relative;
@@ -181,6 +192,19 @@ h4 {
 	position: absolute;
 	top: 2rem;
 	left: 1.5rem;
+}
+
+.select-filterByPriority,
+.select-sortByPriority {
+	width: 30rem;
+	height: 5rem;
+	border-radius: 3px;
+	font-size: 2rem;
+	background-color: white;
+	font-family: inherit;
+	text-align: center;
+	margin-bottom: 1rem;
+	color: var(--clr-text);
 }
 
 /**
@@ -214,22 +238,26 @@ h4 {
 .todoContent-name {
 	font-size: 2rem;
 	margin: 0.75rem 0px;
+	color: var(--clr-text);
 }
 .todoContent-description {
 	width: calc(828px * 0.618 - 6rem);
 	font-size: 2rem;
+	margin-top: 0.75rem;
+	color: var(--clr-text);
 }
 .dateAndPriority-container {
 	display: flex;
 	justify-content: flex-end;
 	align-items: center;
 	height: 5rem;
+	margin-top: -0.5rem;
 }
-
 .todoContent-dueDate {
 	margin-right: 2rem;
 	font-size: 2rem;
 	text-rendering: optimizeLegibility;
+	color: var(--clr-text);
 }
 .priority-container {
 	width: 13rem;

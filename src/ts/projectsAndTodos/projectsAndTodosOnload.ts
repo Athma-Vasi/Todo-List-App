@@ -15,14 +15,11 @@ const projectsAndTodosOnload = function () {
 		}
 	})
 
-	log(projects)
-	const displaySampleProjectOnload = (function () {
-		//display sample todos
-		const sampleProject: ProjectAndTodosObj = JSON.parse(
-			localStorage.getItem('Sample Project') ?? ''
-		)
-		addTodosToContent(sampleProject)
-	})()
+	//display sample todos
+	const sampleProject: ProjectAndTodosObj = JSON.parse(
+		localStorage.getItem('Sample Project') ?? ''
+	)
+	addTodosToContent(sampleProject)
 
 	//display rest of projects in storage
 	projects.forEach((project) => {

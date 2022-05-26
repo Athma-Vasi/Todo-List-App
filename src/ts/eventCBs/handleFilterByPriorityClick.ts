@@ -55,6 +55,11 @@ const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: Mouse
 		})
 	})
 
+	//if select input text is clicked, all 'live' projects displayed
+	if (selectedPriority === '') {
+		projectArr.forEach((project) => addTodosToContent(project))
+	}
+
 	filteredPriorityArr.forEach((project) => {
 		addTodosToContent(project)
 	})

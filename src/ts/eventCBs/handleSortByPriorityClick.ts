@@ -32,7 +32,7 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 		}
 	})
 
-	//assigns a key to each project based on its todo; map used because TSC complains with object[property] method. Also easier to turn into array
+	//assigns a key to each project based on its todo; map used because TSC complains with object[property] method
 	const projectMap: Map<number, ProjectAndTodosObj> = projectArr.reduce(
 		(acc: Map<number, ProjectAndTodosObj>, curr: ProjectAndTodosObj) => {
 			curr.todos.forEach((todo) => {
@@ -82,7 +82,6 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 		},
 		new Map()
 	)
-	log(projectMap)
 
 	//can use the sort method now
 	const projectMapArr: [number, ProjectAndTodosObj][] = Array.from(projectMap)
@@ -93,6 +92,11 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 
 	if (selectedSortValue === 'immediateToLow') {
 		projectMapArr.sort((a, b) => b[0] - a[0])
+	}
+
+	//if select input text is clicked, all 'live' projects displayed
+	if (selectedSortValue === '') {
+		projectArr.forEach((project) => addTodosToContent(project))
 	}
 
 	//render the todos

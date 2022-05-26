@@ -19,8 +19,6 @@ const mainApp = function () {
 	//TODO: change min validation in month in todoModal
 	//TODO: add required to todoModal entries
 	//TODO: add editing the todos functionality
-	//TODO: add sortBy select input
-	//TODO: add filterBy priority select input
 
 	const root: Div = document.querySelector('#root')
 	header()

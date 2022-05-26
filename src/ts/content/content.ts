@@ -10,7 +10,7 @@ import {
 import { handleFilterByPriorityClick } from '../eventCBs/handleFilterByPriorityClick'
 import { handleSearchFormSubmit } from '../eventCBs/handleSearchFormSubmit'
 import { handleSortByPriorityClick } from '../eventCBs/handleSortByPriorityClick'
-import { handleThemeIconToggle } from '../eventCBs/handleThemeIconToggle'
+
 import { Div } from '../types'
 
 const content = function () {
@@ -53,15 +53,6 @@ const content = function () {
 		createImage('../../src/assets/icons/search.svg')(['icon', 'icon-search'])(
 			'icon of magnifying glass representing search'
 		)('Search')
-	)
-
-	pipe(
-		addEvtListener('click')(handleThemeIconToggle),
-		appendElemToParent(top)
-	)(
-		createImage('../../src/assets/icons/moon.svg')(['icon', 'icon-moon'])(
-			'icon of moon representing dark mode'
-		)('Dark Mode')
 	)
 
 	pipe(
