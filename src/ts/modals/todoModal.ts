@@ -53,8 +53,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['id', 'addTodo-name'],
 			['name', 'addTodo-name'],
 			['minlength', '2'],
-			['maxlength', '20'],
-			['pattern', '^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'],
+			['maxlength', '31'],
 			['placeholder', 'Enter name for task todo'],
 			['required', ''],
 		]),
@@ -99,7 +98,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			[
 				'min',
 				`${now.getFullYear()}-${
-					now.getMonth() < 10 ? '0' + now.getMonth() : now.getMonth()
+					now.getMonth() < 10 ? '0' + (now.getMonth() + 1) : now.getMonth() + 1
 				}-${now.getDate() < 10 ? '0' + now.getDate() : now.getDate()}`,
 			],
 			[
@@ -111,7 +110,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['name', 'addTodo-dueDate'],
 			['placeholder', 'yyyy-mm-dd'],
 			['pattern', '(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-[0-9]{4}'],
-			// ['required', ''],
+			['required', ''],
 		]),
 		appendElemToParent(addTodoDateContainer)
 	)(elemCreator('input')(['addTodo-dueDate']))
@@ -132,7 +131,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['id', 'addTodo-selectPriority'],
 			['form', 'form-addTodo'],
 			['title', 'addTodo-selectPriority'],
-			// ['required', ''],
+			['required', ''],
 		]),
 		appendElemToParent(addTodoPriorityContainer)
 	)(selectPriority)

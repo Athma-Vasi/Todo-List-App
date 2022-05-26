@@ -16,8 +16,7 @@ import { archiveExpiredTodos } from './ts/projectsAndTodos/archiveExpiredTodos'
 
 const mainApp = function () {
 	const log = (i: unknown) => console.log('\n', i)
-	//TODO: change min validation in month in todoModal
-	//TODO: add required to todoModal entries
+
 	//TODO: add editing the todos functionality
 
 	const root: Div = document.querySelector('#root')
