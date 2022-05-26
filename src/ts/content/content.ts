@@ -62,6 +62,9 @@ const content = function () {
 		)('Dark Mode')
 	)
 
+	const formFilterByPriority = elemCreator('form')(['form-filterByPriority'])
+	const filterByPriority = elemCreator('select')(['filterBy-priority'])
+
 	const contentBottom = elemCreator('div')(['content-bottom'])
 	appendElemToParent(content)(contentBottom)
 }

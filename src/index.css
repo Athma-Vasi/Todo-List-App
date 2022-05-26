@@ -109,6 +109,9 @@ h4 {
 	background-color: var(--clr-bkgd-med);
 	cursor: pointer;
 }
+.projectHeading-wrapper .icon {
+	transform: scale(1.5);
+}
 .container-projects {
 	display: flex;
 	flex-direction: column;
@@ -207,11 +210,6 @@ h4 {
 .todoContent-checkbox {
 	transform: scale(1.75);
 	margin-right: 1rem;
-}
-.todoContent-checkbox:active,
-.todoContent-checkbox:hover,
-.todoContent-checkbox:focus {
-	outline: 1px solid var(--clr-violet-light);
 }
 .todoContent-name {
 	font-size: 2rem;

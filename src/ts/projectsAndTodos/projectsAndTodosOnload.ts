@@ -7,18 +7,10 @@ import { archiveExpiredTodos } from './archiveExpiredTodos'
 const projectsAndTodosOnload = function () {
 	const log = (i: unknown) => console.log('\n', i)
 
-	archiveExpiredTodos()
-
 	const projects: ProjectAndTodosObj[] = []
 
 	Object.keys(localStorage).forEach((key) => {
-		if (
-			key !== 'Sample Project' &&
-			key !== 'projectNames' &&
-			key !== 'archived' &&
-			key !== 'upcoming' &&
-			key !== 'today'
-		) {
+		if (key !== 'Sample Project' && key !== 'projectNames' && key !== 'archived') {
 			projects.push(JSON.parse(localStorage.getItem(key) ?? ''))
 		}
 	})

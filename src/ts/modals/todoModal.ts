@@ -99,7 +99,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			[
 				'min',
 				`${now.getFullYear()}-${
-					now.getMonth() < 10 ? '0' + (now.getMonth() + 1) : now.getMonth() + 1
+					now.getMonth() < 10 ? '0' + now.getMonth() : now.getMonth()
 				}-${now.getDate() < 10 ? '0' + now.getDate() : now.getDate()}`,
 			],
 			[

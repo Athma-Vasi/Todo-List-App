@@ -25,8 +25,6 @@ const handleArchivedTabClick = function (this: HTMLDivElement) {
 		localStorage.getItem('archived') ?? ''
 	)
 
-	//TODO: clicking archived tab before storage key is set returns '' which JSON.parse cannot parse
-
 	archivedStorageArr.forEach((project) => {
 		addTodosToContent(project, true)
 	})

@@ -21,19 +21,10 @@ const handleTodayTabClick = function () {
 	const contentBottom = elemCreator('div')(['content-bottom'])
 	appendElemToParent(content)(contentBottom)
 
-	if (!localStorage.getItem('today')) {
-		localStorage.setItem('today', JSON.stringify([]))
-	}
-
 	const projectArr: ProjectAndTodosObj[] = []
 	//grab all the projects except ones specified
 	Object.keys(localStorage).forEach((key) => {
-		if (
-			key !== 'projectNames' &&
-			key !== 'archived' &&
-			key !== 'upcoming' &&
-			key !== 'today'
-		) {
+		if (key !== 'projectNames' && key !== 'archived') {
 			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
 		}
 	})

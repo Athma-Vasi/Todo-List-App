@@ -15,12 +15,7 @@ const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
 	const projectArr: ProjectAndTodosObj[] = []
 	//grab the entire project belonging to currently checked todo
 	Object.keys(localStorage).forEach((key) => {
-		if (
-			key !== 'projectNames' &&
-			key !== 'archived' &&
-			key !== 'upcoming' &&
-			key !== 'today'
-		) {
+		if (key !== 'projectNames' && key !== 'archived') {
 			if (key === thisProjectName) {
 				projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
 			}
