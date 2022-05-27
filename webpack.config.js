@@ -3,10 +3,10 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = {
 	entry: './src/index.ts',
-	output: {
-		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist'),
-	},
+	// output: {
+	// 	filename: 'main.js',
+	// 	path: path.resolve(__dirname, 'dist'),
+	// },
 	mode: 'production',
 	plugins: [new MiniCssExtractPlugin()],
 	module: {
@@ -27,7 +27,7 @@ module.exports = {
 	resolve: {
 		extensions: ['.ts', '.js'],
 	},
-	// output: {
-	// 	publicPath: argv.mode === 'production' ? '/Todo-List-App' : '/',
-	// },
+	output: {
+		publicPath: argv.mode === 'production' ? '/Todo-List-App' : '/',
+	},
 }
