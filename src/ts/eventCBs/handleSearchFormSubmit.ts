@@ -30,22 +30,74 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 	const projectArr: ProjectAndTodosObj[] = []
 
 	Object.keys(localStorage).forEach((key) => {
-		if (
-			key !== 'projectNames' &&
-			key !== 'archived' &&
-			key !== 'today' &&
-			key !== 'upcoming'
-		) {
+		if (key !== 'projectNames' && key !== 'archived') {
 			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
 		}
 	})
 
+	const searchRegEx = new RegExp(`${searchTerm}`)
+	log(searchRegEx)
+
 	const matchedProjAndTodosArr: ProjectAndTodosObj[] = []
 
-	//if exact search term is matched
 	projectArr.forEach((project) => {
 		project.todos.forEach((todo) => {
-			if (todo.todoName.toLowerCase() === searchTerm) {
+			// if it matches todoName
+			if (searchRegEx.test(todo.todoName.toLowerCase())) {
+				const temp = {
+					project: {
+						projectName: project.project.projectName,
+						projectColour: project.project.projectColour,
+					},
+					todos: [
+						{
+							todoName: todo.todoName,
+							todoDescription: todo.todoDescription,
+							todoDueDate: todo.todoDueDate,
+							todoPriority: todo.todoPriority,
+						},
+					],
+				}
+				matchedProjAndTodosArr.push(temp)
+			}
+			// else it matches description text
+			else if (searchRegEx.test(todo.todoDescription.toLowerCase())) {
+				const temp = {
+					project: {
+						projectName: project.project.projectName,
+						projectColour: project.project.projectColour,
+					},
+					todos: [
+						{
+							todoName: todo.todoName,
+							todoDescription: todo.todoDescription,
+							todoDueDate: todo.todoDueDate,
+							todoPriority: todo.todoPriority,
+						},
+					],
+				}
+				matchedProjAndTodosArr.push(temp)
+			}
+			//else it matches dueDate
+			else if (searchRegEx.test(todo.todoDueDate.toString())) {
+				const temp = {
+					project: {
+						projectName: project.project.projectName,
+						projectColour: project.project.projectColour,
+					},
+					todos: [
+						{
+							todoName: todo.todoName,
+							todoDescription: todo.todoDescription,
+							todoDueDate: todo.todoDueDate,
+							todoPriority: todo.todoPriority,
+						},
+					],
+				}
+				matchedProjAndTodosArr.push(temp)
+			}
+			//else it matches priority
+			else if (searchRegEx.test(todo.todoPriority.toString())) {
 				const temp = {
 					project: {
 						projectName: project.project.projectName,
@@ -64,43 +116,6 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 			}
 		})
 	})
-
-	const todoNamesSplitMap: Map<string, string[]> = new Map()
-	//more flexible search where substring of todoNames are matched
-	projectArr.forEach((project) => {
-		project.todos.forEach((todo) => {
-			todoNamesSplitMap.set(todo.todoName, todo.todoName.toLowerCase().split(' '))
-		})
-	})
-	log(todoNamesSplitMap)
-
-	//if searchTerm is included in the value, then project arr is looped over and corresponding todoName and projectName is grabbed and pushed into matched...Arr
-	todoNamesSplitMap.forEach((val: string[], key: string) => {
-		if (val.includes(searchTerm)) {
-			projectArr.forEach((project) => {
-				project.todos.forEach((todo) => {
-					if (key === todo.todoName) {
-						const temp = {
-							project: {
-								projectName: project.project.projectName,
-								projectColour: project.project.projectColour,
-							},
-							todos: [
-								{
-									todoName: todo.todoName,
-									todoDescription: todo.todoDescription,
-									todoDueDate: todo.todoDueDate,
-									todoPriority: todo.todoPriority,
-								},
-							],
-						}
-						matchedProjAndTodosArr.push(temp)
-					}
-				})
-			})
-		}
-	})
-	log(matchedProjAndTodosArr)
 
 	matchedProjAndTodosArr.forEach((project) => {
 		addTodosToContent(project)
