@@ -1,6 +1,4 @@
-import { addProjectToSidebar } from './addProjectToSidebar'
 import { ProjectAndTodosObj, TodosArr } from '../types'
-import { addTodosToContent } from './addTodosToContent'
 
 const storeProjectAndTodosFull = function (projectAndTodos_: ProjectAndTodosObj) {
 	let todoExistsFlag = false
@@ -42,8 +40,5 @@ const storeProjectAndTodosFull = function (projectAndTodos_: ProjectAndTodosObj)
 			return todoExistsFlag
 		}
 	}
-
-	//
-	//
 }
 export { storeProjectAndTodosFull }

@@ -1,18 +1,8 @@
-import {
-	addAttributeToElem,
-	addTextToElem,
-	appendElemToParent,
-	createImage,
-	elemCreator,
-	addEvtListener,
-	pipe,
-	addStyleToElem,
-} from '../element-creators'
+import { appendElemToParent, elemCreator } from '../element-creators'
 import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
 import { Div, ProjectAndTodosObj } from '../types'
 
 const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEvent) {
-	const log = (i: unknown) => console.log('\n', i)
 	//remove content section's previous contents
 	const content: Div = document.querySelector('.content')
 	const contentBottomPrev = document.querySelector('.content-bottom')
@@ -32,7 +22,7 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 		}
 	})
 
-	//assigns a key to each project based on its todo; map used because TSC complains with object[property] method
+	//assigns a key to each project based on its todo
 	const projectMap: Map<number, ProjectAndTodosObj> = projectArr.reduce(
 		(acc: Map<number, ProjectAndTodosObj>, curr: ProjectAndTodosObj) => {
 			curr.todos.forEach((todo) => {
@@ -83,7 +73,7 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 		new Map()
 	)
 
-	//can use the sort method now
+	//in order to use the sort method
 	const projectMapArr: [number, ProjectAndTodosObj][] = Array.from(projectMap)
 
 	if (selectedSortValue === 'lowToImmediate') {

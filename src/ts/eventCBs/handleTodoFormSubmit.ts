@@ -1,10 +1,9 @@
 import { storeProjectAndTodosFull } from '../projectsAndTodos/storeProjectAndTodosFull'
 import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
-import { Div, ProjAndTodoNames, ProjectAndTodosObj, Todos, TodosArr } from '../types'
+import { Div, ProjectAndTodosObj } from '../types'
 
 const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 	ev.preventDefault()
-	const log = (i: unknown) => console.log('\n', i)
 
 	const todoContainer: Div = document.querySelector('.todo-container')
 

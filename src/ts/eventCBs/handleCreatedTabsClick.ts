@@ -1,18 +1,8 @@
-import { content } from '../content/content'
 import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
 import { Div, ProjectAndTodosObj } from '../types'
-import {
-	addAttributeToElem,
-	addEvtListener,
-	addTextToElem,
-	appendElemToParent,
-	createImage,
-	elemCreator,
-	pipe,
-} from '../element-creators'
+import { appendElemToParent, elemCreator } from '../element-creators'
 
 const handleCreatedTabsClick = function (this: HTMLHeadingElement) {
-	const log = (i: unknown) => console.log('\n', i)
 	//remove content section's previous contents
 	const content: Div = document.querySelector('.content')
 	const contentBottomPrev = document.querySelector('.content-bottom')
@@ -31,6 +21,7 @@ const handleCreatedTabsClick = function (this: HTMLHeadingElement) {
 		}
 	})
 
+	//render todos
 	projectAndTodosObjArr.forEach((project) => {
 		addTodosToContent(project)
 	})

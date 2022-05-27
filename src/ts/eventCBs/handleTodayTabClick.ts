@@ -1,17 +1,8 @@
-import { Div, ProjectAndTodosObj, Todos, TodosArr } from '../types'
-import {
-	addAttributeToElem,
-	addEvtListener,
-	addTextToElem,
-	appendElemToParent,
-	createImage,
-	elemCreator,
-	pipe,
-} from '../element-creators'
+import { Div, ProjectAndTodosObj } from '../types'
+import { appendElemToParent, elemCreator } from '../element-creators'
 import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
 
 const handleTodayTabClick = function () {
-	const log = (i: unknown) => console.log('\n', i)
 	//remove content section's previous contents
 	const content: Div = document.querySelector('.content')
 	const contentBottomPrev = document.querySelector('.content-bottom')

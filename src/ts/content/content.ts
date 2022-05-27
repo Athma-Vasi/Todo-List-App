@@ -14,7 +14,6 @@ import { handleSortByPriorityClick } from '../eventCBs/handleSortByPriorityClick
 import { Div } from '../types'
 
 const content = function () {
-	const log = (i: unknown) => console.log('\n', i)
 	const root: Div = document.querySelector('#root')
 
 	const content = elemCreator('div')(['content'])

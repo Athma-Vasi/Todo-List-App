@@ -1,8 +1,6 @@
 import { ProjectAndTodosObj, Todos } from '../types'
 
 const handleTodoCheckboxComplete = function (this: HTMLInputElement) {
-	const log = (i: unknown) => console.log('\n', i)
-
 	if (!localStorage.getItem('archived')) {
 		localStorage.setItem('archived', JSON.stringify([]))
 	}

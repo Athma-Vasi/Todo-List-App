@@ -7,7 +7,6 @@ import {
 	addEvtListener,
 	pipe,
 } from '../element-creators'
-import { handleAddNewTodoIconClick } from '../eventCBs/handleAddNewTodoIconClick'
 import { handleTodoCloseIconClick } from '../eventCBs/handleTodoCloseIconClick'
 import { handleTodoFormSubmit } from '../eventCBs/handleTodoFormSubmit'
 import { Div } from '../types'
@@ -194,8 +193,6 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 		appendElemToParent(todoForm)
 	)(elemCreator('input')(['addTodo-projectColour__hidden']))
 
-	//
-	//
 	const addTodoIconsContainer = elemCreator('div')(['addTodo-icons-container'])
 	appendElemToParent(todoForm)(addTodoIconsContainer)
 

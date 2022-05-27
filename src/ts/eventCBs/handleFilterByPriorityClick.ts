@@ -1,17 +1,8 @@
 import { Div, ProjectAndTodosObj } from '../types'
-import {
-	addAttributeToElem,
-	addEvtListener,
-	addTextToElem,
-	appendElemToParent,
-	createImage,
-	elemCreator,
-	pipe,
-} from '../element-creators'
+import { appendElemToParent, elemCreator } from '../element-creators'
 import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
 
 const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: MouseEvent) {
-	const log = (i: unknown) => console.log('\n', i)
 	//remove content section's previous contents
 	const content: Div = document.querySelector('.content')
 	const contentBottomPrev = document.querySelector('.content-bottom')
@@ -60,6 +51,7 @@ const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: Mouse
 		projectArr.forEach((project) => addTodosToContent(project))
 	}
 
+	//render todos
 	filteredPriorityArr.forEach((project) => {
 		addTodosToContent(project)
 	})

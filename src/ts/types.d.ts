@@ -22,19 +22,9 @@ export type TodosArr = {
 	todoPriority: string
 }[]
 
-export type ProjAndTodoNames = {
-	projName: string
-	todoNames: string[]
-}[]
-
 export type Todos = {
 	todoName: string
 	todoDescription: string
 	todoDueDate: string
 	todoPriority: string
-}
-
-export type NamesColours = {
-	projectName: string
-	projectColour: string
 }

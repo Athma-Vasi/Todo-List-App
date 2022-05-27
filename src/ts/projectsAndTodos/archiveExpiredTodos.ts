@@ -1,9 +1,6 @@
-import { ProjectAndTodosObj, Todos, TodosArr } from '../types'
-import { addTodosToContent } from './addTodosToContent'
+import { ProjectAndTodosObj } from '../types'
 
 const archiveExpiredTodos = function () {
-	const log = (i: unknown) => console.log('\n', i)
-
 	if (!localStorage.getItem('archived')) {
 		localStorage.setItem('archived', JSON.stringify([]))
 	}
@@ -20,9 +17,6 @@ const archiveExpiredTodos = function () {
 	const date = now.getDate()
 	const month = now.getMonth() + 1
 	const year = now.getFullYear()
-	const today = `${year}-${month < 10 ? '0' + month : month}-${
-		date < 10 ? '0' + date : date
-	}`
 
 	//grab previously stored expired/archived projects from localstorage
 	const expiredProjectsArr: ProjectAndTodosObj[] = JSON.parse(
@@ -79,10 +73,6 @@ const archiveExpiredTodos = function () {
 	//store expired projects and todos that have new expired todos added
 	localStorage.setItem('archived', JSON.stringify(expiredProjectsArr))
 
-	//log(expiredProjectsArr)
-	//log(todosNotExpiredArr)
-	//log(projectArr)
-
 	//the todos that share a project name are consolidated under one project
 	const unexpiredProjectsMap: Map<string, ProjectAndTodosObj | undefined> =
 		todosNotExpiredArr.reduce(
@@ -99,16 +89,9 @@ const archiveExpiredTodos = function () {
 			new Map()
 		)
 
-	//log(unexpiredProjectsMap)
-
 	//store modified projects without the expired todos back into localstorage
 	unexpiredProjectsMap.forEach((val, key) => {
 		localStorage.setItem(key, JSON.stringify(val))
 	})
-
-	// //render the todos while disabling the checkbox
-	// expiredProjectsArr.forEach((project) => {
-	// 	addTodosToContent(project, true)
-	// })
 }
 export { archiveExpiredTodos }

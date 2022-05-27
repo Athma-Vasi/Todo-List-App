@@ -1,18 +1,8 @@
 import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
 import { Div, ProjectAndTodosObj } from '../types'
-import {
-	addAttributeToElem,
-	addTextToElem,
-	appendElemToParent,
-	createImage,
-	elemCreator,
-	addEvtListener,
-	pipe,
-	addStyleToElem,
-} from '../element-creators'
+import { appendElemToParent, elemCreator } from '../element-creators'
 
 const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
-	const log = (i: unknown) => console.log('\n', i)
 	ev.preventDefault()
 
 	//remove content section's previous contents
@@ -36,7 +26,6 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 	})
 
 	const searchRegEx = new RegExp(`${searchTerm}`)
-	log(searchRegEx)
 
 	const matchedProjAndTodosArr: ProjectAndTodosObj[] = []
 
@@ -117,6 +106,7 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 		})
 	})
 
+	//render todos
 	matchedProjAndTodosArr.forEach((project) => {
 		addTodosToContent(project)
 	})

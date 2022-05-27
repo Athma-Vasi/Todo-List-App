@@ -21,7 +21,6 @@ import { handleProjectsTabClick } from '../eventCBs/handleProjectsTabClick'
 import { handleCreatedTabsClick } from '../eventCBs/handleCreatedTabsClick'
 
 const sidebar = function () {
-	const log = (i: unknown) => console.log('\n', i)
 	const root: Div = document.querySelector('#root')
 
 	const sidebar = elemCreator('div')(['sidebar'])
@@ -115,10 +114,6 @@ const sidebar = function () {
 			'icon of plus symbol'
 		)('Add New Todo')
 	)
-
-	//
-	//
-	//
 }
 
 export { sidebar }
