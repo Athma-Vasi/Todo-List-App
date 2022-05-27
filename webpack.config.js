@@ -28,6 +28,7 @@ module.exports = {
 		extensions: ['.ts', '.js'],
 	},
 	output: {
-		publicPath: argv.mode === 'production' ? '/Todo-List-App' : '/',
+		// publicPath: argv.mode === 'production' ? '/Todo-List-App' : '/',
+		publicPath: 'auto',
 	},
 }
