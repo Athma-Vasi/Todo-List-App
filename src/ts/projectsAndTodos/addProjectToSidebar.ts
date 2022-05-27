@@ -38,7 +38,7 @@ const addProjectToSidebar = function (formName_: string, formColour_: string) {
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(projectContainer)
 	)(
-		createImage('../../../src/assets/icons/plus.svg')(['icon', 'icon-plus'])(
+		createImage('../../../dist/assets/icons/plus.svg')(['icon', 'icon-plus'])(
 			'icon of plus symbol'
 		)('Add New Todo')
 	)

@@ -213,7 +213,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 		addEvtListener('click')(handleTodoCloseIconClick),
 		appendElemToParent(bttnCancelTodo)
 	)(
-		createImage('../../src/assets/icons/x(1).svg')(['icon', 'icon-cancelTodo'])(
+		createImage('../../dist/assets/icons/x(1).svg')(['icon', 'icon-cancelTodo'])(
 			`icon of symbol 'x' representing close or cancel`
 		)('Cancel')
 	)
@@ -229,7 +229,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 	)(bttnAddTodo)
 
 	pipe(appendElemToParent(bttnAddTodo))(
-		createImage('../../src/assets/icons/check(1).svg')(['icon', 'icon-addTodo'])(
+		createImage('../../dist/assets/icons/check(1).svg')(['icon', 'icon-addTodo'])(
 			`icon of a checkmark representing add`
 		)('Add Todo')
 	)

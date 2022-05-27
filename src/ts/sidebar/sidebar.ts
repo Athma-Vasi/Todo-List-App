@@ -32,7 +32,7 @@ const sidebar = function () {
 	appendElemToParent(sidebar)(todayContainer)
 
 	pipe(appendElemToParent(todayContainer))(
-		createImage('../../src/assets/icons/aperture.svg')(['icon', 'icon-today'])(
+		createImage('../../dist/assets/icons/aperture.svg')(['icon', 'icon-today'])(
 			`icon representing today's events`
 		)('Today')
 	)
@@ -47,7 +47,7 @@ const sidebar = function () {
 	appendElemToParent(sidebar)(upcomingContainer)
 
 	pipe(appendElemToParent(upcomingContainer))(
-		createImage('../../src/assets/icons/calendar.svg')(['icon', 'upcoming-icon'])(
+		createImage('../../dist/assets/icons/calendar.svg')(['icon', 'upcoming-icon'])(
 			'icon representing upcoming events'
 		)('Upcoming')
 	)
@@ -62,7 +62,7 @@ const sidebar = function () {
 	appendElemToParent(sidebar)(archivedContainer)
 
 	pipe(appendElemToParent(archivedContainer))(
-		createImage('../../src/assets/icons/archive.svg')(['icon', 'archived-icon'])(
+		createImage('../../dist/assets/icons/archive.svg')(['icon', 'archived-icon'])(
 			'icon representing archived events'
 		)('Archived')
 	)
@@ -88,7 +88,7 @@ const sidebar = function () {
 		addEvtListener('click')(handleAddNewProjectIconClick),
 		appendElemToParent(projectsHeading)
 	)(
-		createImage('../../../src/assets/icons/plus.svg')(['icon', 'icon-plus'])(
+		createImage('../../dist/assets/icons/plus.svg')(['icon', 'icon-plus'])(
 			'icon of plus symbol'
 		)('Add New Project')
 	)
@@ -111,7 +111,7 @@ const sidebar = function () {
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(sampleProjectContainer)
 	)(
-		createImage('../../../src/assets/icons/plus.svg')(['icon', 'icon-plus'])(
+		createImage('../../../dist/assets/icons/plus.svg')(['icon', 'icon-plus'])(
 			'icon of plus symbol'
 		)('Add New Todo')
 	)
