@@ -4,9 +4,9 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 module.exports = {
 	entry: './src/index.ts',
 	output: {
-		filename: 'main.js',
-		path: path.resolve(__dirname, 'dist'),
-		// publicPath: 'https://athma-vasi.github.io/Todo-List-App/',
+		filename: './main.js',
+		path: path.resolve(__dirname, './dist'),
+		publicPath: 'https://athma-vasi.github.io/Todo-List-App/',
 	},
 	mode: 'production',
 	plugins: [new MiniCssExtractPlugin()],
