@@ -8,7 +8,7 @@ module.exports = {
 		path: path.resolve(__dirname, './dist'),
 		publicPath: 'https://athma-vasi.github.io/Todo-List-App/',
 	},
-	mode: 'production',
+	mode: 'development',
 	plugins: [new MiniCssExtractPlugin()],
 	module: {
 		rules: [
