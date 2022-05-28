@@ -5,8 +5,8 @@ module.exports = {
 	entry: './src/index.ts',
 	output: {
 		filename: 'main.js',
-		path: __dirname + '/dist',
-		publicPath: 'auto',
+		path: path.resolve(__dirname, 'dist'),
+		// publicPath: 'https://athma-vasi.github.io/Todo-List-App/',
 	},
 	mode: 'production',
 	plugins: [new MiniCssExtractPlugin()],
@@ -21,6 +21,11 @@ module.exports = {
 				test: /\.css$/i,
 				exclude: /node_modules/,
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				exclude: /node_modules/,
+				type: 'asset/resource',
 			},
 		],
 	},
