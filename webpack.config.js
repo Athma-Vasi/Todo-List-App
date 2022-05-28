@@ -6,7 +6,7 @@ module.exports = {
 	output: {
 		filename: './main.js',
 		path: path.resolve(__dirname, './dist'),
-		publicPath: 'https://athma-vasi.github.io/Todo-List-App/',
+		publicPath: 'https://athma-vasi.github.io/Todo-List-App/assets/',
 	},
 	mode: 'development',
 	plugins: [new MiniCssExtractPlugin()],
