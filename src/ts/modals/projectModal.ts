@@ -96,7 +96,7 @@ const projectModal = function () {
 	)(bttnCancelProject)
 
 	pipe(appendElemToParent(bttnCancelProject))(
-		createImage('../../dist/assets/icons/x(1).svg')(['icon', 'icon-cancelProject'])(
+		createImage('../../src/assets/icons/x(1).svg')(['icon', 'icon-cancelProject'])(
 			`icon of symbol 'x' representing cancel or close`
 		)('Cancel')
 	)
