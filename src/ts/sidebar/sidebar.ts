@@ -28,7 +28,7 @@ const sidebar = function () {
 	appendElemToParent(sidebar)(todayContainer)
 
 	pipe(appendElemToParent(todayContainer))(
-		createImage('../../../dist/assets/icons/aperture.svg')(['icon', 'icon-today'])(
+		createImage('../assets/icons/aperture.svg')(['icon', 'icon-today'])(
 			`icon representing today's events`
 		)('Today')
 	)
