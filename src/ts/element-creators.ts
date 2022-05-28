@@ -76,14 +76,6 @@ const addEvtListener =
 		return elem_
 	}
 
-// function pipe<V>(...funcs: Array<(_: V) => V>): (_: V) => V | null | void {
-// 	return function (value: V) {
-// 		return funcs.reduce((val, func) => {
-// 			return func(val)
-// 		}, value)
-// 	}
-// }
-
 const pipe =
 	<V>(...funcs: Array<(_: V) => any>) =>
 	(value: V) =>

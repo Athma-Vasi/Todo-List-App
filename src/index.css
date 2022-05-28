@@ -6,9 +6,10 @@
 	--clr-low: hsl(240, 100%, 70%);
 	--clr-text: #1e1e1e;
 	--clr-bkgd-light: hsl(274, 0%, 97%);
-	--clr-bkgd-med: hsl(274, 15%, 94%);
-	--clr-bkgd-dark: #63526f;
-	--clr-violet: hsl(274, 74%, 39%);
+	--clr-bkgd-med: #f0edf2;
+	--clr-bkgd-dark: hsl(275, 15%, 38%);
+	--clr-bkgd-dark-shadow: #63526f61;
+	--clr-violet: #6d1aad;
 	--clr-violet-light: hsl(274, 100%, 62%);
 	--clr-width-app: 828px;
 }
@@ -158,7 +159,7 @@ h4 {
 	flex-direction: column;
 	justify-content: flex-start;
 	align-items: center;
-	outline: 1px solid blue;
+	box-shadow: 1px 1px 1.6px 1.6px var(--clr-bkgd-med);
 	overflow: auto;
 	padding-top: 2rem;
 }

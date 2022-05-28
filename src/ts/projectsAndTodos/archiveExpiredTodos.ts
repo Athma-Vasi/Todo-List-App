@@ -32,7 +32,7 @@ const archiveExpiredTodos = function () {
 			const todoMonth = Number(tempArr[1])
 			const todoDate = Number(tempArr[2])
 
-			//grab each todo with dueDate earlier than today and store corresponding project into temp object and store in ...Arr
+			//grab each todo with dueDate earlier than today and store corresponding project into temp object and store in expiredProjectsArr
 			if (todoDate < date || todoMonth < month || todoYear < year) {
 				const temp = {
 					project: {
@@ -90,8 +90,8 @@ const archiveExpiredTodos = function () {
 		)
 
 	//store modified projects without the expired todos back into localstorage
-	unexpiredProjectsMap.forEach((val, key) => {
-		localStorage.setItem(key, JSON.stringify(val))
+	unexpiredProjectsMap.forEach((proj, projName) => {
+		localStorage.setItem(projName, JSON.stringify(proj))
 	})
 }
 export { archiveExpiredTodos }

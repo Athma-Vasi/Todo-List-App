@@ -46,7 +46,7 @@ const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: Mouse
 		})
 	})
 
-	//if select input text is clicked, all 'live' projects displayed
+	//if select input default text is clicked, all 'live' projects displayed
 	if (selectedPriority === '') {
 		projectArr.forEach((project) => addTodosToContent(project))
 	}

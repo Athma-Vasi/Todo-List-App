@@ -40,6 +40,7 @@ const handleTodoFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
 		todoFormSelectPriority
 	)
 
+	//checks if todoExists and returns true if todoName is present
 	const todoExists = storeProjectAndTodosFull(projectAndTodos)
 
 	if (!todoExists) {

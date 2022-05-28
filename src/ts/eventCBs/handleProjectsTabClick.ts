@@ -14,6 +14,7 @@ const handleProjectsTabClick = function () {
 
 	const projectsAndTodosArr: ProjectAndTodosObj[] = []
 
+	//grab all the projects except specified
 	Object.keys(localStorage).forEach((key) => {
 		if (key !== 'projectNames' && key !== 'archived') {
 			projectsAndTodosArr.push(JSON.parse(localStorage.getItem(key) ?? ''))

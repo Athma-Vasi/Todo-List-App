@@ -1,5 +1,4 @@
 import { addProjectToSidebar } from '../projectsAndTodos/addProjectToSidebar'
-
 import { Div } from '../types'
 
 const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
@@ -24,9 +23,7 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 				const keysSet = new Set(JSON.parse(localStorage.getItem(key) ?? ''))
 
 				//to prevent sidebar tab names used as project names
-				;['today', 'upcoming', 'archived', 'projects'].forEach((name) =>
-					keysSet.add(name)
-				)
+				;['Sample Project', 'archived', 'projects'].forEach((name) => keysSet.add(name))
 
 				//if name already present
 				if (keysSet.has(projectFormName_)) {
@@ -39,6 +36,7 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 					keysSet.add(projectFormName_)
 					localStorage.setItem(key, JSON.stringify(Array.from(keysSet)))
 
+					//render projects with name,colour & icon under sidebar
 					addProjectToSidebar(projectFormName, projectFormColour)
 				}
 			}

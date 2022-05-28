@@ -2,6 +2,7 @@ import { ProjectAndTodosObj } from '../types'
 
 const storeSampleProject = function () {
 	const now = new Date()
+
 	//returns date one year from current
 	const sampleLowDueDate = (now: Date) => {
 		let day = now.getDate()
@@ -10,6 +11,7 @@ const storeSampleProject = function () {
 
 		return `${year}-${month < 10 ? '0' + month : month}-${day < 10 ? '0' + day : day}`
 	}
+
 	//returns date one month from current
 	const sampleMedDueDate = (now: Date) => {
 		let month = now.getMonth()
@@ -19,10 +21,11 @@ const storeSampleProject = function () {
 			now.getDate() < 10 ? '0' + now.getDate() : now.getDate()
 		}`
 	}
+
 	//returns date one day from current
 	const sampleUrgentDueDate = (now: Date) => {
 		let day = now.getDate()
-		day = day < 26 ? day + 2 : day
+		day = day <= 26 ? day + 2 : day
 
 		let month = now.getMonth() + 1
 		return `${now.getFullYear()}-${month < 10 ? '0' + month : month}-${
@@ -37,7 +40,9 @@ const storeSampleProject = function () {
 		todos: [
 			{
 				todoName: `Finish 'The Faded Sun: Kesrith'`,
-				todoDescription: 'Finish reading the book - return soon!',
+				todoDescription: `Finish reading the book - return ${
+					now.getDate() > 26 ? 'today' : 'day after tomorrow'
+				}!`,
 				todoDueDate: `${sampleUrgentDueDate(now)}`,
 				todoPriority: 'urgent',
 			},

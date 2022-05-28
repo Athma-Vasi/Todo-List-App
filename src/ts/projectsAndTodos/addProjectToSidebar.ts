@@ -20,7 +20,10 @@ const addProjectToSidebar = function (formName_: string, formColour_: string) {
 
 	pipe(
 		addEvtListener('click')(handleCreatedTabsClick),
-		addAttributeToElem([['data-name', `${formName_}`]]),
+		addAttributeToElem([
+			['data-name', `${formName_}`],
+			['data-colour', `${formColour_}`],
+		]),
 		addStyleToElem([['color', `${formColour_}`]]),
 		addTextToElem(`${formName_}`),
 		appendElemToParent(projectContainer)

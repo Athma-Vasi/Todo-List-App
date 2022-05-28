@@ -11,13 +11,13 @@ const projectsAndTodosOnload = function () {
 		}
 	})
 
-	//display sample todos
+	//render sample todos
 	const sampleProject: ProjectAndTodosObj = JSON.parse(
 		localStorage.getItem('Sample Project') ?? ''
 	)
 	addTodosToContent(sampleProject)
 
-	//display rest of projects in storage
+	//render rest of projects in storage
 	projects.forEach((project) => {
 		addProjectToSidebar(project.project.projectName, project.project.projectColour)
 		addTodosToContent(project)

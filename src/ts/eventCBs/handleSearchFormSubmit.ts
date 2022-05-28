@@ -19,6 +19,7 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 
 	const projectArr: ProjectAndTodosObj[] = []
 
+	//grab all the projects except specified
 	Object.keys(localStorage).forEach((key) => {
 		if (key !== 'projectNames' && key !== 'archived') {
 			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))

@@ -16,6 +16,7 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 
 	const projectArr: ProjectAndTodosObj[] = []
 
+	//grab all projects except specified
 	Object.keys(localStorage).forEach((key) => {
 		if (key !== 'projectNames' && key !== 'archived') {
 			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
@@ -84,7 +85,7 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 		projectMapArr.sort((a, b) => b[0] - a[0])
 	}
 
-	//if select input text is clicked, all 'live' projects displayed
+	//if select input default text is clicked, all 'live' projects displayed
 	if (selectedSortValue === '') {
 		projectArr.forEach((project) => addTodosToContent(project))
 	}

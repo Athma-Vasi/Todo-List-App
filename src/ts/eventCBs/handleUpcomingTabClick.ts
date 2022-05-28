@@ -29,7 +29,7 @@ const handleUpcomingTabClick = function () {
 	}`
 
 	const projAndTodosFiltered: ProjectAndTodosObj[] = []
-	//grab each todo not due today and put into created temp project and push project into filtered array
+	//grab each todo not due today and put into temp project obj and push into ...Filtered
 	projectArr.forEach((project) => {
 		project.todos.forEach((todo) => {
 			if (todo.todoDueDate !== today) {
