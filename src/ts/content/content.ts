@@ -49,7 +49,7 @@ const content = function () {
 	appendElemToParent(form)(searchTodo)
 
 	pipe(appendElemToParent(form))(
-		createImage('../../src/assets/icons/search.svg')(['icon', 'icon-search'])(
+		createImage('../../dist/assets/icons/search.svg')(['icon', 'icon-search'])(
 			'icon of magnifying glass representing search'
 		)('Search')
 	)
