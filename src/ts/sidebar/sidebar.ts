@@ -28,9 +28,9 @@ const sidebar = function () {
 	appendElemToParent(sidebar)(todayContainer)
 
 	pipe(appendElemToParent(todayContainer))(
-		createImage('../../dist/assets/icons/aperture.svg')(['icon', 'icon-today'])(
-			`icon representing today's events`
-		)('Today')
+		createImage(
+			'https://github.com/Athma-Vasi/Todo-List-App/blob/gh-pages/assets/icons/aperture.svg'
+		)(['icon', 'icon-today'])(`icon representing today's events`)('Today')
 	)
 
 	pipe(
@@ -85,7 +85,7 @@ const sidebar = function () {
 		appendElemToParent(projectsHeading)
 	)(
 		createImage(
-			'https://github.com/Athma-Vasi/Todo-List-App/blob/gh-pages/assets/icons/aperture.svg'
+			'https://github.com/Athma-Vasi/Todo-List-App/blob/gh-pages/assets/icons/plus.svg'
 		)(['icon', 'icon-plus'])('icon of plus symbol')('Add New Project')
 	)
 
