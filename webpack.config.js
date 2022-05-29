@@ -10,14 +10,7 @@ module.exports = {
 		publicPath: 'auto',
 	},
 	mode: 'development',
-	plugins: [
-		new MiniCssExtractPlugin(),
-		new HtmlWebpackPlugin({
-			inject: 'body',
-			template: './src/index.html',
-			filename: 'index.html',
-		}),
-	],
+	plugins: [new MiniCssExtractPlugin()],
 	module: {
 		rules: [
 			{
@@ -29,23 +22,6 @@ module.exports = {
 				test: /\.css$/i,
 				exclude: /node_modules/,
 				use: [MiniCssExtractPlugin.loader, 'css-loader'],
-			},
-			{
-				test: /\.(gif|png|jpeg|svg)$/,
-				use: [
-					{
-						loader: 'file-loader',
-						options: {
-							name: '[name].[ext]',
-							outputPath: './dist/assets',
-						},
-					},
-				],
-			},
-
-			{
-				test: /\.html$/,
-				use: ['html-loader'],
 			},
 		],
 	},

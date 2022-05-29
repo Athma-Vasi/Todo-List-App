@@ -1,7 +1,7 @@
 import { todoModal } from '../modals/todoModal'
 import { Div } from '../types'
 
-const handleAddNewTodoIconClick = function (this: HTMLImageElement) {
+const handleAddNewTodoIconClick = function (this: HTMLButtonElement) {
 	const projectDataName = this.dataset.name ?? ''
 	const projectDataColour = this.dataset.colour ?? ''
 

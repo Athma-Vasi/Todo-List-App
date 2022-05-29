@@ -27,12 +27,6 @@ const sidebar = function () {
 	addEvtListener('click')(handleTodayTabClick)(todayContainer)
 	appendElemToParent(sidebar)(todayContainer)
 
-	pipe(appendElemToParent(todayContainer))(
-		createImage('../../src/assets/icons/aperture.svg')(['icon', 'icon-today'])(
-			`icon representing today's events`
-		)('Today')
-	)
-
 	pipe(
 		addTextToElem('Today'),
 		appendElemToParent(todayContainer)
@@ -42,12 +36,6 @@ const sidebar = function () {
 	addEvtListener('click')(handleUpcomingTabClick)(upcomingContainer)
 	appendElemToParent(sidebar)(upcomingContainer)
 
-	pipe(appendElemToParent(upcomingContainer))(
-		createImage('../../src/assets/icons/calendar.svg')(['icon', 'upcoming-icon'])(
-			'icon representing upcoming events'
-		)('Upcoming')
-	)
-
 	pipe(
 		addTextToElem('Upcoming'),
 		appendElemToParent(upcomingContainer)
@@ -56,12 +44,6 @@ const sidebar = function () {
 	const archivedContainer = elemCreator('div')(['sidebar-tab', 'container-archived'])
 	addEvtListener('click')(handleArchivedTabClick)(archivedContainer)
 	appendElemToParent(sidebar)(archivedContainer)
-
-	pipe(appendElemToParent(archivedContainer))(
-		createImage('../../src/assets/icons/archive.svg')(['icon', 'archived-icon'])(
-			'icon representing archived events'
-		)('Archived')
-	)
 
 	pipe(
 		addTextToElem('Archived'),
@@ -81,13 +63,10 @@ const sidebar = function () {
 	)(elemCreator('h3')(['heading-text', 'text-projects']))
 
 	pipe(
+		addTextToElem('+'),
 		addEvtListener('click')(handleAddNewProjectIconClick),
 		appendElemToParent(projectsHeading)
-	)(
-		createImage('../../src/assets/icons/plus.svg')(['icon', 'icon-plus'])(
-			'icon of plus symbol'
-		)('Add New Project')
-	)
+	)(elemCreator('button')(['bttn', 'bttn-projectModal']))
 
 	const sampleProjectContainer = elemCreator('div')(['sidebar-project', 'project'])
 	appendElemToParent(projectsContainer)(sampleProjectContainer)
@@ -100,17 +79,15 @@ const sidebar = function () {
 	)(elemCreator('h4')(['project-text', 'text-sampleProject']))
 
 	pipe(
+		addStyleToElem([['color', '#48d1cc']]),
+		addTextToElem('+'),
 		addAttributeToElem([
 			['data-name', `Sample Project`],
 			['data-colour', '#48d1cc'],
 		]),
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(sampleProjectContainer)
-	)(
-		createImage('../../src/assets/icons/plus.svg')(['icon', 'icon-plus'])(
-			'icon of plus symbol'
-		)('Add New Todo')
-	)
+	)(elemCreator('button')(['bttn', 'bttn-todoModal']))
 }
 
 export { sidebar }

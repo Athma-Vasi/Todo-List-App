@@ -198,6 +198,8 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 
 	const bttnCancelTodo = elemCreator('button')(['bttn', 'bttn-cancelTodo'])
 	pipe(
+		addTextToElem('Cancel'),
+		addEvtListener('click')(handleTodoCloseIconClick),
 		addAttributeToElem([
 			['type', 'click'],
 			['name', 'bttn-cancelTodo'],
@@ -206,17 +208,9 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 		appendElemToParent(addTodoIconsContainer)
 	)(bttnCancelTodo)
 
-	pipe(
-		addEvtListener('click')(handleTodoCloseIconClick),
-		appendElemToParent(bttnCancelTodo)
-	)(
-		createImage('../../dist/assets/icons/x(1).svg')(['icon', 'icon-cancelTodo'])(
-			`icon of symbol 'x' representing close or cancel`
-		)('Cancel')
-	)
-
 	const bttnAddTodo = elemCreator('button')(['bttn', 'bttn-addTodo'])
 	pipe(
+		addTextToElem('Add'),
 		addAttributeToElem([
 			['type', 'submit'],
 			['name', 'bttn-addTodo'],
@@ -224,12 +218,6 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 		]),
 		appendElemToParent(addTodoIconsContainer)
 	)(bttnAddTodo)
-
-	pipe(appendElemToParent(bttnAddTodo))(
-		createImage('../../dist/assets/icons/check(1).svg')(['icon', 'icon-addTodo'])(
-			`icon of a checkmark representing add`
-		)('Add Todo')
-	)
 }
 
 export { todoModal }

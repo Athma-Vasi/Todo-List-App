@@ -87,6 +87,7 @@ const projectModal = function () {
 
 	const bttnCancelProject = elemCreator('button')(['bttn', 'bttn-cancelProject'])
 	pipe(
+		addTextToElem('Cancel'),
 		addEvtListener('click')(handleProjectCloseIconClick),
 		addAttributeToElem([
 			['type', 'button'],
@@ -95,14 +96,9 @@ const projectModal = function () {
 		appendElemToParent(addProjectIconsContainer)
 	)(bttnCancelProject)
 
-	pipe(appendElemToParent(bttnCancelProject))(
-		createImage('../../dist/assets/icons/x(1).svg')(['icon', 'icon-cancelProject'])(
-			`icon of symbol 'x' representing cancel or close`
-		)('Cancel')
-	)
-
 	const bttnAddProject = elemCreator('button')(['bttn', 'bttn-addProject'])
 	pipe(
+		addTextToElem('Add'),
 		addAttributeToElem([
 			['type', 'submit'],
 			['name', 'bttn-addProject'],
@@ -110,12 +106,6 @@ const projectModal = function () {
 		]),
 		appendElemToParent(addProjectIconsContainer)
 	)(bttnAddProject)
-
-	pipe(appendElemToParent(bttnAddProject))(
-		createImage('../../dist/assets/icons/check(1).svg')(['icon', 'icon-addProject'])(
-			`icon of symbol 'check' representing add`
-		)('Add Project')
-	)
 }
 
 export { projectModal }

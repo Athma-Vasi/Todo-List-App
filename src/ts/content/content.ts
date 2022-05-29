@@ -48,12 +48,6 @@ const content = function () {
 	])(searchTodo)
 	appendElemToParent(form)(searchTodo)
 
-	pipe(appendElemToParent(form))(
-		createImage('../../dist/assets/icons/search.svg')(['icon', 'icon-search'])(
-			'icon of magnifying glass representing search'
-		)('Search')
-	)
-
 	pipe(
 		addAttributeToElem([
 			['for', 'select-filterByPriority'],

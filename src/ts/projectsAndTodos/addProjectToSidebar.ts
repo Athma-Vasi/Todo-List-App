@@ -3,7 +3,6 @@ import {
 	addTextToElem,
 	addStyleToElem,
 	appendElemToParent,
-	createImage,
 	elemCreator,
 	addEvtListener,
 	pipe,
@@ -30,17 +29,15 @@ const addProjectToSidebar = function (formName_: string, formColour_: string) {
 	)(elemCreator('h4')(['project-text']))
 
 	pipe(
+		addStyleToElem([['color', `${formColour_}`]]),
+		addTextToElem('+'),
 		addAttributeToElem([
 			['data-name', `${formName_}`],
 			['data-colour', `${formColour_}`],
 		]),
 		addEvtListener('click')(handleAddNewTodoIconClick),
 		appendElemToParent(projectContainer)
-	)(
-		createImage('../../../dist/assets/icons/plus.svg')(['icon', 'icon-plus'])(
-			'icon of plus symbol'
-		)('Add New Todo')
-	)
+	)(elemCreator('button')(['bttn', 'bttn-todoModal']))
 }
 
 export { addProjectToSidebar }
