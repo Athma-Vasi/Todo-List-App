@@ -27,11 +27,12 @@ const sidebar = function () {
 	addEvtListener('click')(handleTodayTabClick)(todayContainer)
 	appendElemToParent(sidebar)(todayContainer)
 
-	pipe(appendElemToParent(todayContainer))(
-		createImage(
-			'https://github.com/Athma-Vasi/Todo-List-App/blob/gh-pages/assets/icons/aperture.svg'
-		)(['icon', 'icon-today'])(`icon representing today's events`)('Today')
-	)
+	todayContainer.innerHTML = '<img src="../../dist/assets/icons/aperture.svg">\n'
+	// pipe(appendElemToParent(todayContainer))(
+	// 	createImage('../../dist/assets/icons/aperture.svg')(['icon', 'icon-today'])(
+	// 		`icon representing today's events`
+	// 	)('Today')
+	// )
 
 	pipe(
 		addTextToElem('Today'),
@@ -84,9 +85,9 @@ const sidebar = function () {
 		addEvtListener('click')(handleAddNewProjectIconClick),
 		appendElemToParent(projectsHeading)
 	)(
-		createImage(
-			'https://github.com/Athma-Vasi/Todo-List-App/blob/gh-pages/assets/icons/plus.svg'
-		)(['icon', 'icon-plus'])('icon of plus symbol')('Add New Project')
+		createImage('../../dist/assets/icons/plus.svg')(['icon', 'icon-plus'])(
+			'icon of plus symbol'
+		)('Add New Project')
 	)
 
 	const sampleProjectContainer = elemCreator('div')(['sidebar-project', 'project'])
