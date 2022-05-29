@@ -7,8 +7,10 @@ import {
 	addEvtListener,
 	pipe,
 } from '../element-creators'
+import { handleInvalidProjName } from '../eventCBs/handleInvalidProjName'
 import { handleProjectCloseIconClick } from '../eventCBs/handleProjectCloseIconClick'
 import { handleProjectFormSubmit } from '../eventCBs/handleProjectFormSubmit'
+import { handleProjNameValidation } from '../eventCBs/handleProjNameValidation'
 import { Div } from '../types'
 
 const projectModal = function () {
@@ -49,12 +51,14 @@ const projectModal = function () {
 
 	//input name
 	pipe(
+		addEvtListener('input')(handleProjNameValidation),
+		addEvtListener('invalid')(handleInvalidProjName),
 		addAttributeToElem([
 			['id', 'addProject-name'],
 			['type', 'text'],
 			['minlength', '2'],
 			['maxlength', '17'],
-			['pattern', '^[a-zA-Z][a-zA-Z0-9-_.]{1,20}$'],
+			['pattern', '[a-zA-Z]+'],
 			['placeholder', 'Enter name of project'],
 			['name', 'addProject-name'],
 			['required', ''],

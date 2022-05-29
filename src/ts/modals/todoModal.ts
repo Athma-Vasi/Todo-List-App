@@ -7,8 +7,10 @@ import {
 	addEvtListener,
 	pipe,
 } from '../element-creators'
+import { handleInvalidTodoName } from '../eventCBs/handleInvalidTodoName'
 import { handleTodoCloseIconClick } from '../eventCBs/handleTodoCloseIconClick'
 import { handleTodoFormSubmit } from '../eventCBs/handleTodoFormSubmit'
+import { handleTodoNameValidation } from '../eventCBs/handleTodoNameValidation'
 import { Div } from '../types'
 
 const todoModal = function (projectDataName_: string, projectDataColour_: string) {
@@ -46,6 +48,8 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 	)(elemCreator('label')(['label-name']))
 
 	pipe(
+		addEvtListener('input')(handleTodoNameValidation),
+		addEvtListener('invalid')(handleInvalidTodoName),
 		addAttributeToElem([
 			['type', 'text'],
 			['form', 'form-addTodo'],
@@ -53,6 +57,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['name', 'addTodo-name'],
 			['minlength', '2'],
 			['maxlength', '31'],
+			['pattern', '[A-Za-z0-9]+'],
 			['placeholder', 'Enter name for task todo'],
 			['required', ''],
 		]),

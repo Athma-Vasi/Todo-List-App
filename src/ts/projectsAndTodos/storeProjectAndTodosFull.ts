@@ -34,7 +34,7 @@ const storeProjectAndTodosFull = function (projectAndTodos_: ProjectAndTodosObj)
 		} else {
 			//todoName taken
 			alert(
-				`${currentTodoName} already exists as a todo (｡•́︿•̀｡)  Please choose another name or consider editing an existing todo.`
+				`${currentTodoName} already exists as a todo (｡•́︿•̀｡)  Please choose another name.`
 			)
 			todoExistsFlag = true
 			return todoExistsFlag
