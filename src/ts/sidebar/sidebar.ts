@@ -84,7 +84,7 @@ const sidebar = function () {
 		addEvtListener('click')(handleAddNewProjectIconClick),
 		appendElemToParent(projectsHeading)
 	)(
-		createImage('../../dist/assets/icons/plus.svg')(['icon', 'icon-plus'])(
+		createImage('../../dist/assets/icons/plus-thick.png')(['icon', 'icon-plus'])(
 			'icon of plus symbol'
 		)('Add New Project')
 	)
