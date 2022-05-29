@@ -84,9 +84,9 @@ const sidebar = function () {
 		addEvtListener('click')(handleAddNewProjectIconClick),
 		appendElemToParent(projectsHeading)
 	)(
-		createImage('../../.././dist/assets/icons/plus.svg')(['icon', 'icon-plus'])(
-			'icon of plus symbol'
-		)('Add New Project')
+		createImage(
+			'https://github.com/Athma-Vasi/Todo-List-App/blob/gh-pages/assets/icons/aperture.svg'
+		)(['icon', 'icon-plus'])('icon of plus symbol')('Add New Project')
 	)
 
 	const sampleProjectContainer = elemCreator('div')(['sidebar-project', 'project'])
