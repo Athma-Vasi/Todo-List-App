@@ -7,6 +7,7 @@ module.exports = {
 	output: {
 		filename: 'main.js',
 		path: path.resolve(__dirname, 'dist'),
+		publicPath: 'auto',
 	},
 	mode: 'development',
 	plugins: [
@@ -36,7 +37,7 @@ module.exports = {
 						loader: 'file-loader',
 						options: {
 							name: '[name].[ext]',
-							outputPath: 'dist/assets/icons/',
+							outputPath: './dist/assets',
 						},
 					},
 				],
