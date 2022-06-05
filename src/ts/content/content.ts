@@ -22,6 +22,21 @@ const content = function () {
 	const top = elemCreator('div')(['content-top'])
 	appendElemToParent(content)(top)
 
+	const linksContainer = elemCreator('div')(['links-container'])
+	appendElemToParent(top)(linksContainer)
+
+	pipe(
+		addTextToElem('Made by Athma Vasi'),
+		addAttributeToElem([['href', 'https://github.com/Athma-Vasi']]),
+		appendElemToParent(linksContainer)
+	)(elemCreator('a')(['link-author']))
+
+	pipe(
+		addTextToElem('View Code'),
+		addAttributeToElem([['href', 'https://github.com/Athma-Vasi/Todo-List-App']]),
+		appendElemToParent(linksContainer)
+	)(elemCreator('a')(['link-repo']))
+
 	const form = elemCreator('form')(['form-searchTodo'])
 	pipe(
 		addEvtListener('submit')(handleSearchFormSubmit),

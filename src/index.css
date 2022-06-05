@@ -193,10 +193,24 @@ h4 {
 	flex-direction: column;
 	justify-content: space-between;
 	align-items: center;
-	height: 20rem;
+	height: 25rem;
 	margin-bottom: 2rem;
 	padding: 1rem 0px;
 }
+
+.links-container {
+	display: flex;
+	width: 100%;
+	justify-content: space-around;
+	margin-bottom: 1rem;
+}
+
+.link-author,
+.link-repo {
+	text-decoration: none;
+	color: var(--clr-violet-light);
+}
+
 .form-searchTodo {
 	position: relative;
 }
