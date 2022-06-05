@@ -84,7 +84,7 @@ const content = function () {
 
 	pipe(
 		addTextToElem('--Filter by priority--'),
-		addAttributeToElem([['value', '']]),
+		addAttributeToElem([['value', ' ']]),
 		appendElemToParent(selectFilterByPriority)
 	)(elemCreator('option')(['option-filterByPriority']))
 
@@ -131,7 +131,7 @@ const content = function () {
 
 	pipe(
 		addTextToElem('--Sort by priority--'),
-		addAttributeToElem([['value', '']]),
+		addAttributeToElem([['value', ' ']]),
 		appendElemToParent(selectSortByPriority)
 	)(elemCreator('option')(['option-sortByPriority']))
 

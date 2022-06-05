@@ -23,6 +23,8 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 		}
 	})
 
+	console.log(projectArr)
+
 	//assigns a key to each project based on its todo
 	const projectMap: Map<number, ProjectAndTodosObj> = projectArr.reduce(
 		(acc: Map<number, ProjectAndTodosObj>, curr: ProjectAndTodosObj) => {
@@ -74,6 +76,8 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 		new Map()
 	)
 
+	console.log(projectMap)
+
 	//in order to use the sort method
 	const projectMapArr: [number, ProjectAndTodosObj][] = Array.from(projectMap)
 
@@ -83,11 +87,6 @@ const handleSortByPriorityClick = function (this: HTMLSelectElement, ev: MouseEv
 
 	if (selectedSortValue === 'immediateToLow') {
 		projectMapArr.sort((a, b) => b[0] - a[0])
-	}
-
-	//if select input default text is clicked, all 'live' projects displayed
-	if (selectedSortValue === '') {
-		projectArr.forEach((project) => addTodosToContent(project))
 	}
 
 	//render the todos

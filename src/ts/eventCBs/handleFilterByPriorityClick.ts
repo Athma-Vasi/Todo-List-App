@@ -47,7 +47,16 @@ const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: Mouse
 	})
 
 	//if select input default text is clicked, all 'live' projects displayed
-	if (selectedPriority === '') {
+	if (selectedPriority === ' ') {
+		//remove content section's previous contents
+		const content: Div = document.querySelector('.content')
+		const contentBottomPrev = document.querySelector('.content-bottom')
+		contentBottomPrev?.remove()
+
+		//render new content
+		const contentBottom = elemCreator('div')(['content-bottom'])
+		appendElemToParent(content)(contentBottom)
+
 		projectArr.forEach((project) => addTodosToContent(project))
 	}
 
