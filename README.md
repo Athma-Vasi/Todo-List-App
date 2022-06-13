@@ -14,7 +14,7 @@ Todo-List-App as part of The Odin Project curriculum
 
 I used webpack for bundling modules. I had to figure out the various plugins and loaders required. Since I am going through the curriculum using TypeScript, I used 'ts-loader' for TS compatibility. I learned about having a separate CSS file instead of inline styles, as Addy Osmani recommends this method for improved performance, and installed MiniCSSExtractPlugin. Debugging in development mode required me to learn about source maps, and a very high level overview of the production mode.
 
-Putting all this together in a webpack.config.js file was difficult initially, as the main documentation tutorial in the webpack page is designed for JavaScript..😭. After some trial and error, I managed to have a working config file.
+Putting all this together in a webpack.config.js file was difficult initially 😭 , but after some trial and error, I managed to have a working config file.
 
 ### Single Responsibility Principle
 
