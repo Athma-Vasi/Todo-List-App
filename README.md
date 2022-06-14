@@ -2,6 +2,8 @@
 
 Todo-List-App as part of The Odin Project curriculum
 
+[Click here to view project live](https://athma-vasi.github.io/Todo-List-App/)
+
 ## Things I Learned
 
 ### TL;DR
