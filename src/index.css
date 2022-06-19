@@ -328,8 +328,8 @@ h4 {
 	position: absolute;
 	width: 511px;
 	height: 316px;
-	top: calc(38% - (316px / 2));
-	left: calc(62% - (511px / 2));
+	top: calc(50% - (316px / 2));
+	left: calc(50% - (511px / 2));
 	border-radius: 1rem;
 	border: 1px solid var(--clr-bkgd-dark);
 	z-index: 10;

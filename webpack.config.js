@@ -9,7 +9,7 @@ module.exports = {
 		path: path.resolve(__dirname, 'dist'),
 		publicPath: 'auto',
 	},
-	mode: 'development',
+	mode: 'production',
 	plugins: [new MiniCssExtractPlugin()],
 	module: {
 		rules: [
