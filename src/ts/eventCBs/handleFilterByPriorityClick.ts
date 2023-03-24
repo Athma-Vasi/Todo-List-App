@@ -1,28 +1,28 @@
-import { Div, ProjectAndTodosObj } from '../types'
-import { appendElemToParent, elemCreator } from '../element-creators'
-import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
+import { Div, ProjectAndTodosObj } from '../types';
+import { appendElemToParent, elemCreator } from '../element-creators';
+import { addTodosToContent } from '../projectsAndTodos/addTodosToContent';
 
 const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: MouseEvent) {
 	//remove content section's previous contents
-	const content: Div = document.querySelector('.content')
-	const contentBottomPrev = document.querySelector('.content-bottom')
-	contentBottomPrev?.remove()
+	const content: Div = document.querySelector('.content');
+	const contentBottomPrev = document.querySelector('.content-bottom');
+	contentBottomPrev?.remove();
 
 	//render new content
-	const contentBottom = elemCreator('div')(['content-bottom'])
-	appendElemToParent(content)(contentBottom)
+	const contentBottom = elemCreator('div')(['content-bottom']);
+	appendElemToParent(content)(contentBottom);
 
-	const selectedPriority = this.value
+	const selectedPriority = this.value;
 
-	const projectArr: ProjectAndTodosObj[] = []
+	const projectArr: ProjectAndTodosObj[] = [];
 
 	Object.keys(localStorage).forEach((key) => {
 		if (key !== 'projectNames' && key !== 'archived') {
-			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
+			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''));
 		}
-	})
+	});
 
-	const filteredPriorityArr: ProjectAndTodosObj[] = []
+	const filteredPriorityArr: ProjectAndTodosObj[] = [];
 
 	projectArr.forEach((project) => {
 		project.todos.forEach((todo) => {
@@ -40,29 +40,29 @@ const handleFilterByPriorityClick = function (this: HTMLSelectElement, ev: Mouse
 							todoPriority: todo.todoPriority,
 						},
 					],
-				}
-				filteredPriorityArr.push(temp)
+				};
+				filteredPriorityArr.push(temp);
 			}
-		})
-	})
+		});
+	});
 
 	//if select input default text is clicked, all 'live' projects displayed
 	if (selectedPriority === ' ') {
 		//remove content section's previous contents
-		const content: Div = document.querySelector('.content')
-		const contentBottomPrev = document.querySelector('.content-bottom')
-		contentBottomPrev?.remove()
+		const content: Div = document.querySelector('.content');
+		const contentBottomPrev = document.querySelector('.content-bottom');
+		contentBottomPrev?.remove();
 
 		//render new content
-		const contentBottom = elemCreator('div')(['content-bottom'])
-		appendElemToParent(content)(contentBottom)
+		const contentBottom = elemCreator('div')(['content-bottom']);
+		appendElemToParent(content)(contentBottom);
 
-		projectArr.forEach((project) => addTodosToContent(project))
+		projectArr.forEach((project) => addTodosToContent(project));
 	}
 
 	//render todos
 	filteredPriorityArr.forEach((project) => {
-		addTodosToContent(project)
-	})
-}
-export { handleFilterByPriorityClick }
+		addTodosToContent(project);
+	});
+};
+export { handleFilterByPriorityClick };

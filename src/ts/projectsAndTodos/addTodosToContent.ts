@@ -6,38 +6,38 @@ import {
 	appendElemToParent,
 	elemCreator,
 	pipe,
-} from '../element-creators'
-import { handleTodoCheckboxComplete } from '../eventCBs/handleTodoCheckboxComplete'
-import { Div, ProjectAndTodosObj } from '../types'
+} from '../element-creators';
+import { handleTodoCheckboxComplete } from '../eventCBs/handleTodoCheckboxComplete';
+import { Div, ProjectAndTodosObj } from '../types';
 
 const addTodosToContent = function (
 	{ project, todos }: ProjectAndTodosObj,
 	disableCheckbox = false
 ) {
-	const { projectName, projectColour } = project
+	const { projectName, projectColour } = project;
 
 	todos.forEach((todo, i) => {
-		const { todoName, todoDescription, todoDueDate, todoPriority } = todos[i]
-		const contentBottom: Div = document.querySelector('.content-bottom')
+		const { todoName, todoDescription, todoDueDate, todoPriority } = todos[i];
+		const contentBottom: Div = document.querySelector('.content-bottom');
 
-		const todoContentContainer = elemCreator('div')(['todoContent-container'])
-		appendElemToParent(contentBottom)(todoContentContainer)
+		const todoContentContainer = elemCreator('div')(['todoContent-container']);
+		appendElemToParent(contentBottom)(todoContentContainer);
 
-		const headingContainer = elemCreator('div')(['todoContent-heading-container'])
-		appendElemToParent(todoContentContainer)(headingContainer)
+		const headingContainer = elemCreator('div')(['todoContent-heading-container']);
+		appendElemToParent(todoContentContainer)(headingContainer);
 
 		pipe(
 			addAttributeToElem([['data-colour', `${projectColour}`]]),
 			addTextToElem(`${projectName}`),
 			addStyleToElem([['color', `${projectColour}`]]),
 			appendElemToParent(headingContainer)
-		)(elemCreator('h3')(['heading-text', 'todoContent-projectName']))
+		)(elemCreator('h3')(['heading-text', 'todoContent-projectName']));
 
 		pipe(addAttributeToElem([['for', 'complete']]))(
 			elemCreator('label')(['label', 'todoContent-label'])
-		)
+		);
 
-		const checkbox = elemCreator('input')(['todoContent-checkbox'])
+		const checkbox = elemCreator('input')(['todoContent-checkbox']);
 		pipe(
 			addEvtListener('click')(handleTodoCheckboxComplete),
 			addAttributeToElem([
@@ -47,32 +47,32 @@ const addTodosToContent = function (
 				['value', `${projectColour}`],
 			]),
 			appendElemToParent(headingContainer)
-		)(checkbox)
+		)(checkbox);
 		//to prevent clicking checkbox after it has been archived
 		if (disableCheckbox) {
-			addAttributeToElem([['disabled', 'true']])(checkbox)
+			addAttributeToElem([['disabled', 'true']])(checkbox);
 		}
 
 		pipe(
 			addTextToElem(`${todoName}`),
 			appendElemToParent(todoContentContainer)
-		)(elemCreator('h4')(['todoContent-name']))
+		)(elemCreator('h4')(['todoContent-name']));
 
 		pipe(
 			addTextToElem(`${todoDescription}`),
 			appendElemToParent(todoContentContainer)
-		)(elemCreator('p')(['todoContent-description']))
+		)(elemCreator('p')(['todoContent-description']));
 
-		const dateAndPriorityContainer = elemCreator('div')(['dateAndPriority-container'])
-		appendElemToParent(todoContentContainer)(dateAndPriorityContainer)
+		const dateAndPriorityContainer = elemCreator('div')(['dateAndPriority-container']);
+		appendElemToParent(todoContentContainer)(dateAndPriorityContainer);
 
 		pipe(
 			addTextToElem(`Due: ${todoDueDate}`),
 			appendElemToParent(dateAndPriorityContainer)
-		)(elemCreator('p')(['todoContent-dueDate']))
+		)(elemCreator('p')(['todoContent-dueDate']));
 
-		const priorityContainer = elemCreator('div')(['priority-container'])
-		appendElemToParent(dateAndPriorityContainer)(priorityContainer)
+		const priorityContainer = elemCreator('div')(['priority-container']);
+		appendElemToParent(dateAndPriorityContainer)(priorityContainer);
 		addStyleToElem([
 			[
 				'background-color',
@@ -88,12 +88,12 @@ const addTodosToContent = function (
 						: 'hsl(250, 100%, 70%)'
 				}`,
 			],
-		])(priorityContainer)
+		])(priorityContainer);
 
 		pipe(
 			addTextToElem(`${todoPriority}`),
 			appendElemToParent(priorityContainer)
-		)(elemCreator('p')(['todoContent-priority']))
-	})
-}
-export { addTodosToContent }
+		)(elemCreator('p')(['todoContent-priority']));
+	});
+};
+export { addTodosToContent };

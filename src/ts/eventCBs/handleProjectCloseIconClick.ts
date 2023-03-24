@@ -1,9 +1,9 @@
-import { Div } from '../types'
+import { Div } from '../types';
 
 const handleProjectCloseIconClick = function (this: HTMLImageElement, ev: MouseEvent) {
-	const addProjectModal: Div = document.querySelector('.addProject-container')
+	const addProjectModal: Div = document.querySelector('.addProject-container');
 
-	if (addProjectModal) addProjectModal.remove()
-}
+	if (addProjectModal) addProjectModal.remove();
+};
 
-export { handleProjectCloseIconClick }
+export { handleProjectCloseIconClick };

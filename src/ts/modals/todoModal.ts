@@ -6,22 +6,22 @@ import {
 	elemCreator,
 	addEvtListener,
 	pipe,
-} from '../element-creators'
-import { handleInvalidTodoName } from '../eventCBs/handleInvalidTodoName'
-import { handleTodoCloseIconClick } from '../eventCBs/handleTodoCloseIconClick'
-import { handleTodoFormSubmit } from '../eventCBs/handleTodoFormSubmit'
-import { handleTodoNameValidation } from '../eventCBs/handleTodoNameValidation'
-import { Div } from '../types'
+} from '../element-creators';
+import { handleInvalidTodoName } from '../eventCBs/handleInvalidTodoName';
+import { handleTodoCloseIconClick } from '../eventCBs/handleTodoCloseIconClick';
+import { handleTodoFormSubmit } from '../eventCBs/handleTodoFormSubmit';
+import { handleTodoNameValidation } from '../eventCBs/handleTodoNameValidation';
+import { Div } from '../types';
 
 const todoModal = function (projectDataName_: string, projectDataColour_: string) {
-	const root: Div = document.querySelector('#root')
+	const root: Div = document.querySelector('#root');
 
-	const now = new Date()
+	const now = new Date();
 
-	const todoContainer = elemCreator('div')(['todo-container'])
-	appendElemToParent(root)(todoContainer)
+	const todoContainer = elemCreator('div')(['todo-container']);
+	appendElemToParent(root)(todoContainer);
 
-	const todoForm = elemCreator('form')(['form', 'form-addTodo'])
+	const todoForm = elemCreator('form')(['form', 'form-addTodo']);
 	pipe(
 		addEvtListener('submit')(handleTodoFormSubmit),
 		addAttributeToElem([
@@ -31,21 +31,21 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['name', 'form-addTodo'],
 		]),
 		appendElemToParent(todoContainer)
-	)(todoForm)
+	)(todoForm);
 
 	pipe(
 		addTextToElem('Add task todo'),
 		appendElemToParent(todoForm)
-	)(elemCreator('h3')(['heading-text', 'text-addTodo']))
+	)(elemCreator('h3')(['heading-text', 'text-addTodo']));
 
-	const addTodoNameContainer = elemCreator('div')(['addTodo-name-container'])
-	appendElemToParent(todoForm)(addTodoNameContainer)
+	const addTodoNameContainer = elemCreator('div')(['addTodo-name-container']);
+	appendElemToParent(todoForm)(addTodoNameContainer);
 
 	pipe(
 		addAttributeToElem([['for', 'addTodo-name']]),
 		addTextToElem('Name'),
 		appendElemToParent(addTodoNameContainer)
-	)(elemCreator('label')(['label-name']))
+	)(elemCreator('label')(['label-name']));
 
 	pipe(
 		addEvtListener('input')(handleTodoNameValidation),
@@ -62,16 +62,16 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['required', ''],
 		]),
 		appendElemToParent(addTodoNameContainer)
-	)(elemCreator('input')(['addTodo-name']))
+	)(elemCreator('input')(['addTodo-name']));
 
-	const addTodoDescContainer = elemCreator('div')(['addTodo-desc-container'])
-	appendElemToParent(todoForm)(addTodoDescContainer)
+	const addTodoDescContainer = elemCreator('div')(['addTodo-desc-container']);
+	appendElemToParent(todoForm)(addTodoDescContainer);
 
 	pipe(
 		addAttributeToElem([['for', 'addTodo-description']]),
 		addTextToElem('Description'),
 		appendElemToParent(addTodoDescContainer)
-	)(elemCreator('label')(['label-description']))
+	)(elemCreator('label')(['label-description']));
 
 	pipe(
 		addAttributeToElem([
@@ -84,16 +84,16 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['wrap', 'hard'],
 		]),
 		appendElemToParent(addTodoDescContainer)
-	)(elemCreator('textarea')(['addTodo-description']))
+	)(elemCreator('textarea')(['addTodo-description']));
 
-	const addTodoDateContainer = elemCreator('div')(['addTodo-date-container'])
-	appendElemToParent(todoForm)(addTodoDateContainer)
+	const addTodoDateContainer = elemCreator('div')(['addTodo-date-container']);
+	appendElemToParent(todoForm)(addTodoDateContainer);
 
 	pipe(
 		addTextToElem('Due date'),
 		addAttributeToElem([['for', 'addTodo-dueDate']]),
 		appendElemToParent(addTodoDateContainer)
-	)(elemCreator('label')(['label-dueDate']))
+	)(elemCreator('label')(['label-dueDate']));
 
 	pipe(
 		addAttributeToElem([
@@ -117,18 +117,18 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['required', ''],
 		]),
 		appendElemToParent(addTodoDateContainer)
-	)(elemCreator('input')(['addTodo-dueDate']))
+	)(elemCreator('input')(['addTodo-dueDate']));
 
-	const addTodoPriorityContainer = elemCreator('div')(['addTodo-priority-container'])
-	appendElemToParent(todoForm)(addTodoPriorityContainer)
+	const addTodoPriorityContainer = elemCreator('div')(['addTodo-priority-container']);
+	appendElemToParent(todoForm)(addTodoPriorityContainer);
 
 	pipe(
 		addTextToElem('Priority level'),
 		addAttributeToElem([['for', 'addTodo-selectPriority']]),
 		appendElemToParent(addTodoPriorityContainer)
-	)(elemCreator('label')(['label-selectPriority']))
+	)(elemCreator('label')(['label-selectPriority']));
 
-	const selectPriority = elemCreator('select')(['addTodo-selectPriority'])
+	const selectPriority = elemCreator('select')(['addTodo-selectPriority']);
 	pipe(
 		addAttributeToElem([
 			['name', 'addTodo-selectPriority'],
@@ -138,43 +138,43 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['required', ''],
 		]),
 		appendElemToParent(addTodoPriorityContainer)
-	)(selectPriority)
+	)(selectPriority);
 
 	pipe(
 		addTextToElem('--Please assign a priority--'),
 		addAttributeToElem([['value', '']]),
 		appendElemToParent(selectPriority)
-	)(elemCreator('option')(['option-selectPriority']))
+	)(elemCreator('option')(['option-selectPriority']));
 
 	pipe(
 		addAttributeToElem([['value', 'low']]),
 		addTextToElem('Low'),
 		appendElemToParent(selectPriority)
-	)(elemCreator('option')(['option-selectPriority']))
+	)(elemCreator('option')(['option-selectPriority']));
 
 	pipe(
 		addAttributeToElem([['value', 'medium']]),
 		addTextToElem('Medium'),
 		appendElemToParent(selectPriority)
-	)(elemCreator('option')(['option-selectPriority']))
+	)(elemCreator('option')(['option-selectPriority']));
 
 	pipe(
 		addAttributeToElem([['value', 'high']]),
 		addTextToElem('High'),
 		appendElemToParent(selectPriority)
-	)(elemCreator('option')(['option-selectPriority']))
+	)(elemCreator('option')(['option-selectPriority']));
 
 	pipe(
 		addAttributeToElem([['value', 'urgent']]),
 		addTextToElem('Urgent'),
 		appendElemToParent(selectPriority)
-	)(elemCreator('option')(['option-selectPriority']))
+	)(elemCreator('option')(['option-selectPriority']));
 
 	pipe(
 		addAttributeToElem([['value', 'immediate']]),
 		addTextToElem('Immediate'),
 		appendElemToParent(selectPriority)
-	)(elemCreator('option')(['option-selectPriority']))
+	)(elemCreator('option')(['option-selectPriority']));
 
 	//hidden element to funnel project name to todoform
 	pipe(
@@ -185,7 +185,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['type', 'text'],
 		]),
 		appendElemToParent(todoForm)
-	)(elemCreator('input')(['addTodo-projectName__hidden']))
+	)(elemCreator('input')(['addTodo-projectName__hidden']));
 
 	//hidden element to funnel project colour to todoform
 	pipe(
@@ -196,12 +196,12 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['type', 'text'],
 		]),
 		appendElemToParent(todoForm)
-	)(elemCreator('input')(['addTodo-projectColour__hidden']))
+	)(elemCreator('input')(['addTodo-projectColour__hidden']));
 
-	const addTodoIconsContainer = elemCreator('div')(['addTodo-icons-container'])
-	appendElemToParent(todoForm)(addTodoIconsContainer)
+	const addTodoIconsContainer = elemCreator('div')(['addTodo-icons-container']);
+	appendElemToParent(todoForm)(addTodoIconsContainer);
 
-	const bttnCancelTodo = elemCreator('button')(['bttn', 'bttn-cancelTodo'])
+	const bttnCancelTodo = elemCreator('button')(['bttn', 'bttn-cancelTodo']);
 	pipe(
 		addTextToElem('Cancel'),
 		addEvtListener('click')(handleTodoCloseIconClick),
@@ -211,9 +211,9 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['form', 'form-addTodo'],
 		]),
 		appendElemToParent(addTodoIconsContainer)
-	)(bttnCancelTodo)
+	)(bttnCancelTodo);
 
-	const bttnAddTodo = elemCreator('button')(['bttn', 'bttn-addTodo'])
+	const bttnAddTodo = elemCreator('button')(['bttn', 'bttn-addTodo']);
 	pipe(
 		addTextToElem('Add'),
 		addAttributeToElem([
@@ -222,7 +222,7 @@ const todoModal = function (projectDataName_: string, projectDataColour_: string
 			['form', 'form-addTodo'],
 		]),
 		appendElemToParent(addTodoIconsContainer)
-	)(bttnAddTodo)
-}
+	)(bttnAddTodo);
+};
 
-export { todoModal }
+export { todoModal };

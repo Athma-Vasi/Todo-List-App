@@ -1,34 +1,34 @@
-import { Div, ProjectAndTodosObj } from '../types'
-import { appendElemToParent, elemCreator } from '../element-creators'
-import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
+import { Div, ProjectAndTodosObj } from '../types';
+import { appendElemToParent, elemCreator } from '../element-creators';
+import { addTodosToContent } from '../projectsAndTodos/addTodosToContent';
 
 const handleTodayTabClick = function () {
 	//remove content section's previous contents
-	const content: Div = document.querySelector('.content')
-	const contentBottomPrev = document.querySelector('.content-bottom')
-	contentBottomPrev?.remove()
+	const content: Div = document.querySelector('.content');
+	const contentBottomPrev = document.querySelector('.content-bottom');
+	contentBottomPrev?.remove();
 
 	//render new content and append to this
-	const contentBottom = elemCreator('div')(['content-bottom'])
-	appendElemToParent(content)(contentBottom)
+	const contentBottom = elemCreator('div')(['content-bottom']);
+	appendElemToParent(content)(contentBottom);
 
-	const projectArr: ProjectAndTodosObj[] = []
+	const projectArr: ProjectAndTodosObj[] = [];
 	//grab all the projects except ones specified
 	Object.keys(localStorage).forEach((key) => {
 		if (key !== 'projectNames' && key !== 'archived') {
-			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
+			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''));
 		}
-	})
+	});
 
-	const now = new Date()
-	const date = now.getDate()
-	const month = now.getMonth() + 1
-	const year = now.getFullYear()
+	const now = new Date();
+	const date = now.getDate();
+	const month = now.getMonth() + 1;
+	const year = now.getFullYear();
 	const today = `${year}-${month < 10 ? '0' + month : month}-${
 		date < 10 ? '0' + date : date
-	}`
+	}`;
 
-	const projAndTodosFiltered: ProjectAndTodosObj[] = []
+	const projAndTodosFiltered: ProjectAndTodosObj[] = [];
 
 	//grab each todo due today and put into created temp project and push project into filtered array
 	projectArr.forEach((project) => {
@@ -47,15 +47,15 @@ const handleTodayTabClick = function () {
 							todoPriority: todo.todoPriority,
 						},
 					],
-				}
-				projAndTodosFiltered.push(temp)
+				};
+				projAndTodosFiltered.push(temp);
 			}
-		})
-	})
+		});
+	});
 
 	//render the todos
 	projAndTodosFiltered.forEach((project) => {
-		addTodosToContent(project)
-	})
-}
-export { handleTodayTabClick }
+		addTodosToContent(project);
+	});
+};
+export { handleTodayTabClick };

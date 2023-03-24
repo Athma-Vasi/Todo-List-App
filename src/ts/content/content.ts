@@ -6,38 +6,38 @@ import {
 	createImage,
 	elemCreator,
 	pipe,
-} from '../element-creators'
-import { handleFilterByPriorityClick } from '../eventCBs/handleFilterByPriorityClick'
-import { handleSearchFormSubmit } from '../eventCBs/handleSearchFormSubmit'
-import { handleSortByPriorityClick } from '../eventCBs/handleSortByPriorityClick'
+} from '../element-creators';
+import { handleFilterByPriorityClick } from '../eventCBs/handleFilterByPriorityClick';
+import { handleSearchFormSubmit } from '../eventCBs/handleSearchFormSubmit';
+import { handleSortByPriorityClick } from '../eventCBs/handleSortByPriorityClick';
 
-import { Div } from '../types'
+import { Div } from '../types';
 
 const content = function () {
-	const root: Div = document.querySelector('#root')
+	const root: Div = document.querySelector('#root');
 
-	const content = elemCreator('div')(['content'])
-	appendElemToParent(root)(content)
+	const content = elemCreator('div')(['content']);
+	appendElemToParent(root)(content);
 
-	const top = elemCreator('div')(['content-top'])
-	appendElemToParent(content)(top)
+	const top = elemCreator('div')(['content-top']);
+	appendElemToParent(content)(top);
 
-	const linksContainer = elemCreator('div')(['links-container'])
-	appendElemToParent(top)(linksContainer)
+	const linksContainer = elemCreator('div')(['links-container']);
+	appendElemToParent(top)(linksContainer);
 
 	pipe(
 		addTextToElem('Made by Athma Vasi'),
 		addAttributeToElem([['href', 'https://github.com/Athma-Vasi']]),
 		appendElemToParent(linksContainer)
-	)(elemCreator('a')(['link-author']))
+	)(elemCreator('a')(['link-author']));
 
 	pipe(
 		addTextToElem('View Code'),
 		addAttributeToElem([['href', 'https://github.com/Athma-Vasi/Todo-List-App']]),
 		appendElemToParent(linksContainer)
-	)(elemCreator('a')(['link-repo']))
+	)(elemCreator('a')(['link-repo']));
 
-	const form = elemCreator('form')(['form-searchTodo'])
+	const form = elemCreator('form')(['form-searchTodo']);
 	pipe(
 		addEvtListener('submit')(handleSearchFormSubmit),
 		addAttributeToElem([
@@ -47,21 +47,21 @@ const content = function () {
 			['name', 'search-todo'],
 		]),
 		appendElemToParent(top)
-	)(form)
+	)(form);
 
 	pipe(
 		addAttributeToElem([['for', 'searchTodo']]),
 		appendElemToParent(form)
-	)(elemCreator('label')(['label-search']))
+	)(elemCreator('label')(['label-search']));
 
-	const searchTodo = elemCreator('input')(['searchTodo'])
+	const searchTodo = elemCreator('input')(['searchTodo']);
 	addAttributeToElem([
 		['type', 'search'],
 		['placeholder', 'search for a todo'],
 		['id', 'searchTodo'],
 		['name', 'search-todo'],
-	])(searchTodo)
-	appendElemToParent(form)(searchTodo)
+	])(searchTodo);
+	appendElemToParent(form)(searchTodo);
 
 	pipe(
 		addAttributeToElem([
@@ -69,9 +69,9 @@ const content = function () {
 			['name', 'select-filterByPriority'],
 		]),
 		appendElemToParent(top)
-	)(elemCreator('label')(['label', 'label-filterByPriority']))
+	)(elemCreator('label')(['label', 'label-filterByPriority']));
 
-	const selectFilterByPriority = elemCreator('select')(['select-filterByPriority'])
+	const selectFilterByPriority = elemCreator('select')(['select-filterByPriority']);
 	pipe(
 		addEvtListener('click')(handleFilterByPriorityClick),
 		addAttributeToElem([
@@ -80,45 +80,45 @@ const content = function () {
 			['title', 'select-filterByPriority'],
 		]),
 		appendElemToParent(top)
-	)(selectFilterByPriority)
+	)(selectFilterByPriority);
 
 	pipe(
 		addTextToElem('--Filter by priority--'),
 		addAttributeToElem([['value', ' ']]),
 		appendElemToParent(selectFilterByPriority)
-	)(elemCreator('option')(['option-filterByPriority']))
+	)(elemCreator('option')(['option-filterByPriority']));
 
 	pipe(
 		addTextToElem('immediate'),
 		addAttributeToElem([['value', 'immediate']]),
 		appendElemToParent(selectFilterByPriority)
-	)(elemCreator('option')(['option-filterByPriority']))
+	)(elemCreator('option')(['option-filterByPriority']));
 
 	pipe(
 		addTextToElem('urgent'),
 		addAttributeToElem([['value', 'urgent']]),
 		appendElemToParent(selectFilterByPriority)
-	)(elemCreator('option')(['option-filterByPriority']))
+	)(elemCreator('option')(['option-filterByPriority']));
 
 	pipe(
 		addTextToElem('high'),
 		addAttributeToElem([['value', 'high']]),
 		appendElemToParent(selectFilterByPriority)
-	)(elemCreator('option')(['option-filterByPriority']))
+	)(elemCreator('option')(['option-filterByPriority']));
 
 	pipe(
 		addTextToElem('medium'),
 		addAttributeToElem([['value', 'medium']]),
 		appendElemToParent(selectFilterByPriority)
-	)(elemCreator('option')(['option-filterByPriority']))
+	)(elemCreator('option')(['option-filterByPriority']));
 
 	pipe(
 		addTextToElem('low'),
 		addAttributeToElem([['value', 'low']]),
 		appendElemToParent(selectFilterByPriority)
-	)(elemCreator('option')(['option-filterByPriority']))
+	)(elemCreator('option')(['option-filterByPriority']));
 
-	const selectSortByPriority = elemCreator('select')(['select-sortByPriority'])
+	const selectSortByPriority = elemCreator('select')(['select-sortByPriority']);
 	pipe(
 		addEvtListener('click')(handleSortByPriorityClick),
 		addAttributeToElem([
@@ -127,28 +127,28 @@ const content = function () {
 			['title', 'select-sortByPriority'],
 		]),
 		appendElemToParent(top)
-	)(selectSortByPriority)
+	)(selectSortByPriority);
 
 	pipe(
 		addTextToElem('--Sort by priority--'),
 		addAttributeToElem([['value', ' ']]),
 		appendElemToParent(selectSortByPriority)
-	)(elemCreator('option')(['option-sortByPriority']))
+	)(elemCreator('option')(['option-sortByPriority']));
 
 	pipe(
 		addTextToElem('low to immediate'),
 		addAttributeToElem([['value', 'lowToImmediate']]),
 		appendElemToParent(selectSortByPriority)
-	)(elemCreator('option')(['option-sortByPriority']))
+	)(elemCreator('option')(['option-sortByPriority']));
 
 	pipe(
 		addTextToElem('immediate to low'),
 		addAttributeToElem([['value', 'immediateToLow']]),
 		appendElemToParent(selectSortByPriority)
-	)(elemCreator('option')(['option-sortByPriority']))
+	)(elemCreator('option')(['option-sortByPriority']));
 
-	const contentBottom = elemCreator('div')(['content-bottom'])
-	appendElemToParent(content)(contentBottom)
-}
+	const contentBottom = elemCreator('div')(['content-bottom']);
+	appendElemToParent(content)(contentBottom);
+};
 
-export { content }
+export { content };

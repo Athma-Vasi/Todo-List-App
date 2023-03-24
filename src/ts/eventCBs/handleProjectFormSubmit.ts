@@ -1,18 +1,18 @@
-import { addProjectToSidebar } from '../projectsAndTodos/addProjectToSidebar'
-import { Div } from '../types'
+import { addProjectToSidebar } from '../projectsAndTodos/addProjectToSidebar';
+import { Div } from '../types';
 
 const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
-	ev.preventDefault()
+	ev.preventDefault();
 
-	const addProjectModal: Div = document.querySelector('.addProject-container')
+	const addProjectModal: Div = document.querySelector('.addProject-container');
 
-	const projectFormData = new FormData(this)
-	const projectFormName = projectFormData.get('addProject-name')?.toString() ?? ''
-	const projectFormColour = projectFormData.get('addProject-colour')?.toString() ?? ''
+	const projectFormData = new FormData(this);
+	const projectFormName = projectFormData.get('addProject-name')?.toString() ?? '';
+	const projectFormColour = projectFormData.get('addProject-colour')?.toString() ?? '';
 
 	//if 'projectNames' doesn't exist, create it, otherwise do nothing
 	if (!localStorage.getItem('projectNames')) {
-		localStorage.setItem('projectNames', JSON.stringify([]))
+		localStorage.setItem('projectNames', JSON.stringify([]));
 	}
 
 	const storeProject = (function (projectFormName_: string) {
@@ -20,30 +20,30 @@ const handleProjectFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent
 		//an array
 		Object.keys(localStorage).forEach((key) => {
 			if (key === 'projectNames') {
-				const keysSet = new Set(JSON.parse(localStorage.getItem(key) ?? ''))
+				const keysSet = new Set(JSON.parse(localStorage.getItem(key) ?? ''));
 
 				//to prevent sidebar tab names used as project names
-				;['Sample Project', 'archived', 'projects'].forEach((name) => keysSet.add(name))
+				['Sample Project', 'archived', 'projects'].forEach((name) => keysSet.add(name));
 
 				//if name already present
 				if (keysSet.has(projectFormName_)) {
 					alert(
 						`${projectFormName_} already exists as a project (｡•́︿•̀｡)  Please choose another name.`
-					)
-					return
+					);
+					return;
 				} else {
 					//if new name, push to arr and then store array in localStorage
-					keysSet.add(projectFormName_)
-					localStorage.setItem(key, JSON.stringify(Array.from(keysSet)))
+					keysSet.add(projectFormName_);
+					localStorage.setItem(key, JSON.stringify(Array.from(keysSet)));
 
 					//render projects with name,colour & icon under sidebar
-					addProjectToSidebar(projectFormName, projectFormColour)
+					addProjectToSidebar(projectFormName, projectFormColour);
 				}
 			}
-		})
-	})(projectFormName)
+		});
+	})(projectFormName);
 
-	addProjectModal?.remove()
-}
+	addProjectModal?.remove();
+};
 
-export { handleProjectFormSubmit }
+export { handleProjectFormSubmit };

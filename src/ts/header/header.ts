@@ -6,19 +6,19 @@ import {
 	elemCreator,
 	addEvtListener,
 	pipe,
-} from '../element-creators'
-import { Div } from '../types'
+} from '../element-creators';
+import { Div } from '../types';
 
 const header = function () {
-	const root: Div = document.querySelector('#root')
+	const root: Div = document.querySelector('#root');
 
-	const header = elemCreator('div')(['header'])
-	appendElemToParent(root)(header)
+	const header = elemCreator('div')(['header']);
+	appendElemToParent(root)(header);
 
 	pipe(
 		addTextToElem('Todo List App'),
 		appendElemToParent(header)
-	)(elemCreator('h1')(['title', 'header-title']))
-}
+	)(elemCreator('h1')(['title', 'header-title']));
+};
 
-export { header }
+export { header };

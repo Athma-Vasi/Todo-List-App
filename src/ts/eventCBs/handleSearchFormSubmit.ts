@@ -1,34 +1,34 @@
-import { addTodosToContent } from '../projectsAndTodos/addTodosToContent'
-import { Div, ProjectAndTodosObj } from '../types'
-import { appendElemToParent, elemCreator } from '../element-creators'
+import { addTodosToContent } from '../projectsAndTodos/addTodosToContent';
+import { Div, ProjectAndTodosObj } from '../types';
+import { appendElemToParent, elemCreator } from '../element-creators';
 
 const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent) {
-	ev.preventDefault()
+	ev.preventDefault();
 
 	//remove content section's previous contents
-	const content: Div = document.querySelector('.content')
-	const contentBottomPrev = document.querySelector('.content-bottom')
-	contentBottomPrev?.remove()
+	const content: Div = document.querySelector('.content');
+	const contentBottomPrev = document.querySelector('.content-bottom');
+	contentBottomPrev?.remove();
 
 	//render new content and append to this
-	const contentBottom = elemCreator('div')(['content-bottom'])
-	appendElemToParent(content)(contentBottom)
+	const contentBottom = elemCreator('div')(['content-bottom']);
+	appendElemToParent(content)(contentBottom);
 
-	const formData = new FormData(this)
-	const searchTerm = formData.get('search-todo')?.toString().toLowerCase() ?? ''
+	const formData = new FormData(this);
+	const searchTerm = formData.get('search-todo')?.toString().toLowerCase() ?? '';
 
-	const projectArr: ProjectAndTodosObj[] = []
+	const projectArr: ProjectAndTodosObj[] = [];
 
 	//grab all the projects except specified
 	Object.keys(localStorage).forEach((key) => {
 		if (key !== 'projectNames' && key !== 'archived') {
-			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''))
+			projectArr.push(JSON.parse(localStorage.getItem(key) ?? ''));
 		}
-	})
+	});
 
-	const searchRegEx = new RegExp(`${searchTerm}`)
+	const searchRegEx = new RegExp(`${searchTerm}`);
 
-	const matchedProjAndTodosArr: ProjectAndTodosObj[] = []
+	const matchedProjAndTodosArr: ProjectAndTodosObj[] = [];
 
 	projectArr.forEach((project) => {
 		project.todos.forEach((todo) => {
@@ -47,8 +47,8 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 							todoPriority: todo.todoPriority,
 						},
 					],
-				}
-				matchedProjAndTodosArr.push(temp)
+				};
+				matchedProjAndTodosArr.push(temp);
 			}
 			// else it matches description text
 			else if (searchRegEx.test(todo.todoDescription.toLowerCase())) {
@@ -65,8 +65,8 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 							todoPriority: todo.todoPriority,
 						},
 					],
-				}
-				matchedProjAndTodosArr.push(temp)
+				};
+				matchedProjAndTodosArr.push(temp);
 			}
 			//else it matches dueDate
 			else if (searchRegEx.test(todo.todoDueDate.toString())) {
@@ -83,8 +83,8 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 							todoPriority: todo.todoPriority,
 						},
 					],
-				}
-				matchedProjAndTodosArr.push(temp)
+				};
+				matchedProjAndTodosArr.push(temp);
 			}
 			//else it matches priority
 			else if (searchRegEx.test(todo.todoPriority.toString())) {
@@ -101,15 +101,15 @@ const handleSearchFormSubmit = function (this: HTMLFormElement, ev: SubmitEvent)
 							todoPriority: todo.todoPriority,
 						},
 					],
-				}
-				matchedProjAndTodosArr.push(temp)
+				};
+				matchedProjAndTodosArr.push(temp);
 			}
-		})
-	})
+		});
+	});
 
 	//render todos
 	matchedProjAndTodosArr.forEach((project) => {
-		addTodosToContent(project)
-	})
-}
-export { handleSearchFormSubmit }
+		addTodosToContent(project);
+	});
+};
+export { handleSearchFormSubmit };
